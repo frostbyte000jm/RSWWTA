@@ -310,7 +310,6 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -332,13 +331,16 @@ end</LUACode>
       {"Name":"PrevTabTarget"},
       {"Name":"RadioListDefaultIndex","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"RadioListItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"and","Value":"1"},{"Label":"or","Value":"2"}]}},
+      {"Name":"RadioListLayout","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RadioListOptionHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
+      {"Name":"RadioListOptionMargin","Value":{"@xsi:type":"xsd:int","#text":"5"}},
       {"Name":"RadioListOptionWidth"},
-      {"Name":"RadioListSourceNode"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
+      {"Name":"Sourceless"},
       {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"dt_trigger_attack_type"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
@@ -366,7 +368,6 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
@@ -388,13 +389,16 @@ end</LUACode>
       {"Name":"PrevTabTarget"},
       {"Name":"RadioListDefaultIndex","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"RadioListItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"and","Value":"1"},{"Label":"or","Value":"2"}]}},
+      {"Name":"RadioListLayout","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RadioListOptionHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
+      {"Name":"RadioListOptionMargin","Value":{"@xsi:type":"xsd:int","#text":"5"}},
       {"Name":"RadioListOptionWidth"},
-      {"Name":"RadioListSourceNode"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
+      {"Name":"Sourceless"},
       {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"dt_trigger_attack_type"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
@@ -462,13 +466,16 @@ end</LUACode>
     <LUACode>--Don't use onInit()
 
 function onFirstLayout()
-	local rList = Funct.tableSortIndex(FBEffectsManager.StrEffectList.rTargets);
+	updateTable(FBEffectsManager.StrEffectList.rTargets);
+end
+
+function updateTable(rTable)
+	local rList = Funct.tableSortIndex(rTable);
     for idx,value in pairs(rList) do
         add(value,value);
     end
     add("","");
-end
-</LUACode>
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
