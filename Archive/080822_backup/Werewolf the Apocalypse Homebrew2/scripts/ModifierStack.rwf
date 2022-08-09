@@ -1,0 +1,263 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>ModifierStack</ScriptName>
+    <FolderID>41</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+
+local control = nil;
+local freeadjustment = 0;
+local slots = {};
+local slotIndex = 0;
+local nLocked = 0;
+local bLockReset = false;
+local aModifierUsed = {};
+
+function onInit()
+	Interface.onHotkeyActivated = checkHotkey;
+end
+
+function AcceptRoll()
+	if control.edit_lbl.isVisible() then
+		adjustFreeAdjustment(control.stack_num.getValue());
+		control.edit_lbl.setVisible(false);
+    end
+end
+
+function checkHotkey(draginfo)
+	local sDragType = draginfo.getType();
+	if sDragType == "number" then
+		addSlot(draginfo.getDescription(), draginfo.getNumberData());
+		return true;
+	end
+end
+
+function updateIndex(value)
+    slotIndex = value;
+    updateControl();
+end
+
+function registerControl(ctrl)
+	control = ctrl;
+end
+
+function updateControl()
+	if control then
+		if slotIndex == 0 then
+            --set modifier
+            control.stack_num.setValue(freeadjustment);
+            
+            --set label
+            control.stack_description.setValue(Interface.getString("tooltip_modstack_freeadjustment"));
+        else
+            --set modifier
+            control.stack_num.setValue(slots[slotIndex].number);
+            
+            --set label
+            control.stack_description.setValue(slots[slotIndex].description);
+		end
+		
+		-- Update Display of Clear, Index, and Total fields
+		updateDisplay();			
+	end
+end 
+
+function updateDisplay()
+	-- set objects to visible
+	
+	--index and total	
+	if #slots == 0 then
+		control.stack_index.setVisible(false);
+		control.stack_total.setVisible(false);		
+	else
+		control.stack_index.setMaxValue(#slots);
+		control.stack_total.setValue(getSum());	
+		control.stack_index.setVisible(true);
+		control.stack_total.setVisible(true);		
+	end
+	
+	--Clear button	
+	if isEmpty() then
+		control.remove_stack.setVisible(false);
+	else 
+		control.remove_stack.setVisible(true);
+	end
+	
+	-- Tool Tips
+		--Index
+	local sIndexTip = string.format(Interface.getString("tooltip_modstack_index"),#slots);
+	control.stack_index.setTooltipText(sIndexTip);
+		--Total
+	local sTotalTip = string.format(Interface.getString("tooltip_modstack_total"),getSum(),getDescription());
+	control.stack_total.setTooltipText(sTotalTip);
+end
+
+function isEmpty()
+	if #slots &gt; 0 or getSum() ~= 0 then
+		return false;
+	end
+
+	return true;
+end
+
+function getSum()
+	local total = freeadjustment;
+	
+	for i = 1, #slots do
+		total = total + slots[i].number;
+	end
+	
+	return total;
+end
+
+function getMultiplier()
+	return control.stack_multiply.getValue();
+end
+
+function setMultiplier(nValue)
+	nValue = math.min(math.max(nValue,0),10);
+	control.stack_multiply.setValue(nValue);
+end
+
+function getSlotCount()
+	return #slots;
+end
+
+function getDescription(forcebonus)
+    if forcebonus then
+        --Debug.chat("Something used forcebonus, let James Know");
+    end
+	
+	--Declaration
+	local s = "";
+	local aMods = {};
+	
+	-- grab all slots and turn them into an arrString
+	for i = 1, #slots do
+		table.insert(aMods, string.format("%s: [%d]", slots[i].description, slots[i].number));
+    end
+	
+	-- add the bonus freeadjustment at the end
+	if freeadjustment ~= 0 then
+        table.insert(aMods, Interface.getString("tooltip_modstack_freeadjustment")..string.format("[%d]", freeadjustment));
+	end
+	
+	--concat to a single string and return.
+	s = table.concat(aMods, " + ");
+	
+	return s;
+end
+
+function addSlot(description, number)
+	table.insert(slots, { ['description'] = description, ['number'] = number });
+	
+	updateControl();
+	
+	return #slots
+end
+
+function removeSlot(number)
+	if number == 0 then
+        freeadjustment = 0;
+        
+	else
+        table.remove(slots, number);
+        control.stack_index.setValue(slotIndex - 1);
+	end
+	updateControl();
+end
+
+function getIndex(sDesc)
+	for i = 1, #slots do
+		if slots[i].description == sDesc then
+			return i;
+		end
+	end
+	return -1;
+end
+
+function adjustFreeAdjustment(amount) --Updated
+    if slotIndex == 0 then
+        freeadjustment = freeadjustment + amount;
+    else
+        slots[slotIndex].number = slots[slotIndex].number + amount;
+    end
+    
+	updateControl();
+end
+
+function setFreeAdjustment(amount)
+	freeadjustment = amount;
+	updateControl();
+end
+
+function reset()
+	if control and control.stack_num.hasFocus() then
+		control.stack_num.setFocus(false);
+	end
+
+	freeadjustment = 0;
+	slots = {};
+	control.stack_index.setValue(0);
+	control.stack_multiply.setValue(1);
+	updateControl();
+end
+
+function getStack(forcebonus)
+	local sDesc = "";
+	local nMod = 0;
+	local nMultiply = getMultiplier();
+	
+	if not isEmpty() then
+		sDesc = getDescription(forcebonus);
+		nMod = getSum();
+	end
+
+	if nLocked == 0 then
+		reset();
+	end
+	
+	return sDesc, nMod, nMultiply;
+end
+
+-- Lock handling
+-- Used to keep the modifier stack from being cleared when making multiple rolls (i.e. full attack)
+function lock()
+	if nLocked == 0 then
+		bLockReset = false;
+	end
+	nLocked = nLocked + 1;
+end
+
+function unlock(bReset)
+	nLocked = nLocked - 1;
+	if nLocked &lt; 0 then
+		nLocked = 0;
+	end
+	if bReset then
+		bLockReset = bLockReset or bReset;
+	end
+		
+	if nLocked == 0 and bLockReset then
+		reset();
+
+		for k,_ in pairs(aModifierUsed) do
+			setModifierKey(k, false, true);
+		end
+		aModifierUsed = {};
+	end
+end
+
+function getTargeting()
+	if control then
+		return (control.targeting.getValue() == 1);
+	end
+	return false;
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

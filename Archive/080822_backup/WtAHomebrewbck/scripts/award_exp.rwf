@@ -1,0 +1,161 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>award_exp</ScriptName>
+    <FolderID>66</FolderID>
+    <Script>--- Created by Frostbyte.
+--- DateTime: 8/13/2020 10:28 PM
+---
+
+function gatherGroupXP(questsNode)
+    
+    local nodePS = DB.findNode("partysheet.partyinformation");
+    
+    --gather up values for each character
+    for sClassChar,rRecordChar in pairs(nodePS.getChildren()) do
+        --Debug.chat("sClassChar: ",sClassChar," rRecordChar: ",rRecordChar);
+        
+        --declarations
+        local nBeats = 0;
+        local nXP = 0;
+        local nGlory = 0;
+        local nHonor = 0;
+        local nWisdom = 0;
+        
+        -- get character node
+        local _,sCharNode = rRecordChar.getChild("link").getValue();
+        local charNode = DB.findNode(sCharNode);
+        
+        --loop through quest and assign values
+        for sClassQuest,rRecordQuest in pairs(questsNode.getChildren()) do
+            --Debug.chat("sClassQuest: ",sClassQuest," rRecordQuest: ",rRecordQuest);
+            local bContinue = rRecordQuest.getChild("cb_xpgiven").getValue() == 0;
+            
+            if bContinue then
+                nB,nX,nG,nH,nW = awardChar(charNode,rRecordQuest);
+                
+                nBeats = nBeats + nB;
+                nXP = nXP + nX;
+                nGlory = nGlory + nG;
+                nHonor = nHonor + nH;
+                nWisdom = nWisdom + nW;
+            end
+        end
+        
+        --Debug.chat("nBeats:",nBeats,"nXP:",nXP,"nGlory:",nGlory,"nHonor:",nHonor,"nWisdom:",nWisdom);
+        
+        -- Display Message
+        local msg = 
+        {
+            font = "narratorfont", 
+            mode = "ooc",
+            icon = "portrait_" .. charNode.getName() .. "_chat",
+            text = charNode.getChild("name").getValue().." Has received:\nBeats: "..nBeats.."\nXP: "..nXP.."\nGlory: "..nGlory.."\nHonor: "..nHonor.."\nWisdom: "..nWisdom;
+        }
+        Comm.deliverChatMessage(msg);
+    end 
+    
+    --Check off Quest
+    for sClassQuest,rRecordQuest in pairs(questsNode.getChildren()) do
+        --Debug.chat("sClassQuest: ",sClassQuest," rRecordQuest: ",rRecordQuest);
+        rRecordQuest.getChild("cb_xpgiven").setValue(1);
+    end
+    
+    local msg = 
+    {
+        font = "narratorfont", 
+        mode = "ooc",
+        icon = "xp",
+        text = "All XP Rewards have been received";
+    }
+    Comm.deliverChatMessage(msg);    
+end
+
+function awardChar(charNode,questNode)
+    --Debug.chat("charNode",charNode);
+    --Debug.chat("questNode",questNode);
+    
+    --set global
+    local nBeats = questNode.getChild("num_beats").getValue();
+    local nXP = questNode.getChild("num_xp").getValue();
+    local nGlory = questNode.getChild("num_glory").getValue();
+    local nHonor = questNode.getChild("num_honor").getValue();
+    local nWisdom = questNode.getChild("num_wisdom").getValue();
+    --Debug.chat("nBeats:",nBeats,"nXP:",nXP,"nGlory:",nGlory,"nHonor:",nHonor,"nWisdom:",nWisdom);
+    
+    --get quest node
+    local qNode = questNode.getChild("wl_quest_add_xp").getChildren();
+    --Debug.chat("qNode",qNode);
+    
+    --loop find character
+    for sClass,rRecord in pairs(qNode) do
+        --Debug.chat("sClass: ",sClass," rRecord: ",rRecord);
+        
+        -- compare character to quest name
+        local qListName = rRecord.getChild("str_char_node").getValue();
+        --Debug.chat("qListName:",qListName);
+        local charName = "charsheet."..charNode.getName();
+        --Debug.chat("charName",charName);
+        
+        if charName == qListName then
+            local nB = rRecord.getChild("num_beats").getValue();
+            local nX = rRecord.getChild("num_xp").getValue();
+            local nG = rRecord.getChild("num_glory").getValue();
+            local nH = rRecord.getChild("num_honor").getValue();
+            local nW = rRecord.getChild("num_wisdom").getValue();
+            nBeats = nBeats + nB;
+            nXP = nXP + nX;
+            nGlory = nGlory + nG;
+            nHonor = nHonor + nH;
+            nWisdom = nWisdom + nW;
+        end
+        --Debug.chat("nBeats:",nBeats,"nXP:",nXP,"nGlory:",nGlory,"nHonor:",nHonor,"nWisdom:",nWisdom);        
+    end
+    
+    --Apply Beats
+    local nCharBeats = charNode.getChild("num_story_points").getValue();
+    nCharBeats = nCharBeats + nBeats;
+    charNode.getChild("num_story_points").setValue(nCharBeats);
+    
+    --Apply XP
+    local nCharXP = charNode.getChild("num_xp_total").getValue();
+    nCharXP = nCharXP + nXP;
+    charNode.getChild("num_xp_total").setValue(nCharXP);
+    
+    --Apply Glory
+    local nCharGlory = charNode.getChild("num_glory").getValue();
+    nCharGlory = nCharGlory + nGlory/10;
+    charNode.getChild("num_glory").setValue(nCharGlory);
+    
+    --Apply Honor
+    local nCharHonor = charNode.getChild("num_honor").getValue();
+    nCharHonor = nCharHonor + nHonor/10;
+    charNode.getChild("num_honor").setValue(nCharHonor);
+    
+    --Apply Wisdom
+    local nCharWisdom = charNode.getChild("num_wisdom").getValue();
+    nCharWisdom = nCharWisdom + nWisdom/10;
+    charNode.getChild("num_wisdom").setValue(nCharWisdom);
+    
+    return nBeats, nXP, (nGlory/10), (nHonor/10), (nWisdom/10);
+    
+    --create Child (this works, but the character sheet must be open first.
+    --[[--Debug.chat("findlist:",charNode.getChild("wl_gm_xp"));
+    local charXPNode = charNode.getChild("wl_gm_xp").createChild();
+    --Debug.chat("charXPNode",charXPNode);
+    
+    charXPNode.test();
+    
+    for sClass,rRecord in pairs(charXPNode.getChildren()) do
+        --Debug.chat("sClass: ",sClass," rRecord: ",rRecord);
+    end
+    
+    charXPNode.getChild("num_xp").setValue(nXP);
+    charXPNode.getChild("num_glory").setValue(nGlory);
+    charXPNode.getChild("num_honor").setValue(nHonor);
+    charXPNode.getChild("num_wisdom").setValue(nWisdom);]]--
+    
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

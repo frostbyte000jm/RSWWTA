@@ -1,0 +1,88 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBActorManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+function isActivePC(nodeCharOrCT)
+	local nodeChar = ActorManager.getCreatureNode(nodeCharOrCT);
+	
+	if not (ActorManager.isPC(nodeChar)) then
+		return false;
+	end
+	
+	local sOwner = DB.getOwner(nodeChar);
+	if sOwner and string.len(sOwner) &gt; 0 then
+		for _,sUser in ipairs(User.getActiveUsers()) do
+			if sUser == sOwner then
+				for _,sIdentity in ipairs(User.getActiveIdentities(sUser)) do
+					if nodeChar.getName() == sIdentity then						
+						return true;
+					end
+				end				
+			end
+		end
+	end
+	
+	--default
+	return false;
+end
+
+function isActivePCAndHost(nodeCharOrCT, rAddInfo)
+	local bActivePC = isActivePC(nodeCharOrCT);
+	
+	if rAddInfo and rAddInfo.onHost and rAddInfo.onHost == true then
+		bActivePC = false;	
+	end
+	
+	return bActivePC and Session.IsHost;	
+end
+
+function isUserActivePC(nodeCharOrCT, rAddInfo)
+	local nodeChar = ActorManager.getCreatureNode(nodeCharOrCT);
+	
+	-- dump if this is not PC
+	if not (ActorManager.isPC(nodeChar)) then
+		return false;
+	end
+	
+	-- force Host if onHost == true
+	if rAddInfo and rAddInfo.onHost and rAddInfo.onHost == true then
+		if Session.IsHost then
+			return true;
+		else
+			return false;
+		end
+	end
+	
+	-- if Active PC, then can not be Host, PC must be owned by current user to be True
+	if isActivePC(nodeChar) then	
+		if Session.IsHost then			
+			return false;
+		end
+		
+		local sOwner = DB.getOwner(nodeChar);
+		if sOwner and string.len(sOwner) &gt; 0 then
+			local sUser = User.getUsername();
+			if sUser == sOwner then
+				for _,sIdentity in ipairs(User.getActiveIdentities(sUser)) do
+					if nodeChar.getName() == sIdentity then						
+						return true;
+					end
+				end				
+			end
+		end
+		
+		--default when can't find Owner
+		return false;
+		
+	elseif not Session.IsHost then --If not PC, then can not be Client
+		return false;
+	end
+
+	--default
+	return true;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

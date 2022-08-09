@@ -1,0 +1,156 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBChatManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>    
+--[[	
+	- "action" - Action Message: When a character uses some game function
+	- "system" - When a message needs to be displayed to a user or users
+	- "chat" - When a character is talking
+	- "gm_whisper" - When the GM is passing the Player a Message.
+]]--
+
+--[[***************** Global Functions **************************]]--
+
+OOB_Msg_FB_GM_Message = "OOB_Msg_FB_GM_Message";
+
+function sendMessage(nodeChar, sMsg, sStyle, bSecret, rUsers)
+	local msg = createMessage(nodeChar, sMsg, sStyle, bSecret);
+	
+	if Session.IsHost or not bSecret then
+		Comm.deliverChatMessage(msg, rUsers);
+	else
+		if rUsers then
+			if not type(rUsers) == "table" then
+				rUsers = {rUsers}
+			end
+		else
+			rUsers = {User.getUsername()}
+		end
+		msgOOB = {
+			type = OOB_Msg_FB_GM_Message,
+			msg = msg,
+			rUsers = rUsers,
+		}
+		FBOOBManager.OOBifySend(msgOOB); --GmIdentityManager.getGMIdentity()
+	end
+end
+
+function sendMessageRoll(rSource, rRoll)
+	--Debug.chat("sendMessageRoll - rSource",rSource,"rRoll",rRoll);
+	--create message
+    local rMessage = ActionsManager.createActionMessage(rSource,rRoll);
+    rMessage.font = "narratorfont";
+	rMessage.mode = "ooc";
+    
+    --set Icon
+    local sNodeType, nodeChar = ActorManager.getTypeAndNode(rSource);
+    rMessage.icon = createIcon(nodeChar);    
+    
+    --Check for Active Player
+    if Session.IsHost then
+		rMessage.secret = checkHideFromClients(nodeChar, rRoll);
+    end    
+    
+    --set message and deliver to chat
+    Comm.deliverChatMessage(rMessage);    
+end
+
+--[[***************** Local Functions **************************]]--
+
+function onInit()
+	registerOOBHandlers();
+end
+
+function registerOOBHandlers()
+	OOBManager.registerOOBMsgHandler(OOB_Msg_FB_GM_Message, sendMessageOOB);
+end
+
+function sendMessageOOB(msgOOB)
+	if Session.IsHost then
+		msgOOB = FBOOBManager.DeOOBify(msgOOB);
+		Comm.deliverChatMessage(msgOOB.msg, msgOOB.rUsers);	
+	end	
+end
+
+function createIcon(nodeChar)
+	local sIcon = "";
+	if nodeChar and ActorManager.isPC(nodeChar) then
+		sIcon = "portrait_" .. nodeChar.getName() .. "_chat";
+	elseif Session.IsHost then
+		sIcon = "portrait_gm_token";
+	else
+		sIcon = "portrait_player_token";
+	end
+	return sIcon;
+end
+
+function createMessage(nodeChar, sText, sStyle, bSecret)
+	--Debug.chat("nodeChar",nodeChar,"sText",sText,"sStyle",sStyle,"bSecret",bSecret);
+	--set Icon
+	local sIcon = createIcon(nodeChar);
+	
+	--set Font, Mode, and Type
+	local bDefaultSecret = false;
+	local sFont = "";
+	local sMode = "";
+	local sType = "";
+	if sStyle == "system" then
+		sFont = "systemfont";
+		sMode = "system";
+		bDefaultSecret = true;
+	elseif sStyle == "action" then
+		sFont = "narratorfont";
+		sMode = "ooc";
+	elseif sStyle == "chat" then
+		sFont = "chatfont";
+		sMode = "chat";
+	elseif sStyle == "gm_whisper" then
+		sFont = "systemfont";
+		sMode = "system";
+	else
+		sFont = "systemfont";
+		sMode = "system";
+	end
+	
+	--set Secret
+	if not bSecret then bSecret = bDefaultSecret; end 
+	
+	--build msg
+	local rMessage = {
+		icon = sIcon,
+		secret = bSecret,
+		font = sFont,
+		mode = sMode,
+		type = sType,
+		text = sText,		
+	}
+	--Debug.chat("rMessage",rMessage);
+	return rMessage;
+end
+
+function checkHideFromClients(nodeChar, rRoll)
+	--Debug.chat("checkForActivePlayer - nodeChar",nodeChar,"rRoll",rRoll);
+	if rRoll.bShowResult then
+		return rRoll.bHideResults;
+	end
+	
+	local bActive = false;
+	local sOwner = DB.getOwner(nodeChar);	
+	if sOwner and string.len(sOwner) &gt; 0 then
+		for _,sUser in ipairs(User.getActiveUsers()) do
+			if sUser == sOwner then
+				for _,sIdentity in ipairs(User.getActiveIdentities(sUser)) do
+					return false;
+				end				
+			end
+		end
+	end
+	
+	--default
+	return true;	
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

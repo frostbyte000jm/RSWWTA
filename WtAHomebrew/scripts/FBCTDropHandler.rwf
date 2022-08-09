@@ -1,0 +1,71 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBCTDropHandler</ScriptName>
+    <FolderID>35</FolderID>
+    <Script>
+function receiveDrop(nodeCTCurrent,winCTDrop,dragdata)	
+	if Session.IsHost then
+		dropHost(nodeCTCurrent,winCTDrop,dragdata);
+	else
+		dropClient(nodeCTCurrent,winCTDrop,dragdata);
+	end
+end
+
+--[[
+***************************************************************************
+							Host Drops
+***************************************************************************
+]]--
+
+function dropHost(nodeCTCurrent,winCTDrop,dragdata)
+	--Debug.chat("Host:\nnodeCTCurrent",nodeCTCurrent,"\n\nwinCTDrop",winCTDrop,"\n\ndragdata",dragdata);
+	local sType = dragdata.getType();
+	
+	if sType == "combattrackeractivation" then
+		turnDropHost(nodeCTCurrent,winCTDrop,dragdata);
+	end
+end
+
+function turnDropHost(nodeCTCurrent,winCTDrop,dragdata)
+	local nActive = DB.getValue(winCTDrop.getDatabaseNode(),"active",0);
+	
+	-- Check if NOT active.
+	if nActive == 0 then
+		CombatManager.requestActivation(winCTDrop.getDatabaseNode(), OptionsManager.isOption("RING", "off"));
+	end
+end
+
+--[[
+***************************************************************************
+							Client Drops
+***************************************************************************
+]]--
+
+function dropClient(nodeCTCurrent,winCTDrop,dragdata)
+	--Debug.chat("Client:\nnodeCTCurrent",nodeCTCurrent,"\n\nwinCTDrop",winCTDrop,"\n\ndragdata",dragdata);
+	local sType = dragdata.getType();
+	
+	if sType == "combattrackeractivation" then
+		turnDropClient(nodeCTCurrent,winCTDrop,dragdata);
+	end
+	
+end
+
+function turnDropClient(nodeCTCurrent,winCTDrop,dragdata)
+	local nActive = DB.getValue(winCTDrop.getDatabaseNode(),"active",0);
+	local nHasGone = DB.getValue(winCTDrop.getDatabaseNode(),"cbox_turn_used",0);
+	
+	--check if character is NOT active and has NOT gone
+	if nActive == 0 and nHasGone == 0 then
+		local msgOOB = {
+			type = FBCTManager.OOB_MSGTYPE_SetPlayerActive;
+			pathNodeCT = winCTDrop.getDatabaseNode().getPath();
+		};
+		Comm.deliverOOBMessage(msgOOB,"");		
+	end
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

@@ -1,0 +1,62 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>template_inventory</XmlName>
+    <FolderID>7</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+--&gt;
+
+&lt;root&gt;
+    &lt;!-- 
+        These are not really templates. These are a hack so I can get fields sources. 
+    --&gt;
+    &lt;template name="num_coinamount1"&gt;
+		&lt;number_dropadd source="coins.slot1.amount"&gt;
+			&lt;description field="name" /&gt;
+		&lt;/number_dropadd&gt;
+	&lt;/template&gt;
+	&lt;template name="str_coinname1"&gt;
+		&lt;stringu source="coins.slot1.name"&gt;			
+		&lt;/stringu&gt;
+	&lt;/template&gt;
+	&lt;template name="num_coinamount2"&gt;
+		&lt;number_dropadd source="coins.slot2.amount"&gt;
+			&lt;description field="name" /&gt;
+		&lt;/number_dropadd&gt;
+	&lt;/template&gt;
+	&lt;template name="str_coinname2"&gt;
+		&lt;stringu source="coins.slot2.name"&gt;			
+		&lt;/stringu&gt;
+	&lt;/template&gt;
+	&lt;template name="num_coinamount3"&gt;
+		&lt;number_dropadd source="coins.slot3.amount"&gt;
+			&lt;description field="name" /&gt;
+		&lt;/number_dropadd&gt;
+	&lt;/template&gt;
+	&lt;template name="str_coinname3"&gt;
+		&lt;stringu source="coins.slot3.name"&gt;			
+		&lt;/stringu&gt;
+	&lt;/template&gt;
+	&lt;template name="num_coinamount4"&gt;
+		&lt;number_dropadd source="coins.slot4.amount"&gt;
+			&lt;description field="name" /&gt;
+		&lt;/number_dropadd&gt;
+	&lt;/template&gt;
+	&lt;template name="str_coinname4"&gt;
+		&lt;stringu source="coins.slot4.name"&gt;			
+		&lt;/stringu&gt;
+	&lt;/template&gt;
+	&lt;template name="num_encumbranceload"&gt;
+		&lt;simplenumber source="encumbrance.load"&gt;
+			&lt;frame name="fieldlight" offset="7,5,7,5" /&gt;			
+		&lt;/simplenumber&gt;
+	&lt;/template&gt;
+	
+		
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

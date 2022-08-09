@@ -1,0 +1,288 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_char_stats</ScriptName>
+    <FolderID>29</FolderID>
+    <Script>--declaration
+local rCharSheetValues;
+
+function onInit()
+    rCharSheetValues = {};
+end
+
+--[[
+*****************************************************
+			Static Stats Manager
+*****************************************************
+List:
+Health_Current
+Health_Total
+Resource
+]]--
+
+function UpdateStatValue(sName, nValue)
+	if string.len(sName) &gt; 0 then
+		if rCharSheetValues[sName] then
+			rCharSheetValues[sName].nValue = nValue;			
+		else
+			rCharSheetValues[sName] = {sName = sName, nValue = nValue};			
+		end
+	end
+end
+
+function getStatValue(sName)
+	if rCharSheetValues[sName] then
+		return rCharSheetValues[sName];
+	else
+		return nil;
+	end	
+end
+
+--[[
+*****************************************************
+			Dynamic Stats Manager
+*****************************************************
+]]--
+
+--[[
+	This will search the character sheet for the given stats.
+	Input: nodeChar, and a list of stat values "strength", "dexterity"...
+	Output: list of stats {
+		sName: name of stat, 
+		nValue: number value of stat, 
+		sSpecialty: if stat has specialty,
+		} 
+	
+	Maintainance:
+	If more stat locations are added, they will need to be added to this list.
+]]--
+function GetStats(nodeChar, rStats)
+	--Debug.chat("manager_char_stats.GetStats() - nodeChar",nodeChar,"rStats",rStats);
+	local rStatRecord = {};	
+	
+	-- for each skill value passed in, find value and pass back the record. If it isn't in the tree, pass back Name and Value. If it doesn't exist, pass back nil.
+	for _,sStat in pairs(rStats) do
+		local bNotFound = true;
+		
+		--Check Other Traits Debug.Update(This will need to be updated for Gnosis, Will, and Rage)
+		if bNotFound then			
+			for idx,sResource in pairs(Funct.tableSortIndex(FBResourceManager.getResources())) do				
+				if sStat == sResource then
+					local nValue = FBResourceManager.getResourceTotal(nodeChar, sStat);					
+					table.insert(rStatRecord, {sName = sStat, sSpecialty = "", nValue = nValue});
+					bNotFound = false;
+					break;
+				end
+			end			
+		end
+		
+		--Check Attributes
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_physical");
+			if not node then
+				-- Dump. This is in case a character record has not been opened yet.
+				bNotFound = false;
+				break
+			end
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_social");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_mental");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end
+		
+		--Check Skills
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_talents");
+			for sClass,rRecord in pairs(node.getChildren()) do				
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end		
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_skills");
+			for sClass,rRecord in pairs(node.getChildren()) do				
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end	
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_knowledges");
+			for sClass,rRecord in pairs(node.getChildren()) do				
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					local sSpecialty = DB.getValue(rRecord,"str_skillsp_name","");
+					local nValue = DB.getValue(rRecord,"num_skill_value",0);
+					table.insert(rStatRecord, {sName = sName, sSpecialty = sSpecialty, nValue = nValue});					
+					bNotFound = false;
+					break;
+				end
+			end
+		end	
+	end
+	
+	-- send request.
+	return rStatRecord;
+end
+
+function ModStats(nodeChar, rStatsMods)
+	--Debug.chat("manager_char_stats.ModStats() - nodeChar",nodeChar,"rStatsMods",rStatsMods);
+	
+	-- for each skill value passed in, find value and pass back the record. If it isn't in the tree, pass back Name and Value. If it doesn't exist, pass back nil.
+	for _,rStat in pairs(rStatsMods) do
+		local bNotFound = true;
+		local sStat = rStat.sName;
+		local nMod = rStat.nMod;
+		--Debug.chat("sStat",sStat,"nMod",nMod);
+		
+		--Check Attributes
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_physical");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);				
+					bNotFound = false;
+					break
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_social");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);					
+					bNotFound = false;
+					break
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_attributes_mental");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);					
+					bNotFound = false;
+					break
+				end
+			end
+		end
+		
+		--Check Skills
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_talents");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);					
+					bNotFound = false;
+					break
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_skills");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);					
+					bNotFound = false;
+					break
+				end
+			end
+		end
+		
+		if bNotFound then
+			local node = DB.getChild(nodeChar,"wl_abilities_knowledges");
+			for sClass,rRecord in pairs(node.getChildren()) do
+				local sName = DB.getValue(rRecord,"str_skill_name","");
+				if sStat == sName then
+					DB.setValue(rRecord, "num_skill_mod", "number", nMod);					
+					bNotFound = false;
+					break
+				end
+			end
+		end		
+	end
+end
+
+function AddStatsToRoll(nodeChar, rStats, sCheckSpecialty)
+	-- collect stat values
+	local rStatRecord = GetStats(nodeChar, rStats);
+	
+	-- send them to the prepRoller
+	for _, stat in pairs(rStatRecord) do
+		local sName = stat["sName"];
+		local sSpecialty = "";
+		local nValue = stat["nValue"];
+		
+		if sCheckSpecialty and sCheckSpecialty == stat["sSpecialty"] then
+			sSpecialty = stat["sSpecialty"];
+		end
+		
+		manager_prep_roll.AddCustomToRoll(sName, nValue, sSpecialty);
+	end
+end
+
+function GetStatVaules(nodeChar, rStats, sCheckSpecialty)
+	-- collect stat values
+	local rStatRecord = GetStats(nodeChar, rStats);
+	local sDisplaySkill,nSkillTotal = manager_prep_roll.GetRollValues(rStatRecord);
+	return sDisplaySkill,nSkillTotal;
+	
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

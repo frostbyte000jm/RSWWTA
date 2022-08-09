@@ -1,0 +1,170 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_char_stat_handler</ScriptName>
+    <FolderID>29</FolderID>
+    <Script>
+local n = 0;
+function count(bReset)
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Stat Lists
+*****************************************************
+]]--
+StatList = { --manager_char_stat_handler.StatList.StatTypes.Attributes.Skills.Resources
+	StatTypes = {
+		Attributes = {count(true), "Att"},
+		Skills = {count(), "Skl"},
+		Resources = {count(), "Res"},
+	},
+	rStatTypesFull = { --manager_char_stat_handler.StatList.rStatTypesFull
+		Attribute = {count(true), "Attribute"},
+		Skill = {count(), "Skill"},
+		Resource = {count(), "Resource"},
+	},
+	Skills = { --manager_char_stat_handler.StatList.Skills.Talents.Skills.Knowledges
+		Talents = {
+			Athletics = {count(true), "Athletics"},
+			Brawl = {count(), "Brawl"},
+			Craft = {count(), "Craft"},
+			Drive = {count(), "Drive"},
+			Firearms = {count(), "Firearms"},
+			Larceny = {count(), "Larceny"},
+			Melee = {count(), "Melee"},
+			PrimalUrge = {count(), "Primal Urge"},
+			Stealth = {count(), "Stealth"},
+			Survival = {count(), "Survival"},			
+		},
+		Skills = {
+			AnimalKen = {count(true), "Animal Ken"},
+			Etiquette = {count(), "Etiquette"},
+			Insight = {count(), "Insight"},
+			Intimidation = {count(), "Intimidation"},
+			Leadership = {count(), "Leadership"},
+			Performance = {count(), "Performance"},
+			Persuasion = {count(), "Persuasion"},
+			Rituals = {count(), "Rituals"},
+			Streetwise = {count(), "Streetwise"},
+			Subterfuge = {count(), "Subterfuge"},			
+		},
+		Knowledges = {
+			Academics = {count(true), "Academics"},
+			Alertness = {count(), "Alertness"},
+			Empathy = {count(), "Empathy"},
+			Enigmas = {count(), "Enigmas"},
+			Investigation = {count(), "Investigation"},
+			Medicine = {count(), "Medicine"},
+			Occult = {count(), "Occult"},
+			Politics = {count(), "Politics"},
+			Science = {count(), "Science"},
+			Technology = {count(), "Technology"},			
+		},	
+	},
+	Attributes = { --manager_char_stat_handler.StatList.Attributes.Physical.Social.Mental
+		Physical = {
+			Strength = {count(true), "Strength"},
+			Dexterity = {count(), "Dexterity"},
+			Stamina = {count(), "Stamina"},
+		},
+		Social = {
+			Charisma = {count(true), "Charisma"},
+			Manipulation = {count(), "Manipulation"},
+			Composure = {count(), "Composure"},
+		},
+		Mental = {
+			Intelligence = {count(true), "Intelligence"},
+			Wits = {count(), "Wits"},
+			Resolve = {count(), "Resolve"},
+		},						
+	},
+	Specialties = {
+		Initiative = {count(true), "Initiative"},
+	},	
+}
+
+function getAttributes()
+	local rSkills = Funct.TableConcat(StatList.Attributes.Physical,StatList.Attributes.Social);
+	rSkills = Funct.TableConcat(rSkills, StatList.Attributes.Mental);
+	return rSkills;
+end
+
+function getSkills()
+	local rSkills = Funct.TableConcat(StatList.Skills.Talents,StatList.Skills.Skills);
+	rSkills = Funct.TableConcat(rSkills, StatList.Skills.Knowledges);
+	return rSkills;
+end
+
+function getAllStats()
+	local rSkills = Funct.TableConcat(getAttributes(),getSkills());
+	rSkills = Funct.TableConcat(rSkills,FBResourceManager.getResources());
+	return rSkills;
+end
+
+--[[
+*****************************************************
+				Stat Update
+
+This will look at the stat name, and then choose 
+the next action(s). If a stat controls another 
+stat, this is where we should create a method for it. 
+*****************************************************
+]]--
+
+function CallStatUpdate(nodeChar,nodeSkill)
+	local sStat = DB.getValue(nodeSkill, "str_skill_name","");
+	
+	if sStat == StatList.Attributes.Physical.Stamina[2] then
+		updateHealth(nodeChar);
+	elseif sStat == StatList.Attributes.Social.Composure[2] or sStat == StatList.Attributes.Mental.Resolve[2] then
+		updateWillpower(nodeChar);
+	end
+end
+
+--[[
+*****************************************************
+		local functions to handle updates
+*****************************************************
+]]--
+
+function updateHealth(nodeChar)
+	-- set Base
+	local nBase = 6;
+	--get Stats
+	rStats = {StatList.Attributes.Physical.Stamina[2],};
+	local rStatRecords = manager_char_stats.GetStats(nodeChar, rStats);
+	
+	--loop through and add up the Values
+	local nValue = nBase;
+	for _, rStat in pairs(rStatRecords) do		
+		nValue = nValue + rStat["nValue"];
+	end
+	
+	-- place Value
+	DB.setValue(nodeChar, "num_health_base", "number", nValue);
+end
+
+function updateWillpower(nodeChar)
+	--get Stats
+	rStats = {StatList.Attributes.Social.Composure[2], StatList.Attributes.Mental.Resolve[2],};
+	local rStatRecords = manager_char_stats.GetStats(nodeChar, rStats);
+		
+	--loop through and add up the Values
+	local nValue = 0;
+	for _, rStat in pairs(rStatRecords) do	
+		nValue = nValue + rStat["nValue"];
+	end
+	
+	-- place Value
+	DB.setValue(nodeChar, "num_willpower_base", "number", nValue);
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

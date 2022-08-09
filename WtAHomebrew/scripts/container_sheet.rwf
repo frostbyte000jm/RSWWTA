@@ -1,0 +1,26 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>container_sheet</ScriptName>
+    <FolderID>26</FolderID>
+    <Script>function onInit()	
+	DB.addHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);
+	onLockChanged();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);
+end
+
+function onLockChanged()
+	if header.subwindow then
+		header.subwindow.updateLockState();
+	end
+	if content.subwindow then
+		content.subwindow.updateLockState();
+	end
+end
+</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

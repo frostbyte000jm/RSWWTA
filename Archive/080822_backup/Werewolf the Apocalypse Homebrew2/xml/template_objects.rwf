@@ -1,0 +1,42 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>template_objects</XmlName>
+    <FolderID>30</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+--&gt;
+
+&lt;root&gt;
+    &lt;template name="button_record_locked_local"&gt;
+		&lt;buttonfield name="locked"&gt;
+			&lt;anchored to="rightanchor" width="20" height="20"&gt;
+				&lt;top /&gt;
+				&lt;right anchor="left" relation="relative" offset="0" /&gt;
+			&lt;/anchored&gt;
+			&lt;state icon="padlock_open" tooltipres="tooltip_unlock" /&gt;
+			&lt;state icon="padlock_closed" tooltipres="tooltip_lock" /&gt;
+			&lt;script file="common/scripts/button_record_locked_local.lua" /&gt;
+		&lt;/buttonfield&gt;
+	&lt;/template&gt;
+	
+	&lt;template name="button_small_text"&gt;
+		&lt;buttoncontrol&gt;
+			&lt;anchored height="20" /&gt;
+			&lt;frame name="button_blank" offset="2,2,2,2" /&gt;
+			&lt;stateframe&gt;
+				&lt;pressed name="button_blank_down" offset="2,2,2,2" nobaseframe="true" /&gt;
+			&lt;/stateframe&gt;
+			&lt;font&gt;dosis_small&lt;/font&gt;
+			&lt;pressed offset="1,1" /&gt;
+		&lt;/buttoncontrol&gt;
+	&lt;/template&gt;
+	
+&lt;/root&gt;
+
+
+</XML>
+  </XMLFiles>
+</DocumentElement>

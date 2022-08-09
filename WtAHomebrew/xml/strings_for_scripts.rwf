@@ -1,0 +1,39 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_scripts</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+
+	&lt;string name="roll_manager_difficulty"&gt;Difficulty&lt;/string&gt;
+	&lt;string name="roll_manager_roll"&gt;Roll&lt;/string&gt;
+	&lt;string name="roll_manager_mod"&gt;Success Mod&lt;/string&gt;
+	&lt;string name="roll_manager_mod_multiplier"&gt;Success x%.2f&lt;/string&gt;
+	&lt;string name="roll_manager_dice_multiplier"&gt;Dice x%.2f&lt;/string&gt;
+	&lt;string name="roll_manager_diff_multiplier"&gt;Diff x%.2f&lt;/string&gt;
+	&lt;string name="roll_manager_init_description"&gt;Roll[1d10+%s] = %s&lt;/string&gt; 
+	&lt;string name="roll_manager_no_dice"&gt;%s does not have any dice to roll&lt;/string&gt;
+	&lt;string name="roll_manager_penalty"&gt;Health reduced Dice by %s&lt;/string&gt; 
+	&lt;string name="roll_manager_penalty_ignored"&gt;Health Penalty Ignored&lt;/string&gt;
+	
+	&lt;!-- Damage Effects Description --&gt;
+	&lt;string name="dmg_dmg_type"&gt;Damage Type: %s&lt;/string&gt; 
+	&lt;string name="dmg_dmg_tag"&gt;Damage Tags: %s&lt;/string&gt; 
+	&lt;string name="dmg_add_dmg"&gt;Additional Damage: %s&lt;/string&gt; 
+	&lt;string name="dmg_total_dmg"&gt;Total Damage: %s&lt;/string&gt; 
+	
+	&lt;!-- Healing Effects Description --&gt;
+	&lt;string name="heal_dmg_type"&gt;Heal Damage Type: %s&lt;/string&gt; 
+	&lt;string name="heal_dmg_tag"&gt;Damage Tags: %s&lt;/string&gt; 
+	&lt;string name="heal_add_dmg"&gt;Additional Healing: %s&lt;/string&gt; 
+	&lt;string name="heal_total_dmg"&gt;Total Healing: %s&lt;/string&gt; 
+	
+	&lt;!-- Resource Effects Description --&gt;
+	&lt;string name="resource_gain_spend"&gt;%s: %s a %s&lt;/string&gt; 
+	&lt;string name="resource_gains"&gt;gains&lt;/string&gt;
+	&lt;string name="resource_spends"&gt;spends&lt;/string&gt; 
+	&lt;string name="resource_at_max"&gt;%s is already at Maximum.&lt;/string&gt;
+	&lt;string name="resource_at_min"&gt;%s is already at Minimum.&lt;/string&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

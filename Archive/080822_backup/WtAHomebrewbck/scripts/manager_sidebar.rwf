@@ -1,0 +1,39 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_sidebar</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>--[[
+    Use this to add new sidebar containers
+]]--
+
+function onInit()
+    LibraryData.aRecords["actions"] =
+    {
+        bExport = true,
+        aDataMap = { "actions", "reference.actions" },
+        sEditMode = "play",
+        aDisplayIcon = { "button_sidebar_dockitem", "button_sidebar_dockitem_down" },
+        sRecordDisplayClass = "action_sheet",
+    }
+    LibraryData.aRecords["effect"] = 
+    {
+		bExport = true,
+		bExportListSkip = true,
+		sEditMode = "play",
+		bHidden = true,
+		aDataMap = { "effects" },
+	}
+	LibraryData.aRecords["effect_custom"] = 
+    {
+		bExport = true,
+		aDataMap = { "effect_custom", "reference.effect_custom" },
+        sEditMode = "play",
+        aDisplayIcon = { "button_sidebar_dockitem", "button_sidebar_dockitem_down" },
+        sRecordDisplayClass = "effect_sheet",
+	}
+    
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

@@ -1,0 +1,535 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBEffectsManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>local n = 0;
+function count(bReset)
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Effect Lists
+*****************************************************
+]]--
+StrEffectList = { 
+	rTriggers = {  --FBEffectsManager.StrEffectList.rTriggers.Now[2]
+		BoT = {count(true), "BoT"},	-- Beginning of Turn
+		EoT = {count(), "EoT"},	-- End of Turn
+		ToR = {count(), "ToR"},	-- Top of Round
+		BoC = {count(), "BoC"},	-- Beginning of Combat
+		EoC = {count(), "EoC"},	-- End of Combat	
+		EoS = {count(), "EoS"},	-- End of Scene
+		RollType = {count(), "RollType"},
+		DmgType = {count(), "DmgType"},
+		Resource = {count(), "Resource"},
+		Activate = {count(), "Activate"},
+		Now = {count(), "Now"},
+		Static = {count(), "Static"},	
+	},
+	rActions = { --FBEffectsManager.StrEffectList.rActions.Roll[2]
+		Roll = {count(true), "Roll"},
+		Stat = {count(), "Stat Adjust"},
+		AddMods = {count(), "Add Modifiers"},
+		Damage = {count(), "Damage"},
+		Heal = {count(), "Heal"},
+		Resource = {count(), "Resource"},
+		Routine = {count(), "Routine"},
+		Effect = {count(), "Effect"},
+		ChatRemove = {count(), "Chat or Remove"},	
+	},
+	rActionsMix = {
+		Dice = {count(true), "Dice"},
+		Diff = {count(), "Diff"},
+		Mod = {count(), "Mod"},
+		TDice = {count(), "TDice"},
+		TDiff = {count(), "TDiff"},
+		TMod = {count(), "TMod"},
+		Chat = {count(), "Chat"},
+		SChat = {count(), "SChat"},
+	},
+	rActionsSub = {
+		Skip = {count(true), "Skip"},
+		Remove = {count(), "Remove"},
+		Uses = {count(), "Uses"},
+	},
+	rActionsResults = {
+		Win = {count(true), "Win"},
+		Fail = {count(), "Fail"},
+	},
+	rTargets = { --FBEffectsManager.StrEffectList.rTargets
+		Self = {count(true), "Self"},
+		Target = {count(), "Target"},
+		Targets = {count(), "Targets"},
+		TargetsPlusSelf = {count(), "Targets + Self"},
+	},
+	rApply = {
+		Self = {count(true), "Self"},
+		Targets = {count(), "Char Targets"},
+		Targeted = {count(), "Targeted Char"}, --Debug.CleanUp(Maybe remove)
+	},
+	rResourceActions = { 
+		Spent = {count(true), "S", "Spent"},
+		Gained = {count(), "G", "Gained"},
+		Both = {count(), "B", "Both"},
+	},
+}
+
+-- OOB Call
+OOB_MSG_FB_AddEffect = "OOB_MSG_FB_AddEffect";
+OOB_MSG_FB_RemoveEffect = "OOB_MSG_FB_RemoveEffect";
+
+function onInit()
+	-- Setup OOB Call
+	registerOOBHandlers();
+	
+	-- Add Fields to Effects
+	registerAdditionalEffectFields();
+	registerAfterEffectAdd();
+	
+	-- Add Handlers
+	registerAddHandlers();
+end
+
+function registerOOBHandlers()
+	OOBManager.registerOOBMsgHandler(OOB_MSG_FB_AddEffect, handleApplyEffect);
+	OOBManager.registerOOBMsgHandler(OOB_MSG_FB_RemoveEffect, removeEffectOOB);
+end
+
+function registerAdditionalEffectFields()
+	EffectManager.registerEffectVar("str_effect_id",{sDBType = "string", sDBField = "str_effect_id"});	
+end
+
+function registerAfterEffectAdd() --this needs to be split out.
+	function afterEffect(nodeEffect, rNewEffect)
+		if rNewEffect.nActive then
+			-- Set Active
+			DB.setValue(nodeEffect, "isactive", "number", rNewEffect.nActive);
+			
+			-- Add SFX
+			local sValue = DB.getValue(nodeEffect,"str_effect_id","");
+			if sValue and string.len(sValue) &gt; 0 then
+				local nodeSource = DB.findNode(sValue);
+				if nodeSource then
+					local nodeEffectTrigger = DB.createChild(nodeEffect, "effect_action");
+					DB.copyNode(nodeSource, nodeEffectTrigger);
+					
+					-- If the action is now, skip Effect Trigger and add actions.
+					if DB.getValue(nodeEffectTrigger,"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Now[2] then												
+						local nodeCT = nodeEffect.getParent().getParent();
+						
+						local rAddInfo = {
+							rNodeActions = getActions(nodeEffectTrigger),
+							rActor = ActorManager.resolveActor(nodeCT),
+							nodeEffect = nodeEffect,
+							sTriggerCalled = FBEffectsManager.StrEffectList.rTriggers.Now[2],
+						}					
+						
+						-- Run Effect			
+						FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);						
+					end					
+				end		
+			end
+		end
+	end	
+	EffectManager.setCustomOnEffectAddEnd(afterEffect);
+end
+
+function registerAddHandlers()
+	if Session.IsHost then
+		--DB.addHandler("combattracker.list.*.effects.*.wl_action_watch","onDelete",handleDeleteWatchList);
+		DB.addHandler("combattracker.list.*.effects.*.isactive","onUpdate",handleIsActiveEffect);		
+	end	
+end
+
+function handleDeleteEffect(nodeEffect)
+	local nodeCT = nodeEffect.getParent().getParent();	
+	rAddInfo = {
+		rActor = ActorManager.resolveActor(nodeCT),
+		sEvent = "onDelete",
+	}
+	--Debug.chat("nodeEffect",nodeEffect,"nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	FBHandleEffects.handleWatchList(nodeCT, nodeEffect, rAddInfo);
+	local nodeChar = ActorManager.getCreatureNode(nodeCT);
+	FBHandleEffects.removeEffect(nodeChar, nodeEffect)
+end
+
+function handleIsActiveEffect(node)
+	--Debug.chat("handleIsActiveEffect - node",node,"getValue()",DB.getValue(node,""));
+	local nodeCT = node.getParent().getParent().getParent();
+	local nodeEffect = node.getParent();
+	rAddInfo = {
+		rActor = ActorManager.resolveActor(nodeCT),
+		sEvent = "onIsActive",
+		nIsActive = DB.getValue(node,"",0),
+	}
+	--Debug.chat("nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	FBHandleEffects.handleWatchList(nodeCT, nodeEffect, rAddInfo);
+end
+
+--[[********** Check for Triggers **********]]--
+
+function checkForTriggers(sTrigger, nodeCharOrCT, rAddInfo)
+	--Debug.chat("checkForTriggers - Session.IsHost",Session.IsHost,"sTrigger",sTrigger,"nodeCharOrCT",nodeCharOrCT,"rAddInfo",rAddInfo);
+	
+	if FBActorManager.isActivePCAndHost(nodeCharOrCT, rAddInfo) then
+		return;
+	end
+	
+	-- get nodeCT and rActor
+	local nodeCT, rActor = getCharNodes(nodeCharOrCT);
+	--Debug.chat("nodeCT",nodeCT,"rActor",rActor);
+	
+	if nodeCT and rActor then		
+		rAddInfo.rActor = rActor;
+		
+		-- Trigger Types Perm
+		if sTrigger == FBEffectsManager.StrEffectList.rTriggers.BoT[2] then
+			FBHandleEffects.permBoT(nodeCT, rAddInfo);			
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoT[2] then
+			FBHandleEffects.permEoT(nodeCT, rAddInfo);			
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.ToR[2] then
+			FBHandleEffects.permToR(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.BoC[2] then
+			FBHandleEffects.permBoC(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoC[2] then
+			FBHandleEffects.permEoC(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoS[2] then
+			FBHandleEffects.permEoS(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then
+			FBHandleEffects.permRollType(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then
+			FBHandleEffects.permDmgType(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then
+			FBHandleEffects.permResource(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+			--checkForActivate(nodeCT, rAddInfo);
+		elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Now[2] then
+			--checkForNow(nodeCT, rAddInfo);
+		end
+		checkForEffect(sTrigger, nodeCT, rAddInfo);
+	end
+end
+
+function getCharNodes(nodeCharOrCT)
+	-- Generate Actor and nodeCT
+	return ActorManager.getCTNode(nodeCharOrCT), ActorManager.resolveActor(nodeCharOrCT);
+end
+
+function checkForEffect(sTriggerCalled, nodeCT, rAddInfo)
+	--Debug.chat("sTriggerCalled",sTriggerCalled,"nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	for idx, nodeEffect in pairs(DB.getChildren(nodeCT, "effects")) do
+		--Debug.chat("nodeEffect",nodeEffect);		
+		if DB.getValue(nodeEffect,"isactive",0) == 1 then
+			--Check if Effect is a Special Effect
+			rAddInfo.nodeEffect = nodeEffect;			
+			local nodeEffectTrigger = DB.getChild(nodeEffect,"effect_action");
+			--Debug.chat("nodeEffectTrigger",nodeEffectTrigger);
+			if nodeEffectTrigger then
+				-- getNode and Verify Trigger			
+				local sTrigger = DB.getValue(nodeEffectTrigger,"dt_effect_trigger","");
+				--Debug.chat("sTrigger",sTrigger);
+				-- if correct Trigger Type, add to sorted list, then send to HandleEffects
+				if sTrigger == sTriggerCalled then
+					rAddInfo.sTriggerCalled = sTriggerCalled;
+					if sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.RollType[2] or sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then
+						if checkType1(nodeEffectTrigger, rAddInfo) and checkType2(nodeEffectTrigger, rAddInfo) then
+							rAddInfo.rNodeActions = getActions(nodeEffectTrigger);
+							FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+						end
+					elseif  sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then
+						if checkType1(nodeEffectTrigger, rAddInfo) then
+							rAddInfo.rNodeActions = getActions(nodeEffectTrigger);
+							FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+						end
+					else
+						rAddInfo.rNodeActions = getActions(nodeEffectTrigger);						
+						FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+					end				
+				end
+			end
+		elseif DB.getValue(nodeEffect,"isactive",0) == 2 then				-- Effect is not active, check Skip Value
+			local nSkipValue = DB.getValue(nodeEffect,"num_skip_count",0);
+			if sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.EoT[2] and nSkipValue &gt; 0 then
+				nSkipValue = nSkipValue - 1;
+				if Session.IsHost then
+					DB.setValue(nodeEffect,"num_skip_count","number",nSkipValue);
+				else
+					RulesetWizard.changeDBValueOOB(DB.getChild(nodeEffect,"num_skip_count"), nSkipValue);
+				end				
+				if nSkipValue == 0 then
+					if Session.IsHost then
+						DB.setValue(nodeEffect,"isactive","number",1);
+					else
+						RulesetWizard.changeDBValueOOB(DB.getChild(nodeEffect,"isactive"), 1);
+					end					
+				end
+			end
+		end		
+	end
+end
+
+function checkType1(nodeEffectTrigger, rAddInfo)
+	--Debug.chat("checkType1 - nodeEffectTrigger",nodeEffectTrigger,"rAddInfo",rAddInfo);
+	-- declarations 
+	local sTriggerAndOr = "btn_opt_trigger_andor_1";
+	local sTriggerList = "wl_trigger_type_1";
+	
+	-- If Blank, return true
+	if DB.getChildCount(nodeEffectTrigger,sTriggerList) == 0 then
+		return true;
+	end
+	
+	-- Load CheckType based on action type.
+	local rCheckType = {}
+	if rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then
+		table.insert(rCheckType,rAddInfo.sRollType);
+		return checkTriggerEquals(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList);
+	elseif rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then
+		for idx, sAttack in ipairs(rAddInfo.sAttackType) do
+			table.insert(rCheckType,sAttack);  --Not created yet.
+		end
+		return checkTriggerEquals(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList);
+	elseif rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then
+		table.insert(rCheckType,rAddInfo.sResource);
+		return checkTriggerResource(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList, rAddInfo);
+	end
+end
+
+function checkType2(nodeEffectTrigger, rAddInfo)
+	--Debug.chat("checkType2 - nodeEffectTrigger",nodeEffectTrigger,"rAddInfo",rAddInfo);
+	-- declarations 
+	local sTriggerAndOr = "btn_opt_trigger_andor_2";
+	local sTriggerList = "wl_trigger_type_2";
+	
+	-- If Blank, return true
+	if DB.getChildCount(nodeEffectTrigger,sTriggerList) == 0 then
+		return true;
+	end
+	
+	-- Load CheckType based on action type.
+	local rCheckType = {}
+	if rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then
+		for idx, sSkill in ipairs(rAddInfo.rSkillsList) do
+			table.insert(rCheckType,sSkill);
+		end
+		return checkTriggerEquals(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList);
+	elseif rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then
+		for idx, sDamage in ipairs(rAddInfo.sDamageType) do
+			table.insert(rCheckType,sDamage);  --Not created yet.
+		end
+		return checkTriggerEquals(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList);	
+	elseif rAddInfo.sTriggerCalled == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then
+		table.insert(rCheckType,rAddInfo.sResource);
+		return checkTriggerResource(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList, rAddInfo);
+	end
+end
+
+function checkTriggerEquals(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList)
+	--Debug.chat("nodeEffectTrigger",nodeEffectTrigger,"rCheckType",rCheckType,"sTriggerAndOr",sTriggerAndOr,"sTriggerList",sTriggerList);
+	--loop though types to see if they match.
+	local doAnd = DB.getValue(nodeEffectTrigger,sTriggerAndOr,"0") == "1";	
+	for idx, rType in pairs(DB.getChildren(nodeEffectTrigger,sTriggerList)) do
+		-- Test Condtion and Trigger
+		local doEquals = DB.getValue(rType,"dt_trigger_cond","") == "=";
+		local doTrigger = StringManager.contains(rCheckType, DB.getValue(rType,"dt_trigger_type",""));
+		
+		if not doEquals then
+			doTrigger = not doTrigger;
+		end
+				
+		-- Short Circut And / Or
+		if doAnd then
+			if not doTrigger then
+				return false;
+			end
+		else
+			if doTrigger then
+				return true;
+			end
+		end		
+	end
+	return doAnd;
+end
+
+function checkTriggerResource(nodeEffectTrigger, rCheckType, sTriggerAndOr, sTriggerList, rAddInfo)
+	--Debug.chat("nodeEffectTrigger",nodeEffectTrigger,"rCheckType",rCheckType,"sTriggerAndOr",sTriggerAndOr,"sTriggerList",sTriggerList,"rAddInfo",rAddInfo);	
+	--loop though types to see if they match.
+	local doAnd = DB.getValue(nodeEffectTrigger,sTriggerAndOr,0) == "1";
+	for idx, rType in pairs(DB.getChildren(nodeEffectTrigger,sTriggerList)) do
+		local sCondition = DB.getValue(rType,"dt_trigger_cond","");
+		local bCondition = false;
+		
+		-- Test Condtion
+		if sCondition == "B" then
+			bCondition = true;
+		elseif sCondition == "G" and rAddInfo.bGain then
+			bCondition = true;
+		elseif sCondition == "S" and not (rAddInfo.bGain) then
+			bCondition = true;
+		end
+		
+		--Test Trigger
+		local doTrigger = StringManager.contains(rCheckType, DB.getValue(rType,"dt_trigger_type",""));
+		
+		-- Short Circut And / Or
+		if doAnd then
+			if not (doTrigger and bCondition) then
+				return false;
+			end
+		else
+			if doTrigger and bCondition then
+				return true;
+			end
+		end
+	end
+	return doAnd;
+end
+
+function getActions(nodeEffectTrigger)
+	--Debug.chat("\n\ngetActions(nodeEffectTrigger)",nodeEffectTrigger);
+	local rNodeActions = {};
+	for idx, rActions in pairs(DB.getChildren(nodeEffectTrigger,"wl_effect_actions")) do				
+		table.insert(rNodeActions,DB.getValue(rActions,"num_index",0),rActions);
+	end
+	return rNodeActions;
+end
+
+function checkForActivate(nodeCT, rAddInfo)
+
+end
+
+function checkForNow(nodeCT, rAddInfo)
+
+end
+
+
+--[[********** Place Effects on Targets **********]]--
+
+function SendEffectToTargets(rSource, rRoll)
+	--Debug.chat("SendEffectToTargets: \nrSource",rSource,"\n\nrTarget",rTarget,"\n\nrRoll",rRoll);
+	--[[
+		Who to apply Effect to? Self / Target(s)
+		Get CT Node
+		Add Effect
+		return
+	]]--
+	local pathEffect = rRoll.pathEffect;
+	local nodeEffectTrigger = DB.findNode(pathEffect);
+	local sApplyEffect = DB.getValue(nodeEffectTrigger,"dt_effect_apply","");
+	local rSourceTargets = {};
+	
+	if sApplyEffect == StrEffectList.rTargets.Self[2] then			--Self
+		table.insert(rSourceTargets,rSource);
+	elseif sApplyEffect == StrEffectList.rTargets.Target[2] then	--Target	
+		rSourceTargets = TargetingManager.getFullTargets(rSource);
+		
+		--Make sure the target is not self. 
+		if #rSourceTargets &gt; 1 then
+			for idx, nodeTarget in pairs(rSourceTargets) do
+				if not (nodeTarget.sCTNode == rSource.sCTNode) then
+					rSourceTargets = {1,nodeTarget};
+					break;
+				end
+			end			
+		end		
+	elseif sApplyEffect == StrEffectList.rTargets.Targets[2] then	--Targets
+		rSourceTargets = TargetingManager.getFullTargets(rSource);
+		
+		--Make sure the target is not self. 
+		if #rSourceTargets &gt; 1 then
+			for idx, nodeTarget in pairs(rSourceTargets) do
+				if nodeTarget.sCTNode == rSource.sCTNode then
+					table.remove(rSourceTargets,idx);
+					break;
+				end
+			end			
+		end			
+	elseif sApplyEffect == StrEffectList.rTargets.TargetsPlusSelf[2] then	--Targets + Self
+		rSourceTargets = TargetingManager.getFullTargets(rSource);
+	end
+	
+	--Debug.chat("rSourceTargets",rSourceTargets);
+	
+	for idx, rSourceTarget in pairs(rSourceTargets) do
+		local nodeCTTarget = DB.findNode(rSourceTarget.sCTNode);
+		
+		
+		if Session.IsHost then
+			addEffect(nodeCTTarget, ActorManager.getCreatureNode(rSource), nodeEffectTrigger, true);
+		else
+			local msgOOB = {
+				type = OOB_MSG_FB_AddEffect,
+				nodeCTTarget = nodeCTTarget,
+				nodeChar = ActorManager.getCreatureNode(rSource),
+				nodeEffectTrigger = nodeEffectTrigger,		
+			};
+			FBOOBManager.OOBifySend(msgOOB);
+			--Comm.deliverOOBMessage(msgOOB,"");
+		end
+	end
+end
+
+function handleApplyEffect(msgOOB)
+	--Debug.chat("handleApplyEffect - isHost",Session.IsHost,"msgOOB",msgOOB);
+	if Session.IsHost then
+		msgOOB = FBOOBManager.DeOOBify(msgOOB);
+		addEffect(msgOOB.nodeCTTarget, msgOOB.nodeChar, msgOOB.nodeEffectTrigger, true);
+	end		
+end
+
+--[[
+	Effect Fields:
+	["sName"] 			= {	sDBType = "string", sDBField = "label" },
+	["nGMOnly"] 		= { sDBType = "number", sDBField = "isgmonly" },
+	["sSource"] 		= { sDBType = "string", sDBField = "source_name" },	
+	["sTarget"] 		= { sDBType = "string" },
+	["nDuration"] 		= { sDBType = "number", sDBField = "duration" },
+	["nInit"] 			= { sDBType = "number", sDBField = "init" },
+	["str_effect_id"] 	= { sDBType = "string", sDBField = "str_effect_id" },
+]]--
+
+function addEffect(nodeCTTarget, nodeChar, nodeEffectTrigger, bMsg)
+	--Debug.chat("FBEffectsManager.addEffect() -&gt; nodeCTTarget",nodeCTTarget,"nodeChar",nodeChar,"nodeEffectTrigger",nodeEffectTrigger,"bMsg",bMsg);
+	
+	--Open CT
+	--FBCTManager.openCT();
+	
+	local sEffectName = DB.getValue(nodeEffectTrigger,"name","");
+	if DB.getValue(nodeEffectTrigger,"box_allow_dup",0) == 1 then
+		sEffectName = sEffectName..": "..math.random(10000); --JQ come back to me and make me better.
+	end
+	
+	local rNewEffect = {
+		sName = sEffectName,
+		nGMOnly = DB.getValue(nodeEffectTrigger,"isgmonly",0),
+		sSource = DB.getValue(nodeChar,"name",""),
+		nActive = 1 - DB.getValue(nodeEffectTrigger, "box_start_inactive", 0);
+		sTarget = "",
+		str_effect_id = DB.getPath(nodeEffectTrigger),
+		nDuration = DB.getValue(nodeEffectTrigger,"duration",0),
+		nInit = DB.getValue(nodeCTTarget,"initresult",0) - DB.getValue(nodeEffectTrigger,"box_tick_eot",0),
+	};
+	EffectManager.addEffect(User.getUsername(),User.getIdentityLabel(),nodeCTTarget, rNewEffect, bMsg);	
+end
+
+function removeEffect(nodeChar, nodeEffect)
+	EffectManager.expireEffect(nodeChar, nodeEffect, 0);
+end
+
+function removeEffectOOB(msgOOB)
+	--Debug.chat("isHost",Session.IsHost,"msgOOB",msgOOB);
+	if Session.IsHost then
+		msgOOB = FBOOBManager.DeOOBify(msgOOB);
+		removeEffect(msgOOB.nodeChar, msgOOB.nodeEffect);
+	end	
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

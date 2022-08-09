@@ -1,0 +1,30 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>utility_template</XmlName>
+    <FolderID>74</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+--&gt;
+
+&lt;root&gt;
+
+    &lt;template name="button_is_gm_only"&gt;
+        &lt;buttonfield&gt;
+            &lt;anchored width="20" height="20"&gt;
+                &lt;top offset="3" /&gt;
+                &lt;right parent="rightControl" anchor="left" relation="relative" offset="-5" /&gt;
+            &lt;/anchored&gt;
+            &lt;gmvisibleonly /&gt;
+            &lt;state icon="visibilityon" tooltipres="visibilityon" /&gt;
+            &lt;state icon="visibilityoff" tooltipres="visibilityoff" /&gt;
+        &lt;/buttonfield&gt;
+    &lt;/template&gt;
+    
+
+
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

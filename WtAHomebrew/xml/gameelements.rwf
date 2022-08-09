@@ -1,0 +1,52 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>gameelements</XmlName>
+    <FolderID>0</FolderID>
+    <XML>&lt;root merge="join"&gt;
+    &lt;distance&gt;
+		&lt;base&gt;5&lt;/base&gt;
+		&lt;diagmult&gt;1.5&lt;/diagmult&gt;
+		&lt;suffix&gt;'&lt;/suffix&gt;
+	&lt;/distance&gt;
+	
+&lt;!-- Desktop Dice --&gt;
+	&lt;die name="d10"&gt;
+		&lt;icon&gt;d10icon&lt;/icon&gt;
+		&lt;position&gt;770,-68&lt;/position&gt;
+	&lt;/die&gt;
+	&lt;die name="d10rage"&gt;
+        &lt;model&gt;d10&lt;/model&gt;
+		&lt;icon&gt;icon_d10rage&lt;/icon&gt;
+	&lt;/die&gt;
+	
+	
+	&lt;die name="dF" merge="delete"&gt;
+		&lt;icon&gt;d6icon&lt;/icon&gt;
+		&lt;position&gt;600,-68&lt;/position&gt;
+	&lt;/die&gt;
+	&lt;die name="d4" merge="delete"&gt;
+		&lt;icon&gt;d4icon&lt;/icon&gt;
+		&lt;position&gt;550,-68&lt;/position&gt;
+	&lt;/die&gt;
+	&lt;die name="d6" merge="delete"&gt;
+		&lt;icon&gt;d6icon&lt;/icon&gt;
+		&lt;position&gt;500,-68&lt;/position&gt;
+	&lt;/die&gt;
+	&lt;die name="d8" merge="delete"&gt;
+		&lt;icon&gt;d8icon&lt;/icon&gt;
+		&lt;position&gt;450,-68&lt;/position&gt;
+	&lt;/die&gt;
+	
+	&lt;die name="d12" merge="delete"&gt;
+		&lt;icon&gt;d12icon&lt;/icon&gt;
+		&lt;position&gt;350,-68&lt;/position&gt;
+	&lt;/die&gt;
+	&lt;die name="d20" merge="delete"&gt;
+		&lt;icon&gt;d20icon&lt;/icon&gt;
+		&lt;position&gt;300,-68&lt;/position&gt;
+	&lt;/die&gt;
+        
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

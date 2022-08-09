@@ -1,0 +1,14 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_ps</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+
+	&lt;string name="ps_message_xpaward"&gt;Awarded XP to the Party.&lt;/string&gt;
+	&lt;string name="ps_message_eachxpaward"&gt; has earned experence: &lt;/string&gt;
+	
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

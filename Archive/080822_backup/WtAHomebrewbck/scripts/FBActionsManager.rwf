@@ -1,0 +1,80 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBActionsManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+function AddStatsToRollAttack(nodeChar,nodeAction)
+	--[[
+		This will collect from the action.
+		Setup dice to roll
+		create and return rAddInfo test
+	]]--
+	
+	local rAddInfo = {};
+	
+	-- Declarations 
+	local sAttribute = DB.getValue(nodeAction,"dt_attack_attribute", "");
+	local sSkill = DB.getValue(nodeAction,"dt_attack_skill", ""); 
+	local sCheckSpecialty = DB.getValue(nodeAction,"str_attack_specialty", "");
+	local sCharName = DB.getValue(nodeChar,"name","");
+		
+    -- Add Resources
+    local nResourceAction = DB.getValue(nodeAction, "num_actions_resource", 0);    
+    if nResourceAction &gt; 0 then
+		local nResourceChar = DB.getValue(nodeChar, "num_char_resource", 0);
+		
+		-- Check if not enough resources		
+		if nResourceAction &gt; nResourceChar then
+			FBChatManager.sendMessage(nodeChar, string.format(Interface.getString("attack_roll_out_of_resources"),sCharName), "system", true);
+			return nil;
+		end
+		
+		--Spend Resources
+		local nResourceRemain = nResourceChar - nResourceAction;
+		DB.setValue(nodeChar,"num_char_resource","number", nResourceRemain);
+		
+		--Add Resources to rAddInfo		
+		rAddInfo.sResourceAction = Interface.getString("attack_roll_resource");
+		rAddInfo.nResourceAction = nResourceAction;
+		rAddInfo.nResourceChar = nResourceChar;
+    end
+	
+	--Load Stats for Roller
+	manager_char_stats.AddStatsToRoll(nodeChar, {sAttribute, sSkill}, sCheckSpecialty);
+	
+	--Load info for roller
+	rAddInfo.sActionName = DB.getValue(nodeAction,"name", "");
+	rAddInfo.nDiff = DB.getValue(nodeAction,"num_attack_difficulty", 0);
+	rAddInfo.nDice = DB.getValue(nodeAction,"num_attack_bonus", 0);
+	rAddInfo.bAddEffect = DB.getValue(nodeAction,"box_attack_add_effect", 0) == 1;
+	rAddInfo.bAddEffectSuccess = DB.getValue(nodeAction,"box_attack_add_effect_success", 0) == 1;
+	_, rAddInfo.pathEffect = DB.getValue(nodeAction,"link_effect", "");
+	rAddInfo.sMsgSuccess = DB.getValue(nodeAction,"str_attack_msg_success", "");
+	rAddInfo.sMsgFail = DB.getValue(nodeAction,"str_attack_msg_fail", "");
+	
+	return rAddInfo	
+end
+
+
+function AddStatsToRollDamage(nodeChar,nodeAction)
+	local rAddInfo = {};
+	
+	-- Declarations 
+	local sAttribute = DB.getValue(nodeAction,"dt_damage_attribute", "");	
+	local sCharName = DB.getValue(nodeChar,"name","");
+	
+	--Load Stats for Roller
+	manager_char_stats.AddStatsToRoll(nodeChar, {sAttribute,}, "");
+	
+	--Load info for roller
+	rAddInfo.sActionName = DB.getValue(nodeAction,"name", "");
+	rAddInfo.nDiff = DB.getValue(nodeAction,"num_damage_difficulty", 0);
+	DiceStack.addSlot(Interface.getString("damage_roll_weapon"), DB.getValue(nodeAction,"num_damage_weapon", 0));
+	DiceStack.addSlot(Interface.getString("damage_roll_bonus"), DB.getValue(nodeAction,"num_damage_bonus", 0));
+	
+	return rAddInfo	
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

@@ -1,0 +1,180 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBHealthManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>--Debug.Update(Clean this up to use more modern coding)
+
+--[[
+	Requirements:
+		nodeChar == CreatureNode
+		rAddInfo = {
+			nBashing
+			nLeathal
+			nAggro
+			bSilver
+			bFire
+		}
+	
+]]--
+local n = 0;
+function count(bReset)
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+rDamageList = {
+	rDamageTypes = { --FBHealthManager.rDamageList.rDamageTypes	
+		Bashing = {count(true), "Bashing"},
+		Lethal = {count(), "Lethal"},
+		Aggravated = {count(), "Aggravated"},
+	},
+	rDamageTags = { --FBHealthManager.rDamageList.rDamageTags	
+		Fire = {count(true), "Fire"},
+		Silver = {count(), "Silver"},
+		Magic = {count(), "Magic"},		
+	},
+}
+
+function getDamageList()
+	return Funct.TableConcat(rDamageList.rDamageTypes,rDamageList.rDamageTags);
+end
+
+function HandleDamage(nodeChar, rAddInfo)
+	
+end
+
+function HandleHealing(nodeChar, rAddInfo)
+
+end
+
+function removeDamage(node,nB,nL,nA)
+    --declarations
+    local nBashing = node.getChild("num_health_bashing").getValue();
+    local nLethal = node.getChild("num_health_lethal").getValue();
+    local nAggro = node.getChild("num_health_aggro").getValue();
+    
+    -- reduce from right to left
+    if nA &gt; 0 then
+        if nBashing &gt; 0 then
+            nBashing = nBashing - 1;
+        elseif nLethal &gt; 0 then
+            nLethal = nLethal - 1;
+        elseif nAggro &gt; 0 then
+            nAggro = nAggro - 1;
+        end
+    elseif nL &gt; 0 then
+        if nBashing &gt; 0 then
+            nBashing = nBashing - 1;
+        elseif nLethal &gt; 0 then
+            nLethal = nLethal - 1;        
+        end
+    else
+        if nBashing &gt; 0 then
+            nBashing = nBashing - 1;
+        end
+    end
+    
+    -- set values
+    node.getChild("num_health_aggro").setValue(nAggro);
+    node.getChild("num_health_lethal").setValue(nLethal);
+    node.getChild("num_health_bashing").setValue(nBashing);
+    
+    -- update display
+    displayDamage(node);
+    
+    -- return for CT
+    return nAggro, nLethal, nBashing;
+end
+
+function addDamage(node,nB,nL,nA)
+    --declarations
+    local nHealthMax = node.getChild("num_health_total").getValue();
+    local nBashing = node.getChild("num_health_bashing").getValue() + nB;
+    local nLethal = node.getChild("num_health_lethal").getValue() + nL;
+    local nAggro = node.getChild("num_health_aggro").getValue() + nA;
+    local nTotal = nAggro + nLethal + nBashing;
+    local count = 0;
+    
+    --If maxed out stop
+    if nAggro &gt;= nHealthMax then
+        nAggro = nHealthMax;
+        nLethal = 0;
+        nBashing = 0;
+    end
+    
+     -- if overflow, convert up.
+    if nTotal &gt; nHealthMax then
+        if nBashing &gt; 1 then
+            nBashing = nBashing - 2;
+            nLethal = nLethal + 1;
+        elseif nBashing &gt; 0 then
+            nBashing = nBashing - 1;
+            nLethal = nLethal - 1;
+            nAggro = nAggro + 1;
+        else
+            nLethal = nLethal - 2;
+            nAggro = nAggro + 1;
+        end 
+    end
+    
+    --set values
+    node.getChild("num_health_aggro").setValue(nAggro);
+    node.getChild("num_health_lethal").setValue(nLethal);
+    node.getChild("num_health_bashing").setValue(nBashing);
+        
+    -- update display
+    displayDamage(node);
+    
+    -- return for CT
+    return nAggro, nLethal, nBashing;
+end
+
+function displayDamage(node)
+    --declarations
+    local nBashing = node.getChild("num_health_bashing").getValue();
+    local nLethal = node.getChild("num_health_lethal").getValue();
+    local nAggro = node.getChild("num_health_aggro").getValue();
+    local nHealthMax = node.getChild("num_health_total").getValue();
+    local nHealthStart = 15
+        
+    -- aggro first, then lethal, and then Bashing
+    for i=nHealthStart,1,-1 do
+        if i&gt;nHealthMax then
+            node.getChild("btn_health_"..string.format("%02d",i)).setValue(0);
+        elseif nAggro &gt; 0 then
+            nAggro = nAggro - 1;
+            node.getChild("btn_health_"..string.format("%02d",i)).setValue(3);
+        elseif nLethal &gt; 0 then
+            nLethal = nLethal - 1;
+            node.getChild("btn_health_"..string.format("%02d",i)).setValue(2);
+        elseif nBashing &gt; 0 then
+            nBashing = nBashing - 1;
+            node.getChild("btn_health_"..string.format("%02d",i)).setValue(1);
+        else
+            node.getChild("btn_health_"..string.format("%02d",i)).setValue(0);
+        end
+    end
+    
+    -- Check for penalty
+    setPenalty(node);
+end
+
+function setPenalty(node)
+    -- If box 02,04,06 is checked there is a penalty. No need to loop.
+    
+    if node.getChild("btn_health_02").getValue() &gt; 0 then
+        node.getChild("num_health_penalty").setValue(5);
+    elseif node.getChild("btn_health_04").getValue() &gt; 0 then
+        node.getChild("num_health_penalty").setValue(2);
+    elseif node.getChild("btn_health_06").getValue() &gt; 0 then
+        node.getChild("num_health_penalty").setValue(1);
+    else
+        node.getChild("num_health_penalty").setValue(0);
+    end
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

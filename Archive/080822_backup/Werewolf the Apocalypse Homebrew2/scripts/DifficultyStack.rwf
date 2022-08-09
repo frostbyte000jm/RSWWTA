@@ -1,0 +1,262 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>DifficultyStack</ScriptName>
+    <FolderID>40</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+-- Controls (Adjust based on ruleset)
+local defaultDiff = 6;
+local minDiff = 1;
+local maxDiff = 10;
+
+--Declarations
+local control = nil;
+local freeadjustment = 0;
+local baseDifficulty = defaultDiff;
+local slots = {};
+local slotIndex = 0;
+local nLocked = 0;
+local bLockReset = false;
+local aModifierUsed = {};
+
+--On Open
+function onInit()
+	Interface.onHotkeyActivated = checkHotkey;
+	updateControl();
+end
+
+function AcceptRoll()
+	if control.edit_lbl.isVisible() then
+		adjustFreeAdjustment(control.stack_num.getValue());
+		control.edit_lbl.setVisible(false);
+    end
+end
+
+function checkHotkey(draginfo)
+	local sDragType = draginfo.getType();
+	if sDragType == "number" then
+		addSlot(draginfo.getDescription(), draginfo.getNumberData());
+		return true;
+	end
+end
+
+--Base Difficulty
+function setBaseDifficulty(value)
+	if isValidDiff then
+		baseDifficulty = value;
+		updateControl();
+	end	
+end
+
+function isValidDiff(value)
+	if value == baseDifficulty then
+		return false;
+	elseif value &lt; minDiff or value &gt; maxDiff then
+		Debug.console("[Warning: Difficulty Stack] - Attempted to set Difficulty outside of parameters");
+		return false;
+	else
+		return true;
+	end	
+end
+
+--Index Control
+function updateIndex(value)
+    slotIndex = value;
+    updateControl();
+end
+
+function registerControl(ctrl)
+	control = ctrl;	
+end
+
+function updateControl()
+	if control then
+		if slotIndex == 0 then
+            --set modifier
+            control.stack_num.setValue(freeadjustment);
+            
+            --set label
+            control.stack_description.setValue(Interface.getString("tooltip_diffstack_freeadjustment"));
+        else
+            --set modifier
+            control.stack_num.setValue(slots[slotIndex].number);
+            
+            --set label
+            control.stack_description.setValue(slots[slotIndex].description);
+		end
+		
+		-- set index max and set total
+		updateDisplay();	
+	end
+end 
+
+function updateDisplay()
+	-- set objects to visible
+	
+	--index and total	
+	if #slots == 0 then
+		control.stack_index.setVisible(false);	
+	else
+		control.stack_index.setMaxValue(#slots);		
+		control.stack_index.setVisible(true);	
+	end
+	
+	-- set total
+	control.stack_total.setValue(getSum());	
+	
+	--Clear button	
+	if isEmpty() then
+		control.remove_stack.setVisible(false);
+	else 
+		control.remove_stack.setVisible(true);
+	end
+	
+	-- Tool Tips
+		--Index
+	local sIndexTip = string.format(Interface.getString("tooltip_diffstack_index"),#slots);
+	control.stack_index.setTooltipText(sIndexTip);
+		--Total
+	local sTotalTip = string.format(Interface.getString("tooltip_diffstack_total"),getSum(),getDescription());
+	control.stack_total.setTooltipText(sTotalTip);
+end
+
+function isEmpty()
+	if #slots &gt; 0 or getSum() ~= defaultDiff then
+		return false;
+	end
+
+	return true;
+end
+
+function getSum()
+	local total = freeadjustment + baseDifficulty;
+	
+	for i = 1, #slots do
+		total = total + slots[i].number;
+	end
+	
+	return math.min(math.max(total,minDiff),maxDiff);
+end
+
+function getMultiplier()
+	return control.stack_multiply.getValue();
+end
+
+function setMultiplier(nValue)
+	nValue = math.min(math.max(nValue,0),10);
+	control.stack_multiply.setValue(nValue);
+end
+
+function getDescription()
+	--Declaration
+	local s = "";
+	local aMods = {};
+	
+	--set Base
+	local nBase = baseDifficulty;
+	if freeadjustment ~= 0 then
+		nBase = nBase + freeadjustment;        
+	end
+	table.insert(aMods, string.format(Interface.getString("tooltip_diffstack_add_base"),nBase));
+	
+	-- grab all slots and turn them into an arrString
+	for i = 1, #slots do
+		table.insert(aMods, string.format("%s: [%+d]", slots[i].description, slots[i].number));
+    end
+		
+	--concat to a single string and return.
+	s = table.concat(aMods, " + ");
+	
+	return s;
+end
+
+function addSlot(description, number)
+	table.insert(slots, { ['description'] = description, ['number'] = number });
+	
+	updateControl();
+end
+
+function removeSlot(number)
+	if number == 0 then
+        freeadjustment = 0;
+        updateControl();
+	else
+        table.remove(slots, number);
+        control.stack_index.setValue(slotIndex - 1);
+	end
+end
+
+function adjustFreeAdjustment(amount) --Updated
+    if slotIndex == 0 then
+        freeadjustment = freeadjustment + amount;
+    else
+        slots[slotIndex].number = slots[slotIndex].number + amount;
+    end
+    
+	updateControl();
+end
+
+function setFreeAdjustment(amount)
+	freeadjustment = amount;
+	updateControl();
+end
+
+function reset()
+	if control and control.stack_num.hasFocus() then
+		control.stack_num.setFocus(false);
+	end
+
+	freeadjustment = 0;
+	baseDifficulty = defaultDiff;
+	slots = {};
+	control.stack_index.setValue(0);
+	control.stack_multiply.setValue(1);
+	updateControl();
+end
+
+function getStack()
+	local sDesc = "";
+	local nMod = 0;
+	local nMultiply = getMultiplier();
+	
+	-- This should not check if empty, because it is never truly empty. 
+	sDesc = getDescription();
+	nMod = getSum();
+
+	if nLocked == 0 then
+		reset();
+	end
+	
+	return sDesc, nMod, nMultiply;
+end
+
+-- Lock handling
+-- Used to keep the modifier stack from being cleared when making multiple rolls (i.e. full attack)
+function lock()
+	if nLocked == 0 then
+		bLockReset = false;
+	end
+	nLocked = nLocked + 1;
+end
+
+function unlock(bReset)
+	nLocked = nLocked - 1;
+	if nLocked &lt; 0 then
+		nLocked = 0;
+	end
+	if bReset then
+		bLockReset = bLockReset or bReset;
+	end
+		
+	if nLocked == 0 and bLockReset then
+		reset();
+	end
+end
+
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

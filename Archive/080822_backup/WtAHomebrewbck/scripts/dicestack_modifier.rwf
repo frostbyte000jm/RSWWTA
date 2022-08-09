@@ -1,0 +1,94 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>dicestack_modifier</ScriptName>
+    <FolderID>39</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+function onInit()
+    Comm.registerSlashHandler("diemod",processDieMod);
+end
+
+function onLoseFocus()
+    window.setFrame(nil);
+end
+
+function processDieMod(sCommand, sParams)
+    local sMod, sDesc = string.match(sParams, "%s*(%S+)%s*(.*)");
+	
+	local nMod = tonumber(sMod);
+	if not nMod then
+		ChatManager.SystemMessage(Interface.getString("helpmessage_dicestack"));
+		return;
+	end
+	
+	DiceStack.addSlot(sDesc, nMod);
+end
+
+function onWheel(notches)
+	--Debug.chat("notches: ",notches);
+	if not hasFocus() then
+		DiceStack.adjustFreeAdjustment(notches);
+	end
+
+	return true;
+end
+
+function onEnter()
+    if window.edit_lbl.isVisible() then
+		DiceStack.adjustFreeAdjustment(getValue());
+		window.edit_lbl.setVisible(false);
+    end
+end
+
+function onClickDown(button, x, y)
+	if button == 2 then
+		DiceStack.reset();
+		return true;
+    else
+        window.edit_lbl.setVisible(true);
+        setValue(0);
+	end
+end
+
+function onDrop(x, y, draginfo)
+	local sDragType = draginfo.getType();
+	
+	-- Special handling for numbers, since they may come from chat window
+	if sDragType == "number" then
+		-- Strip any names that were added
+		local sDragText = draginfo.getDescription();
+
+		-- Then, add to the modifier stack
+		DiceStack.addSlot(sDragText, draginfo.getNumberData());
+		return true;
+	
+	elseif acceptdrop and acceptdrop[1] and acceptdrop[1].type then
+		-- See which other potential drop types we want to accept (ignoring dice)
+		for _,v in pairs(acceptdrop[1].type) do
+			if v == sDragType then
+				draginfo.setSlot(1);
+				DiceStack.addSlot(draginfo.getStringData(), draginfo.getNumberData());
+				return true;
+			end
+		end
+	end
+
+	return false;
+end
+
+function onDragStart(button, x, y, draginfo)
+	draginfo.setType("number");
+	draginfo.setDescription(DiceStack.getDescription());
+	draginfo.setNumberData(DiceStack.getSum());	
+	return true;
+end
+
+function onDragEnd(draginfo)
+	DiceStack.reset();
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

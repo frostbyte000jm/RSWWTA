@@ -1,0 +1,28 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>xp_player_sheet</ScriptName>
+    <FolderID>28</FolderID>
+    <Script>-- When setting up, make sure Register is false
+
+function onInit()
+	onLockChanged();
+	DB.addHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);		
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);
+end
+
+function onLockChanged()
+	if header.subwindow then
+		header.subwindow.update();
+	end
+	if content.subwindow then
+		content.subwindow.update();
+	end
+end
+</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

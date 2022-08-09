@@ -1,0 +1,178 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBCTManager</ScriptName>
+    <FolderID>35</FolderID>
+    <Script>--[[
+	Lexicon:
+	charLoad - On Load Character to CT.
+	init|start - when fight button is pushed.
+	round|top|# - Top of the Round
+	init|stop - Clear button pushed, end of combat.
+	active|# - will triger when the turn begins and ends.
+		
+	OOB Request:
+	request|set_current_player - request to set given player current.	
+	addEffect|{pathEffect} - Will create an effect and place it on character
+]]--
+
+OOB_MSGTYPE_SetPlayerActive = "request_set_player_active";
+OOB_MSGTYPE_FB_Host_Add_Char = "FB_Host_Add_Char_CT";
+
+function onInit()
+    setHandlers();    
+end
+
+function onClose()
+	endHandlers();
+end
+
+function setHandlers()
+	--button active
+	DB.addHandler("combattracker.list.*.active", "onUpdate", charTurn);   
+	
+	 -- OOB Message Handlers
+	 OOBManager.registerOOBMsgHandler(OOB_MSGTYPE_SetPlayerActive, setActive); 
+	 OOBManager.registerOOBMsgHandler(OOB_MSGTYPE_FB_Host_Add_Char, OOBHostAddToCT); 	 
+end
+
+function endHandlers()
+	--button active
+	DB.removeHandler("combattracker.list.*.active", "onUpdate", charTurn);
+end
+
+--[[   Triggers   ]]--
+function charLoad(nodeCT)	
+	-- Inititive don't roll on zero
+	local nRound = DB.getValue("combattracker.round", 0);
+	
+	if nRound &gt; 0 then
+		startCombat(nodeCT);
+	end	
+end
+
+function roundTop(nodeCT)
+	if Session.IsHost then
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.ToR[2],nodeCT, {});	
+	end	
+end
+
+function charTurn(nodeActive)					--BoT &amp; EoT
+	local nodeCT = DB.getParent(nodeActive);
+	local nActive = DB.getValue(nodeActive,"",0);
+	if nActive == 0 then						-- EoT
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.EoT[2],nodeCT, {});		
+	else										-- BoT
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.BoT[2],nodeCT, {});
+	end
+end
+
+function startCombat(nodeCT)
+	if Session.IsHost then
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.BoC[2],nodeCT, {});	
+	end	
+end
+
+function endCombat(nodeCT, sDeleteType)
+	if Session.IsHost then
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.EoC[2],nodeCT, {});	
+		RemoveFromCT(nodeCT, sDeleteType);
+	end	
+end
+
+function setActive(msgOOB)
+	CombatManager.requestActivation(DB.findNode(msgOOB.pathNodeCT), OptionsManager.isOption("RING", "off"));
+end
+
+function openCT()	   
+    if Session.IsHost then
+        Interface.openWindow("combattracker_host", "combattracker");
+    else
+        Interface.openWindow("combattracker_client", "combattracker");
+    end
+end
+
+function AddToCT(nodeChar, rAddInfo)
+	--Debug.chat("nodeChar", nodeChar, "rAddInfo",rAddInfo);
+	-- check if added to CT
+    local nodeCT = ActorManager.getCTNode(nodeChar);
+    
+    -- open CT 
+    openCT()
+
+	-- Load Character
+    if not nodeCT and ActorManager.isPC(nodeChar) then
+		if Session.IsHost then
+			CombatManager.addPC(nodeChar); 
+			nodeCT = ActorManager.getCTNode(nodeChar);
+        else
+			local msgOOB = {
+				type = OOB_MSGTYPE_FB_Host_Add_Char,
+				nodeChar = nodeChar,
+				rAddInfo = rAddInfo,			
+			}
+			FBOOBManager.OOBifySend(msgOOB);
+        end
+    end
+     
+    return nodeCT;
+end
+
+function OOBHostAddToCT(msgOOB)
+	--Debug.chat("OOBHostAddToCT(msgOOB) - Session.IsHost", Session.IsHost, "msgOOB", msgOOB);
+	if Session.IsHost then
+		--Decode OOB
+		msgOOB = FBOOBManager.DeOOBify(msgOOB);
+		
+		-- send rollInfo to prepRollManager, then Roll.
+		local nodeCT = AddToCT(msgOOB.nodeChar, msgOOB.rAddInfo);
+				
+		--Perform Actions
+		-- Apply Inititive
+		if nodeCT and msgOOB.rAddInfo.sReturnLoc and msgOOB.rAddInfo.nTotal and msgOOB.rAddInfo.sReturnLoc == FBCTManager.OOB_MSGTYPE_FB_Host_Add_Char then
+			DB.setValue(DB.getChild(nodeCT, "initresult").getPath(), "number", msgOOB.rAddInfo.nTotal);
+		end		
+	end		
+end
+
+function RemoveFromCT(nodeCT, sDeleteType)
+	--declarations
+	local sFaction = DB.getValue(nodeCT,"friendfoe","");
+	
+	-- check if ~friend or foe deletion
+	if sDeleteType == "foe" and sFaction == "foe" then
+		DB.deleteNode(nodeCT);
+	elseif sDeleteType == "notFriend" and sFaction ~= "friend" then
+		DB.deleteNode(nodeCT);
+	else
+		--Remove check that character has rolled init
+		DB.setValue(nodeCT,"cbox_has_rolled","number",0);
+		--Remove turn used check
+		DB.setValue(nodeCT,"cbox_turn_used","number",0);		
+	end
+end
+
+function rollInitiative(nodeCT)
+	local nodeChar = ActorManager.getCreatureNode(nodeCT);	
+	local rStats = {manager_char_stat_handler.StatList.Attributes.Physical.Dexterity[2],manager_char_stat_handler.StatList.Skills.Talents.Athletics[2]};
+	
+	-- call Roll Manager. Expected no roll for non PCs
+    if DB.getValue(nodeCT,"str_char_type","") == "npc" or DB.getValue(nodeCT,"num_is_gmpc",0) == 1 then		
+		local _,nSkillTotal = manager_char_stats.GetStatVaules(nodeChar, rStats, manager_char_stat_handler.StatList.Specialties.Initiative[2]);
+		local rAddInfo = { 
+			isNPC = true,
+			nSkillTotal = nSkillTotal,			
+		}
+		FBRollManager.rollInit(nodeChar, "Initiative", rAddInfo);		
+	else
+		manager_char_stats.AddStatsToRoll(nodeChar, rStats, manager_char_stat_handler.StatList.Specialties.Initiative[2]);
+		FBRollManager.rollInit(nodeChar, "Initiative", nil);		
+	end	
+end
+
+function getCombatStarted()
+	return DB.getValue(DB.getChild("combattracker", "round"),"",0) &gt; 0;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

@@ -1,0 +1,18 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBCTObjects</ScriptName>
+    <FolderID>35</FolderID>
+    <Script>
+local rObjects = {}
+
+function registerObject(sName, obj)
+	rObjects[sName] = obj;
+end
+
+function getObject(sName)
+	return rObjects[sName];
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

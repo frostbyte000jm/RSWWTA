@@ -1,0 +1,814 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBHandleEffects</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+MSG_After_Effect_Roll = "MSG_After_Effect_Roll";
+local nMargin = 0;
+--[[
+**************************************************************************
+							Perm Effects
+**************************************************************************
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("IsActiveUser");
+	end
+
+]]--
+
+function permBoT(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " Begining of Turn", "rAddInfo",rAddInfo);	
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permBoT - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permBoT - IsActiveUser");
+		preCheckRegen(nodeCT, rAddInfo);
+	end
+	
+end
+
+function permEoT(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " End of Turn", "rAddInfo",rAddInfo);	
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permEoT - IsHost");
+		-- check turn ended
+		DB.setValue(nodeCT, "cbox_turn_used", "number", 1);
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permEoT - IsActiveUser");
+	end
+end
+
+function permToR(nodeCT, rAddInfo)
+	--Debug.chat("Top of Round. nodeCT: ",nodeCT, "rAddInfo",rAddInfo);		
+	--Host Only
+	if Session.IsHost then
+		--Remove turn used check
+		DB.setValue(nodeCT,"cbox_turn_used","number",0);
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permToR - IsActiveUser");
+	end
+end
+
+function permBoC(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " Begining of Combat", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		rollInitiativeNoPCs(nodeCT);
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permBoC - IsActiveUser");
+	end
+	
+end
+
+function permEoC(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " End of Combat", "rAddInfo",rAddInfo);	
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permEoC - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permEoC - IsActiveUser");
+	end
+end
+
+function permEoS(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " End of Scene", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permEoS - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permEoS - IsActiveUser");
+	end
+end
+
+function permRollType(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " RollType", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permRollType - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permRollType - IsActiveUser");
+	end
+end
+
+function permDmgType(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " DMG Type", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permDmgType - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permDmgType - IsActiveUser");
+	end
+end
+
+function permResource(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " permResource", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permResource - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permResource - IsActiveUser");
+		if rAddInfo.sResource then
+			if rAddInfo.sResource == FBResourceManager.ResourceList.CharResource.Rage[2] then
+				rollFrenzyCheck(nodeCT, rAddInfo);
+			end
+			
+			--Display Chat
+			local sAction = Interface.getString("resource_spends");
+			if rAddInfo.bGain then sAction = Interface.getString("resource_gains") end
+			local sMsg = string.format(Interface.getString("resource_gain_spend"),DB.getValue(nodeCT,"name",""),sAction,rAddInfo.sResource);
+			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sMsg, "system", true);
+		end
+	end	
+end
+
+--[[
+**************************************************************************
+							Effects from CT
+**************************************************************************
+]]--
+
+local rActions = {};
+
+function handleEffectAction(nodeCT, rAddInfo)
+	--Debug.chat("handleEffectAction - nodeCT",nodeCT,"\n\nrAddInfo",rAddInfo);
+	
+	
+	for idx, nodeAction in ipairs(rAddInfo.rNodeActions) do
+		--Debug.chat("idx",idx,"nodeAction",nodeAction);
+		--[[
+			1) Check Action performed
+			2) Set Skip for number of rounds
+			3) Send Chat Message
+			4) Remove Effect
+		]]--
+		if nodeAction then
+			--Add anything you need rAddInfo into here. 
+			table.insert(rActions, nodeAction);			
+--			local bBreak = chooseAction(nodeAction, rAddInfo);
+--			if bBreak and bBreak == true then
+--				--Debug.chat("Stop!");
+--				return;
+--			end		
+		end			
+	end
+	popAction(rAddInfo);
+end
+
+function popAction(rAddInfo)
+	if not next(rActions) then
+		return;
+	end
+	
+	local nodeAction = table.remove(rActions,1);	
+	chooseAction(nodeAction, rAddInfo);
+end
+
+function chooseAction(nodeAction, rAddInfo)
+	--Debug.chat("chooseAction - nodeAction",nodeAction,"rAddInfo",rAddInfo, "rActions",rActions);
+	local sActionType = DB.getValue(nodeAction,"dt_action","");
+	if sActionType and string.len(sActionType) &gt; 0 then
+		rAddInfo.sActionType = sActionType;
+		--Debug.chat("sActionType",sActionType);
+		
+		--FBEffectsManager.StrEffectList.rActions.Roll.Stat.AddMods.Damage.Heal.Resource.Routine.Effect
+		if sActionType == FBEffectsManager.StrEffectList.rActions.Roll[2] then
+			actionRoll(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Stat[2] then
+			actionStats(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.AddMods[2] then
+			actionStacks(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Damage[2] then
+			actionDamage(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Heal[2] then
+			actionHealing(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Resource[2] then
+			return actionResource(nodeAction, rAddInfo);
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Routine[2] then
+		
+		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Effect[2] then
+			actionAddEffects(nodeAction, rAddInfo);
+		else
+			--handleEffectActionComplete(nodeAction, rAddInfo);
+		end
+		
+		-- Complete Action (except for Roll because of the OOB)
+		if not (rAddInfo.sActionType == FBEffectsManager.StrEffectList.rActions.Roll[2]) then			
+			handleEffectActionComplete(nodeAction, rAddInfo);
+		end	
+		
+	end	
+end
+
+function handleWatchList(nodeCT, nodeEffect, rAddInfo)
+	--Debug.chat("handleWatchList - nodeCT",nodeCT,"nodeEffect",nodeEffect,"rAddInfo",rAddInfo);
+	local nodeWatchList = DB.getChild(nodeEffect,"wl_action_watch");
+	--Debug.chat("nodeWatchList",nodeWatchList);
+	if nodeWatchList then
+		for sClass, sRecord in pairs(nodeWatchList.getChildren()) do
+			--Debug.chat("sClass",sClass,"sRecord",sRecord);
+			local sActionType = DB.getValue(sRecord,"str_action_type","");
+			local nodeAction = DB.findNode(DB.getValue(sRecord,"str_path_action",""));
+			--Debug.chat("sActionType",sActionType,"nodeAction",nodeAction);
+			if sActionType == FBEffectsManager.StrEffectList.rActions.Roll[2] then
+				
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Stat[2] then
+				if rAddInfo.sEvent == "onDelete" then
+					removeStatMod(nodeAction, rAddInfo);
+				elseif rAddInfo.sEvent == "onIsActive" then
+					if rAddInfo.nIsActive == 1 then
+						addStatMod(nodeAction, rAddInfo);
+					else
+						removeStatMod(nodeAction, rAddInfo);
+					end
+				end
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.AddMods[2] then
+			
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Damage[2] then
+			
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Heal[2] then
+			
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Resource[2] then
+			
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Routine[2] then
+			
+			elseif sActionType == FBEffectsManager.StrEffectList.rActions.Effect[2] then
+			
+			else
+				handleEffectActionComplete(nodeAction, rAddInfo);
+			end
+		end
+	end	
+end
+
+--[[
+**************************************************************************
+							Action Roll
+**************************************************************************
+]]--
+
+function actionRoll(nodeAction, rAddInfo)
+	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	--[[
+		1) Gather Stats
+		2) Gather Bonus Dice
+		3) Gather Difficulty
+		4) Roll
+		5) Choose Action based on success
+		6) Send Action to handleEffectAction
+	]]--
+	
+	local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+	local rStats = {};
+	local nDice = 0;
+	for sClass, sRecord in pairs(DB.getChild(nodeAction,"wl_roll").getChildren()) do
+		--Debug.chat("sClass",sClass,"sRecord",sRecord);
+		table.insert(rStats,DB.getValue(sRecord,"dt_stat",""));
+		nDice = nDice + DB.getValue(sRecord,"num_dice_mod",0);
+	end
+	--Debug.chat("AddStatsToRoll - nodeChar",nodeChar,"rStats",rStats);
+	manager_char_stats.AddStatsToRoll(nodeChar, rStats);
+	
+	-- Check for Stress
+    local rAddInfoNew = {
+		sActionName = DB.getValue(nodeAction,"name",""),
+		bStress = rAddInfo.bStress,
+		nDice = nDice,
+		nDiff = DB.getValue(nodeAction,"num_diff",0);
+		nMod = DB.getValue(nodeAction,"num_mod",0);
+		sReturnLoc = MSG_After_Effect_Roll,
+		pathNodeAction = DB.getPath(nodeAction),
+		pathNodeEffect = DB.getPath(rAddInfo.nodeEffect),
+		bRunBeforeDiceSuccess = DB.getValue(nodeAction,"box_rbdd_success",0) == 1,
+		bRunBeforeDiceFail = DB.getValue(nodeAction,"box_rbdd_fail",0) == 1,
+		sActionType = rAddInfo.sActionType,
+		};
+	--Debug.chat("rAddInfoNew",rAddInfoNew);
+	FBRollManager.rollInit(nodeChar, "Action", rAddInfoNew);
+end
+
+function actionRollContinue(rSource, rAddInfo)
+	--Debug.chat("actionRollContinue - rSource",rSource,"rAddInfo",rAddInfo);
+	local nodeAction = nil;
+	nodeAction, rAddInfo = getNodeAction(rSource, rAddInfo);
+	
+	--Send Chat
+	sendChatMessage(nodeAction, rAddInfo);
+	
+	-- Run Success or Fail action.
+	local nTotal = setMargin(rAddInfo.nTotal);	
+	if nTotal &gt; 0 then
+		local _,pathNodeActionSuccess = DB.getValue(nodeAction, "link_action_success", "");
+		--Debug.chat("\n\nodeAction",nodeAction,"pathNodeActionSuccess",pathNodeActionSuccess);
+		local nodeActionSuccess = DB.findNode(pathNodeActionSuccess);
+		chooseAction(nodeActionSuccess, rAddInfo);
+	else
+		local _,pathNodeActionFail = DB.getValue(nodeAction, "link_action_fail", "");
+		local nodeActionFail = DB.findNode(pathNodeActionFail);
+		chooseAction(nodeActionFail, rAddInfo);
+	end
+	
+	--Complete Skip and Remove Effect
+	handleEffectActionComplete(nodeAction, rAddInfo);
+end
+
+--[[
+**************************************************************************
+							Action Stat
+**************************************************************************
+]]--
+
+function actionStats(nodeAction, rAddInfo)
+	--Debug.chat("actionStats - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	--[[
+		1) Tell Effect which Actions to Watch
+		2) List controls ActionsManager
+			1) Add to List it will check active = true, then activate
+			2) if Active &lt;&gt; 1 or if Effect Expire then deactivate
+			3) If Active == 1 then Activate again
+	]]--
+	addActionWatch(rAddInfo.nodeEffect, nodeAction);
+	addStatMod(nodeAction, rAddInfo);
+end
+
+function addStatMod(nodeAction, rAddInfo)
+	--Debug.chat("addStatMod - nodeAction",nodeAction, "rAddInfo",rAddInfo);
+	local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+	
+	local rStatsMods = {}
+	for sClass, sRecord in pairs(DB.getChild(nodeAction,"wl_stats").getChildren()) do
+		table.insert(rStatsMods,{
+			sName = DB.getValue(sRecord,"dt_stat",""),
+			nMod = DB.getValue(sRecord,"num_dice_mod",0),
+		});
+	end	
+	
+	--Debug.chat("rStatsMods",rStatsMods);
+	
+	manager_char_stats.ModStats(nodeChar, rStatsMods);
+end
+
+function removeStatMod(nodeAction, rAddInfo)
+	--Debug.chat("removeStatMod - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+	
+	local rStatsMods = {}
+	for sClass, sRecord in pairs(DB.getChild(nodeAction,"wl_stats").getChildren()) do
+		table.insert(rStatsMods,{
+			sName = DB.getValue(sRecord,"dt_stat",""),
+			nMod = 0,
+		});
+	end	
+	
+	--Debug.chat("rStatsMods",rStatsMods);
+	
+	manager_char_stats.ModStats(nodeChar, rStatsMods);
+end
+
+--[[   
+*********************************************************************************
+								Add Modifiers (Stacks)
+*********************************************************************************
+]]--
+
+function actionStacks(nodeAction, rAddInfo)
+	--Debug.chat("actionStacks - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	
+	for sClass, sRecord in pairs(DB.getChild(nodeAction,"wl_stat_mods").getChildren()) do
+		--get Stat values
+		local rStats = {}
+		table.insert(rStats,DB.getValue(sRecord, "dt_stat"));
+		local sDisplaySkill,nSkillTotal = manager_char_stats.GetStatVaules(ActorManager.getCreatureNode(rAddInfo.rActor), rStats, "");
+		
+		-- Possitive or Negative
+		if DB.getValue(sRecord, "box_add_sub") == 1 then
+			nSkillTotal = -nSkillTotal;
+		end
+		
+		--set Stacks
+		if DB.getValue(sRecord, "box_mod") == 1 then
+			ModifierStack.addSlot(sDisplaySkill, nSkillTotal);
+		elseif DB.getValue(sRecord, "box_diff") == 1 then
+			DifficultyStack.addSlot(sDisplaySkill, nSkillTotal);
+		elseif DB.getValue(sRecord, "box_diff") == 1 then
+			DiceStack.addSlot(sDisplaySkill, nSkillTotal);
+		end
+	end
+	--declarations
+	local sName = DB.getValue(nodeAction,"name","");
+	local nMargin = nil;
+	if rAddInfo.nTotal then nMargin = rAddInfo.nTotal end	
+	local bModMargin = DB.getValue(nodeAction,"box_margin_mod",0) == 1;
+	local nMod = DB.getValue(nodeAction,"num_mod",0);
+	local nModMultiply = DB.getValue(nodeAction,"num_mod_multiply",0);
+	local bDiffMargin = DB.getValue(nodeAction,"box_margin_diff",0) == 1;
+	local nDiffBase = DB.getValue(nodeAction,"num_diff_base",0);
+	local nDiff = DB.getValue(nodeAction,"num_diff",0);
+	local nDiffMultiply = DB.getValue(nodeAction,"num_diff_multiply",0);
+	local bDiceMargin = DB.getValue(nodeAction,"box_margin_dice",0) == 1;
+	local nDice = DB.getValue(nodeAction,"num_dice",0);
+	local nDiceMultiply = DB.getValue(nodeAction,"num_dice_multiply",0);
+	
+	--mod
+	if nMod ~= 0 then
+		ModifierStack.addSlot(sName, nMod);
+	end	
+	if nMargin and bModMargin then
+		ModifierStack.addSlot(sName, nMargin);
+	end	
+	if nModMultiply ~= 1 and ModifierStack.getMultiplier() == 1 then
+		ModifierStack.setMultiplier(nModMultiply);
+	end	
+		
+	--Diff
+	if nDiffBase ~= 0 then
+		DifficultyStack.setBaseDifficulty(nDiffBase);
+	end	
+	if nDiff ~= 0 then
+		DifficultyStack.addSlot(sName, nDiff);
+	end	
+	if nMargin and bDiffMargin then
+		DifficultyStack.addSlot(sName, nMargin);
+	end	
+	if nDiffMultiply ~= 1 and DifficultyStack.getMultiplier() == 1 then
+		DifficultyStack.setMultiplier(nDiffMultiply);
+	end
+	
+	--Dice
+	if nDice ~= 0 then
+		DiceStack.addSlot(sName, nDice);
+	end	
+	if nMargin and bDiceMargin then
+		DiceStack.addSlot(sName, nMargin);
+	end	
+	if nDiceMultiply ~= 1 and DiceStack.getMultiplier() == 1 then
+		DiceStack.setMultiplier(nDiceMultiply);
+	end	
+end
+
+--[[   
+*********************************************************************************
+								Deal Damage
+*********************************************************************************
+]]--
+
+function actionDamage(nodeAction, rAddInfo)
+	--Debug.chat("actionDamage - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	
+	--Collect information from tab
+	rAddInfo.sDamageType = DB.getValue(nodeAction,"dt_damage_type","");
+	rAddInfo.nDmgAddMod = DB.getValue(nodeAction,"num_mod_add",0);
+	rAddInfo.bDmgApplyMargin = DB.getValue(nodeAction,"box_margin",0) == 1;
+	rAddInfo.rDamageTags = {}
+	
+	--Damage Tags
+	for sClass, sRecord in pairs(DB.getChildren(DB.getChild(nodeAction,"wl_action_dmg"))) do
+		table.insert(rAddInfo.rDamageTags,DB.getValue(sRecord,"str_dmg_tag",""));
+	end	
+	
+	-- Revise Damage Total
+	rAddInfo = actionDamageTotals(rAddInfo);
+	
+	-- Revise Display
+	rAddInfo = actionDamageDescription(rAddInfo);
+	
+	--send Message to Chat
+    FBChatManager.sendMessageRoll(rAddInfo.rActor, rAddInfo);
+		
+	-- Apply Effect Debug.Update(Revise in future release)
+	
+end
+
+function actionDamageTotals(rAddInfo)
+	if rAddInfo.bDmgApplyMargin then
+		rAddInfo.nTotal = rAddInfo.nTotal + rAddInfo.nDmgAddMod;
+		
+	else
+		rAddInfo.nTotal = rAddInfo.nDmgAddMod;
+	end
+	rAddInfo.nMod = rAddInfo.nMod + rAddInfo.nDmgAddMod;
+	return rAddInfo;
+end
+
+function actionDamageDescription(rAddInfo)
+	rAddInfo.sDesc = rAddInfo.sDesc
+	..string.format(Interface.getString("dmg_dmg_type"),rAddInfo.sDamageType)..
+	"\n"..string.format(Interface.getString("dmg_dmg_tag"),table.concat(rAddInfo.rDamageTags,", "))..
+	"\n"..string.format(Interface.getString("dmg_add_dmg"),rAddInfo.nDmgAddMod)..
+	"\n"..string.format(Interface.getString("dmg_total_dmg"),rAddInfo.nTotal);
+	return rAddInfo;
+end
+
+--[[   
+*********************************************************************************
+								Healing Damage
+*********************************************************************************
+]]--
+
+function actionHealing(nodeAction, rAddInfo)
+	--Debug.chat("actionDamage - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	
+	--Collect information from tab
+	rAddInfo.sHealType = DB.getValue(nodeAction,"dt_heal_type","");
+	rAddInfo.nHealAddMod = DB.getValue(nodeAction,"num_mod_add",0);
+	rAddInfo.bHealApplyMargin = DB.getValue(nodeAction,"box_margin",0) == 1;
+	rAddInfo.rDamageTags = {}
+	
+	--Damage Tags
+	for sClass, sRecord in pairs(DB.getChildren(DB.getChild(nodeAction,"wl_action_heal"))) do
+		table.insert(rAddInfo.rDamageTags,DB.getValue(sRecord,"str_dmg_tag",""));
+	end	
+	
+	-- Revise Damage Total
+	rAddInfo = actionHealTotals(rAddInfo);
+	
+	-- Revise Display
+	rAddInfo = actionHealDescription(rAddInfo);
+	
+	--send Message to Chat
+    FBChatManager.sendMessageRoll(rAddInfo.rActor, rAddInfo);
+		
+	-- Apply Effect Debug.Update(Revise in future release)
+	
+end
+
+function actionHealTotals(rAddInfo)
+	if rAddInfo.bHealApplyMargin then
+		rAddInfo.nTotal = rAddInfo.nTotal + rAddInfo.nHealAddMod;
+		
+	else
+		rAddInfo.nTotal = rAddInfo.nHealAddMod;
+	end
+	rAddInfo.nMod = rAddInfo.nMod + rAddInfo.nHealAddMod;
+	return rAddInfo;
+end
+
+function actionHealDescription(rAddInfo)
+	rAddInfo.sDesc = rAddInfo.sDesc
+	..string.format(Interface.getString("heal_dmg_type"),rAddInfo.sHealType)..
+	"\n"..string.format(Interface.getString("heal_dmg_tag"),table.concat(rAddInfo.rDamageTags,", "))..
+	"\n"..string.format(Interface.getString("heal_add_dmg"),rAddInfo.nHealAddMod)..
+	"\n"..string.format(Interface.getString("heal_total_dmg"),rAddInfo.nTotal);
+	return rAddInfo;
+end
+
+--[[   
+*********************************************************************************
+								Resource
+*********************************************************************************
+]]--
+
+function actionResource(nodeAction, rAddInfo)
+	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_resource")) do
+		
+		-- collect data from Resource
+		local sResource = DB.getValue(nodeRecord, "dt_stat", "");
+		local bMargin = DB.getValue(nodeRecord, "box_margin", 0) == 1;
+		local nValue = DB.getValue(nodeRecord, "num_mod", 0);
+		if bMargin then nValue = nValue + rAddInfo.nTotal end
+		
+		-- Check if Resource is available
+		local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+		local bAvailable = FBResourceManager.isResourceAvailable(nodeChar,sResource,nValue);
+		if bAvailable then
+			-- Update Value
+			FBResourceManager.updateResourceCurrent(nodeChar,sResource,nValue,true);
+		else
+			return true; -- to break the cycle
+		end
+	end
+end
+
+--[[   
+*********************************************************************************
+								Add Effects
+*********************************************************************************
+]]--
+function actionAddEffects(nodeAction, rAddInfo)
+	--Debug.chat("actionAddEffects - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_action_effect")) do
+		rAddInfo.pathEffect = DB.getPath(nodeRecord);
+		FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
+	end 
+end
+
+--[[   
+*********************************************************************************
+								Final Effect Actions
+*********************************************************************************
+]]--
+
+function handleEffectActionComplete(nodeAction, rAddInfo)
+	
+	--Skip Rounds
+	setSkipRounds(nodeAction, rAddInfo);
+	
+	-- Send Chat Message
+	if not (rAddInfo.sActionType == FBEffectsManager.StrEffectList.rActions.Roll[2]) then
+		sendChatMessage(nodeAction, rAddInfo);
+	end	
+	
+	-- Check if Remove Effect
+	checkRemoveEffect(nodeAction, rAddInfo);
+	
+	--Pop next Effect
+	popAction(rAddInfo);
+end
+
+function setSkipRounds(nodeAction, rAddInfo)
+	--Debug.chat("setSkipRounds - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	if DB.getValue(nodeAction,"box_skip_rounds",0) == 1 and DB.getValue(nodeAction,"num_rounds_skip",0) &gt; 0 then
+		if Session.IsHost then
+			DB.setValue(rAddInfo.nodeEffect,"num_skip_count", "number", DB.getValue(nodeAction,"num_rounds_skip",0));
+			DB.setValue(rAddInfo.nodeEffect,"isactive", "number", 2);
+		else
+			RulesetWizard.changeDBValueOOB(DB.getChild(rAddInfo.nodeEffect,"num_skip_count"), DB.getValue(nodeAction,"num_rounds_skip",0));
+			RulesetWizard.changeDBValueOOB(DB.getChild(rAddInfo.nodeEffect,"isactive"), 2);
+		end
+	end
+end
+
+function sendChatMessage(nodeAction, rAddInfo)
+	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	local sChatMessage = DB.getValue(nodeAction,"str_chat_message","");
+	if sChatMessage and string.len(sChatMessage) &gt; 0 then
+		local bSecret = DB.getValue(nodeAction,"box_chat_secret",0) == 1;		
+		if bSecret then
+			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sChatMessage,  "system", bSecret);		
+		else
+			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sChatMessage,  "action");
+		end		
+	end	
+end
+
+function checkRemoveEffect(nodeAction, rAddInfo)	
+	local bRemoveEffect = DB.getValue(nodeAction,"box_remove_effect",0) == 1;
+	if bRemoveEffect then
+		--Debug.chat("checkRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+		local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+		removeEffect(nodeChar, rAddInfo.nodeEffect);
+	end
+end
+
+
+
+--[[   
+*********************************************************************************
+								Routine Actions
+*********************************************************************************
+]]--
+function rollInitiativeNoPCs(nodeCT)
+	-- Inititive Roll for all non PCs
+	local bNPC = DB.getValue(nodeCT,"str_char_type","") == "npc";
+	local bGMPC = DB.getValue(nodeCT,"num_is_gmpc",0) == 1;
+	
+	if bNPC or bGMPC then
+		FBCTManager.rollInitiative(nodeCT);			
+	end
+end
+
+function rollFrenzyCheck(nodeCT, rAddInfo)
+	--Debug.chat("rollFrenzyCheck","nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	--Send to Roller	
+	local nodeChar = ActorManager.getCreatureNode(nodeCT);
+	if nodeChar then
+		local rAddInfo = {
+			sReturnLoc = "garou_rage_spend",
+			bStress = false,
+			nDiff = MoonStack.getDifficulty(),
+		};
+		
+		DiceStack.addSlot("Frenzy Check", 1);
+		FBRollManager.rollInit(nodeChar,"Action",rAddInfo);	
+	end
+end
+
+function preCheckRegen(nodeCT, rAddInfo)
+	--Debug.chat("checkRegen","nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	--[[
+	p256
+	Regenerating damage when engaged in a stressful or
+	physically intensive activity (like combat) is harder for
+	a werewolf. The player must roll the Garou’s Stamina
+	(difficulty 8) each turn. This roll is reflexive, so does not
+	involve splitting a dice pool or spending Rage for multiple
+	actions. Success means that the werewolf heals as
+	normal. Failure means that he heals no damage. A botch
+	indicates that the werewolf cannot regenerate until she’s
+	had a chance to rest.
+	]]--
+	
+	local nodeChar = ActorManager.getCreatureNode(nodeCT);
+	if DB.getValue(nodeChar,"num_regen",0) == 1 and ( DB.getValue(nodeChar,"num_health_bashing",0) + DB.getValue(nodeChar,"num_health_lethal",0) &gt; 0 ) then
+		
+		local rStats = {manager_char_stat_handler.StatList.Attributes.Physical.Stamina[2]};
+		manager_char_stats.AddStatsToRoll(nodeChar, rStats);
+		
+		-- Check for Stress
+		local rAddInfo = {
+			bStress = FBCTManager.getCombatStarted(),
+			nDiff = 8,
+			sReturnLoc = "postCheckRegen",
+			sActionName = "Check for Regeneration",
+			sMsgSuccess = "Garou has successfully Regenerated up to 1 Lethal.",
+			sMsgFail = "The Garou's wounds are healing, but not fast enough.",
+			};
+		FBRollManager.rollInit(nodeChar, "Action", rAddInfo);
+	end
+end
+
+function postCheckRegen(nodeChar,nResult)
+	--Debug.chat("Session.IsHost",Session.IsHost,"nodeChar",nodeChar,"nResult",nResult);
+	if nResult &gt; 0 then
+		FBHealthManager.removeDamage(nodeChar,0,1,0);
+	end
+end
+
+function chatResource(nodeChar)
+
+end
+
+--[[   
+*********************************************************************************
+								Methods
+*********************************************************************************
+]]--
+function getMargin(bClear)
+	local nValue = nMargin;
+	if bClear then
+		nMargin = 0;
+	end	
+	return nValue;
+end
+
+function setMargin(nValue)
+	nMargin = nValue;
+	return nMargin;
+end
+
+function getNodeAction(rSource, rAddInfo)
+	local nodeAction = DB.findNode(rAddInfo.pathNodeAction);
+	rAddInfo.nodeEffect = DB.findNode(rAddInfo.pathNodeEffect);
+	rAddInfo.rActor = rSource;
+	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	return nodeAction, rAddInfo;
+end
+
+function addActionWatch(nodeEffect, nodeAction)
+	local nodeActionWatchList = DB.createChild(nodeEffect, "wl_action_watch");
+	--Debug.chat("nodeActionWatchList",nodeActionWatchList);
+	local nodeActionWatch = DB.createChild(nodeActionWatchList);
+	
+	DB.setValue(nodeActionWatch,"str_path_action", "string", DB.getPath(nodeAction));
+	DB.setValue(nodeActionWatch,"str_action_type", "string", DB.getValue(nodeAction,"dt_action",""));
+end
+
+function removeEffect(nodeChar, nodeEffect)
+	if Session.IsHost then	
+		FBEffectsManager.removeEffect(nodeChar, nodeEffect);
+	else
+		msgOOB = {
+			type = FBEffectsManager.OOB_MSG_FB_RemoveEffect,
+			nodeChar = nodeChar,
+			nodeEffect = nodeEffect,
+		}
+		FBOOBManager.OOBifySend(msgOOB);
+	end
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

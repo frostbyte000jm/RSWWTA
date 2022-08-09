@@ -1,0 +1,166 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBResourceManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>local n = 0;
+function count(bReset)
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Resource Lists
+*****************************************************
+]]--
+
+ResourceList = { --FBResourceManager.ResourceList.CharResource.Rage[2]
+	CharResource = {
+		Gnosis = {count(true), "Gnosis"},
+		Rage = {count(), "Rage"},
+		Willpower = {count(), "Willpower"},	
+		FrenzyDice = {count(), "Frenzy Dice"},	
+	},		
+}
+
+function getResources()
+	return ResourceList.CharResource;
+end
+
+--[[
+	This should be able to 
+	get Resource Values
+		local nValue = getResourceTotal(nodeChar,sResource)
+		local nValue = getResourceCurrent(nodeChar,sResource)
+	
+	set Resource values
+		setResourceCurrent(nodeChar,sResource,nValue)
+		setResourceMod(nodeChar,sResource,nValue)
+		
+	Alert Resource Action
+		notifyEffectManager(sResource)
+
+]]--
+
+function getResourceTotal(nodeChar, sResource)
+	if sResource == ResourceList.CharResource.Gnosis[2] then
+		return DB.getValue(nodeChar,"num_gnosis_total",0);
+	elseif sResource == ResourceList.CharResource.Rage[2] then
+		return DB.getValue(nodeChar,"num_rage_total",0);
+	elseif sResource == ResourceList.CharResource.Willpower[2] then
+		return DB.getValue(nodeChar,"num_willpower_total",0);
+	elseif sResource == ResourceList.CharResource.FrenzyDice[2] then
+		return DB.getValue(nodeChar,"num_rage_total",0);
+	end
+end
+
+function getResourceCurrent(nodeChar, sResource)
+	if sResource == ResourceList.CharResource.Gnosis[2] then
+		return DB.getValue(nodeChar,"num_gnosis_current",0);
+	elseif sResource == ResourceList.CharResource.Rage[2] then
+		return DB.getValue(nodeChar,"num_rage_current",0);
+	elseif sResource == ResourceList.CharResource.Willpower[2] then
+		return DB.getValue(nodeChar,"num_willpower_current",0);
+	elseif sResource == ResourceList.CharResource.FrenzyDice[2] then
+		return DB.getValue(nodeChar,"num_frenzy",0);
+	end
+end
+
+-- Local function to control the current Value.
+function setResourceCurrent(nodeChar,sResource,nValue)	
+	if sResource == ResourceList.CharResource.Gnosis[2] then
+		nValue = math.max(math.min(getResourceTotal(nodeChar, sResource),nValue),0);
+		DB.setValue(nodeChar,"num_gnosis_current","number", nValue);
+	elseif sResource == ResourceList.CharResource.Rage[2] then
+		nValue = math.max(math.min(getResourceTotal(nodeChar, sResource),nValue),0);
+		DB.setValue(nodeChar,"num_rage_current","number", nValue);
+	elseif sResource == ResourceList.CharResource.Willpower[2] then
+		nValue = math.max(math.min(getResourceTotal(nodeChar, sResource),nValue),0);
+		DB.setValue(nodeChar,"num_willpower_current","number", nValue);
+	elseif sResource == ResourceList.CharResource.FrenzyDice[2] then
+		nValue = math.max(math.min(getResourceTotal(nodeChar, sResource),nValue),0);
+		DB.setValue(nodeChar,"num_frenzy","number", nValue);
+	end
+end
+
+function updateResourceMod(nodeChar,sResource,nValue,bNotify)
+	--Revise Mod Value
+	if sResource == ResourceList.CharResource.Gnosis[2] then
+		DB.setValue(nodeChar,"num_gnosis_mod","number",DB.getValue(nodeChar,"num_gnosis_mod",0) + nValue);		
+	elseif sResource == ResourceList.CharResource.Rage[2] then
+		DB.setValue(nodeChar,"num_rage_mod","number",DB.getValue(nodeChar,"num_rage_mod",0) + nValue);		
+	elseif sResource == ResourceList.CharResource.Willpower[2] then
+		DB.setValue(nodeChar,"num_willpower_mod","number",DB.getValue(nodeChar,"num_willpower_mod",0) + nValue);		
+	end
+	
+	--set Current Value
+	setResourceCurrent(nodeChar,sResource,getResourceCurrent(nodeChar, sResource) + nValue);
+	
+	-- if notify, then alert the control
+	if bNotify then
+		notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
+	end
+end
+
+function updateResourceCurrent(nodeChar,sResource,nValue,bNotify,bFromControl)
+	--Dump if ==0
+	if nValue == 0 then
+		return;
+	end
+	
+	--From Control, we want to notify, but not change the value
+	if bFromControl then
+		if bNotify then
+			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
+		end
+	else -- Adjust the value of current 
+		-- Check if Allowed
+		local nTotal = getResourceTotal(nodeChar, sResource);
+		local nCurrent = getResourceCurrent(nodeChar, sResource);
+		if nValue &gt; 0 then
+			if nCurrent == nTotal then
+				-- already at max				
+				FBChatManager.sendMessage(nodeChar, string.format(Interface.getString("resource_at_max"),sResource), "system", true);
+			else
+				nValue = math.min(nCurrent + nValue, nTotal);
+				setResourceCurrent(nodeChar,sResource,nValue);
+			end
+		else
+			if nCurrent == 0 then
+				-- all ready at min
+				FBChatManager.sendMessage(nodeChar, string.format(Interface.getString("resource_at_min"),sResource), "system", true);
+			else
+				nValue = math.max(nCurrent + nValue, 0);
+				setResourceCurrent(nodeChar,sResource,nValue);
+			end
+		end
+		
+		-- if notify, then alert the control
+		if bNotify then
+			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
+		end
+	end
+	
+end
+
+function isResourceAvailable(nodeChar,sResource,nValue)
+	local nCurrent = getResourceCurrent(nodeChar, sResource);
+	return nCurrent + nValue &gt;= 0;
+end
+
+function notifyEffectManager(sResource,nodeChar,bGain)
+	if sResource == ResourceList.CharResource.Gnosis[2] or sResource == ResourceList.CharResource.Rage[2] or sResource == ResourceList.CharResource.Willpower[2] then
+		local rAddInfo = {
+			bGain = bGain,
+			sResource = sResource,
+		}
+		FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.Resource[2], nodeChar, rAddInfo);
+	end
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

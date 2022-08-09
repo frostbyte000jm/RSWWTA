@@ -1,0 +1,121 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_prep_roll</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>--declaration
+local rRollInfo;
+
+function onInit()
+    reset();
+end
+
+function reset()
+	rRollInfo = {};
+end
+
+function AddDieToRoll(nodeSkill)
+    -- set Values
+    local sName = DB.getValue(nodeSkill,"str_skill_name","");    
+    local nValue = 0;
+    local sSpecialty = "";   
+    
+    -- Load Table
+    table.insert(rRollInfo, {node = nodeSkill, sName = sName, nValue = nValue, sSpecialty = sSpecialty});    
+end
+
+function RemoveDieFromRoll(nodeSkill)
+	local sName = DB.getValue(nodeSkill,"str_skill_name",""); 
+    for idx,node in pairs(rRollInfo) do        
+        if sName == node["sName"] then
+            table.remove(rRollInfo,idx);
+            break;
+        end
+    end    
+end
+
+function AddCustomToRoll(sName, nValue, sSpecialty)
+	-- default if empty;
+	if Funct.IsEmpty(sName)			then sName = "Bonus"	end;
+	if Funct.IsEmpty(nValue)		then nValue = 0 		end;
+	if Funct.IsEmpty(sSpecialty)	then sSpecialty = "" 	end;
+	-- Load Table
+    table.insert(rRollInfo, {node = nil, sName = sName, nValue = nValue, sSpecialty = sSpecialty}); 
+end
+
+function GetRoll()
+	local sDisplaySkill,nSkillTotal = GetRollValues(rRollInfo);
+    
+    -- reset RollInfo and send.
+    reset();
+	return sDisplaySkill,nSkillTotal;
+end
+
+function GetRollValues(rRollInfoSent)
+	--declarations
+    local nSkillTotal = 0;
+    local sDisplaySkill = "";
+    local bDoFirst = true;    
+    
+    for _, rollInfo in pairs(rRollInfoSent) do
+		--Debug.chat("rollInfo",rollInfo);
+		-- loop &gt; 1 then add a " + " to the end.
+        if bDoFirst then
+            bDoFirst = false;
+        else
+            sDisplaySkill = sDisplaySkill .. " + ";
+        end
+        
+        -- set fields
+        local sName = rollInfo["sName"];    
+		local nValue = rollInfo["nValue"];
+		local sSpecialty = rollInfo["sSpecialty"];  
+		
+		-- update fields from node
+		if rollInfo["node"] then
+			sName = DB.getValue(rollInfo["node"],"str_skill_name","");    
+			nValue = DB.getValue(rollInfo["node"],"num_skill_value","");
+			sToggle = DB.getValue(rollInfo["node"],"iconcy_skill_toggle","1");
+			
+			if sToggle == "2" then
+				sSpecialty = DB.getValue(rollInfo["node"],"str_skillsp_name","");
+			end
+			
+			--reset Toggle
+			DB.setValue(rollInfo["node"],"iconcy_skill_toggle","string","0");
+		end
+		
+		--Debug.chat("rollInfo[node]",rollInfo["node"],"sName",sName,"nValue",nValue,"sToggle",sToggle,"sSpecialty",sSpecialty);
+        
+        --set Display
+        sDisplaySkill = sDisplaySkill..sName..string.format("[%d]", nValue);
+        nSkillTotal = nSkillTotal + nValue;
+        
+        --check Specialty
+        if string.len(sSpecialty) &gt; 0 then
+			sDisplaySkill = sDisplaySkill.." + "..sSpecialty.."[1]";
+			nSkillTotal = nSkillTotal + 1;
+        end
+    end    
+    
+	return sDisplaySkill,nSkillTotal;
+end
+
+function getRollInfo()
+	return rRollInfo;
+end
+
+function setRollInfo(rGivenRollInfo)
+	rRollInfo = rGivenRollInfo;
+end
+
+function getSkillList()
+	local rSkills = {};
+	for _,rollInfo in pairs(rRollInfo) do
+		table.insert(rSkills,rollInfo["sName"]);
+	end
+	return rSkills;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

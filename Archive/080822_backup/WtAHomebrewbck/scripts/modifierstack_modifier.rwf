@@ -1,0 +1,109 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>modifierstack_modifier</ScriptName>
+    <FolderID>41</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+
+function onGainFocus()
+    --Debug.chat("mod gain focus");
+	--ModifierStack.setAdjustmentEdit(true);
+end
+
+function onLoseFocus()
+    window.setFrame(nil);
+end
+
+function onWheel(notches)
+	--Debug.chat("notches: ",notches);
+	if not hasFocus() then
+		ModifierStack.adjustFreeAdjustment(notches);
+	end
+
+	return true;
+end
+
+function onEnter()
+    if window.edit_lbl.isVisible() then
+		ModifierStack.adjustFreeAdjustment(getValue());
+		window.edit_lbl.setVisible(false);
+    end
+end
+
+function onClickDown(button, x, y)
+	if button == 2 then
+		ModifierStack.reset();
+		return true;
+    else
+        window.edit_lbl.setVisible(true);
+        setValue(0);
+	end
+end
+
+function onDrop(x, y, draginfo)
+	local sDragType = draginfo.getType();
+	
+	-- Special handling for numbers, since they may come from chat window
+	if sDragType == "number" then
+		-- Strip any names that were added
+		local sDragText = draginfo.getDescription();
+
+		-- Then, add to the modifier stack
+		ModifierStack.addSlot(sDragText, draginfo.getNumberData());
+		return true;
+	
+	elseif acceptdrop and acceptdrop[1] and acceptdrop[1].type then
+		-- See which other potential drop types we want to accept (ignoring dice)
+		for _,v in pairs(acceptdrop[1].type) do
+			if v == sDragType then
+				draginfo.setSlot(1);
+				ModifierStack.addSlot(draginfo.getStringData(), draginfo.getNumberData());
+				return true;
+			end
+		end
+	end
+
+	return false;
+end
+
+function onDragStart(button, x, y, draginfo)
+	draginfo.setType("number");
+	draginfo.setDescription(ModifierStack.getDescription());
+	draginfo.setNumberData(ModifierStack.getSum());
+	return true;
+end
+
+function onDragEnd(draginfo)
+	ModifierStack.reset();
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

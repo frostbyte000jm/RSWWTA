@@ -1,0 +1,33 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_stackcontrols</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+
+	&lt;!--Modifier--&gt;
+	&lt;string name="tooltip_modstack_freeadjustment"&gt;Bonus&lt;/string&gt;
+	&lt;string name="bonus_panel_modstack_adjustment"&gt;Bonus Mod&lt;/string&gt;
+	&lt;string name="tooltip_modstack_index"&gt;Index: Range from 0:%s. Ctrl+Scroll to adjust value to see the different elements added.&lt;/string&gt;
+	&lt;string name="tooltip_modstack_total"&gt;Total Value: [%s] = %s&lt;/string&gt;
+	
+	
+	&lt;!--Difficulty--&gt;
+	&lt;string name="tooltip_diffstack_freeadjustment"&gt;Base&lt;/string&gt;
+	&lt;string name="bonus_panel_diffstack_adjustment"&gt;Bonus Diff Mod&lt;/string&gt;
+	&lt;string name="tooltip_diffstack_add_base"&gt;Base[%s]&lt;/string&gt;
+	&lt;string name="tooltip_diffstack_index"&gt;Index: Range from 0:%s. Ctrl+Scroll to adjust value to see the different elements added.&lt;/string&gt;
+	&lt;string name="tooltip_diffstack_total"&gt;Difficulty: [%s] = %s&lt;/string&gt;Usage: /diffmod [number] [description]
+	&lt;string name="helpmessage_diffstack"&gt;Usage: /diffmod [number] [description]&lt;/string&gt;
+	
+	&lt;!--Dice--&gt;
+	&lt;string name="tooltip_dicestack_freeadjustment"&gt;Bonus&lt;/string&gt;
+	&lt;string name="bonus_panel_dicestack_adjustment"&gt;Bonus Dice Mod&lt;/string&gt;
+	&lt;string name="tooltip_dicestack_index"&gt;Index: Range from 0:%s. Ctrl+Scroll to adjust value to see the different elements added.&lt;/string&gt;
+	&lt;string name="tooltip_dicestack_total"&gt;Total Dice: [%s] = %s&lt;/string&gt;
+	&lt;string name="helpmessage_dicestack"&gt;Usage: /diemod [number] [description]&lt;/string&gt;
+	
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

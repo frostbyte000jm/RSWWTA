@@ -1,0 +1,87 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>action_sheet</XmlName>
+    <FolderID>18</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Template for Containers:
+  Updates: Search for "action". Should be 8 locations. Delete this when done.
+  
+  Description: This is the action Container. This will help users figure out how to fill out actions that can be used in the current ruleset.
+--&gt;
+
+&lt;root&gt;
+&lt;!-- Container --&gt;
+	&lt;windowclass name="action_sheet"&gt; 					&lt;!-- Update Name --&gt;
+		&lt;frame&gt;referencepage&lt;/frame&gt;
+		&lt;placement&gt;
+			&lt;size width="370" height="355" /&gt; &lt;!-- Content Height: +75, Width: +40 --&gt;
+		&lt;/placement&gt;
+		&lt;sizelimits&gt;
+			&lt;minimum width="370" height="355" /&gt;
+			&lt;dynamic /&gt;
+		&lt;/sizelimits&gt;
+		&lt;tooltip field="name" /&gt;
+		&lt;!-- &lt;minimize&gt;minimized_reference&lt;/minimize&gt; --&gt;
+		&lt;!-- &lt;nodelete /&gt; --&gt;
+
+	&lt;!-- subwindows --&gt;
+		&lt;sheetdata&gt;
+			&lt;!-- Header --&gt;
+			&lt;sub_record_header name="header"&gt;
+				&lt;class&gt;action_sheet_header&lt;/class&gt; 		&lt;!-- Update Name --&gt;
+			&lt;/sub_record_header&gt;
+			
+			&lt;!-- Content subwindow --&gt;
+			&lt;subwindow name="content"&gt;
+				&lt;anchored&gt;
+					&lt;top parent="header" anchor="bottom" offset="5" /&gt;
+					&lt;left offset="15" /&gt;
+					&lt;right offset="-15" /&gt;
+					&lt;bottom offset="-10" /&gt;
+				&lt;/anchored&gt;
+				&lt;class&gt;action_sheet_content&lt;/class&gt; 	&lt;!-- Update Name --&gt;
+				&lt;activate /&gt;
+			&lt;/subwindow&gt;
+			&lt;!-- Scrollbar for Content Window --&gt;
+			&lt;scrollbar_list name="sb_content"&gt;
+				&lt;anchored to="content" width="20" offset="-13,0"&gt;
+					&lt;top offset="5" /&gt;
+					&lt;bottom offset="-30"/&gt;
+				&lt;/anchored&gt;
+				&lt;target&gt;content&lt;/target&gt;
+			&lt;/scrollbar_list&gt;
+			
+			&lt;resize_recordsheet /&gt;
+			&lt;close_recordsheet /&gt;
+		&lt;/sheetdata&gt;
+		&lt;script file="campaign/containers/scripts/container_sheet.lua" /&gt;
+	&lt;/windowclass&gt;
+
+&lt;!-- Header --&gt;
+	&lt;windowclass name="action_sheet_header"&gt; 			&lt;!-- Update Name --&gt;
+		&lt;margins control="0,0,0,7" /&gt;
+		&lt;script file="campaign/containers/scripts/container_sheet_header.lua" /&gt;
+		
+	&lt;!-- Objects: link on left, then right anchor, then go backwards. --&gt;
+		&lt;sheetdata&gt;
+			&lt;link_record_header_id name="link"&gt;
+				&lt;class&gt;action_sheet&lt;/class&gt; 			&lt;!-- Update Name --&gt;
+			&lt;/link_record_header_id&gt;
+
+			&lt;anchor_record_header_right name="rightanchor" /&gt;			
+			&lt;!-- &lt;button_record_isidentified name="isidentified" /&gt; --&gt;
+			
+			&lt;icon_record_locked /&gt;
+			&lt;button_record_locked /&gt;
+			&lt;string_record_name_id name="name" /&gt;
+			&lt;!--&lt;string_record_name_id name="nonid_name"&gt;
+				&lt;empty textres="library_recordtype_empty_nonid" /&gt;
+				&lt;invisible /&gt;
+			&lt;/string_record_name_id&gt; --&gt;
+		&lt;/sheetdata&gt;
+	&lt;/windowclass&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

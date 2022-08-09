@@ -1,0 +1,128 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBOOBManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+--[[
+	*** OOBify ***
+	FBOOBManager.OOBifySend(msgOOB)
+		msgOOB:
+			1) Must be a table. 
+			2) Must include 'type = OOB_Tag'
+		
+	local msgOOB = FBOOBManager.OOBify(msgOOB);		
+	
+	msgOOB = FBOOBManager.DeOOBify(msgOOB)
+		returns cleaned version of msgOOB after delivery. 
+		DO NOT use bRec, that is for internal purposes only. 
+		
+	*** Rollify ***
+	rAddInfo = FBOOBManager.Rollify(rAddInfo);
+	rRoll = FBOOBManager.DeRollify(rRoll);
+]]--
+
+function OOBifySend(msgOOB)
+	if type(msgOOB) == "table" then
+		msgOOB.sUserFrom = User.getUsername();
+		Comm.deliverOOBMessage(OOBify(msgOOB), "");
+	end	
+end
+
+function OOBify(msgOOB, bRec)
+	for key, val in pairs(msgOOB) do
+		if (key or val) and (type(val) == "table" or type(val) == "databasenode") then
+			if type(val) == "table" then
+				if bRec then
+					msgOOB[key] = OOBify(val, true);
+				else
+					local sEncode = Utility.encodeJSON(OOBify(val, true));						
+					msgOOB[key] = "tAbLe|t|"..sEncode;
+				end
+			elseif type(val) == "databasenode" then
+				msgOOB[key] = "dAtAbAsEnOdE|d|"..DB.getPath(val);
+			end
+		end
+	end	
+	
+	return msgOOB;
+end
+
+function DeOOBify(msgOOB, bRec)
+	for key, val in pairs(msgOOB) do
+		if (key or val) and type(val) == "string" and (StringManager.startsWith(val, "tAbLe|t|") or StringManager.startsWith(val, "dAtAbAsEnOdE|d|")) then
+			if StringManager.startsWith(val, "tAbLe|t|") then
+				if bRec then
+					msgOOB[key] = DeOOBify(val, true);
+				else
+					local rSplit = StringManager.splitByPattern(val, "|t|", true);			
+					if rSplit[2] == "{}" then
+						msgOOB[key] = {};
+					else						
+						msgOOB[key] = DeOOBify(Utility.decodeJSON(rSplit[2]), true);
+					end				
+				end
+			elseif StringManager.startsWith(val, "dAtAbAsEnOdE|d|") then
+				local rSplit = StringManager.splitByPattern(val, "|d|", true);
+				msgOOB[key] = DB.findNode(rSplit[2]);
+			end		
+		end
+	end
+	
+	return msgOOB;
+end
+
+function Rollify(rAddInfo)
+	for key, val in pairs(rAddInfo) do
+		if (key or val) and not (key == "nMod") then
+			if type(val) == "string" then
+				rAddInfo[key] = "sTrInG|s|"..val;
+			elseif type(val) == "number" then
+				rAddInfo[key] = "nUmBeR|s|"..val;
+			elseif type(val) == "boolean" then
+				if val then val = "true" else val = "false" end
+				rAddInfo[key] = "bOoL|s|"..val;			
+			elseif type(val) == "databasenode" then
+				rAddInfo[key] = "dAtAbAsEnOdE|s|"..DB.getPath(val);
+			elseif type(val) == "table" then
+				rAddInfo[key] = "tAbLe|s|"..Utility.encodeJSON(OOBify(val,true));
+			end
+		end
+	end
+	return rAddInfo;
+end
+
+function DeRollify(rAddInfo)
+	for key, val in pairs(rAddInfo) do
+		if (key or val) and type(val) == "string" and 
+		(StringManager.startsWith(val, "sTrInG|s|") or StringManager.startsWith(val, "nUmBeR|s|") or
+		 StringManager.startsWith(val, "bOoL|s|") or StringManager.startsWith(val, "dAtAbAsEnOdE|s|") or 
+		 StringManager.startsWith(val, "tAbLe|s|")) then
+			local rSplit = StringManager.splitByPattern(val, "|s|", true);
+			if StringManager.startsWith(val, "sTrInG|s|") then
+				rAddInfo[key] = rSplit[2];
+			elseif StringManager.startsWith(val, "nUmBeR|s|") then
+				rAddInfo[key] = tonumber(rSplit[2]);
+			elseif StringManager.startsWith(val, "bOoL|s|") then
+				if rSplit[2] == "true" then
+					rAddInfo[key] = true;
+				else
+					rAddInfo[key] = false;
+				end
+			elseif StringManager.startsWith(val, "dAtAbAsEnOdE|s|") then
+				rAddInfo[key] = DB.findNode(rSplit[2]);
+			elseif StringManager.startsWith(val, "tAbLe|s|") then
+				local rSplit = StringManager.splitByPattern(val, "|s|", true);			
+				if rSplit[2] == "{}" then
+					rAddInfo[key] = {};
+				else						
+					rAddInfo[key] = DeOOBify(Utility.decodeJSON(rSplit[2]), true);
+				end	
+			end
+		end
+	end
+	return rAddInfo;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

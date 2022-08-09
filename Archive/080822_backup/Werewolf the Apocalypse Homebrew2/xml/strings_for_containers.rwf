@@ -1,0 +1,32 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_containers</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+	
+	&lt;string name="library_recordtype_empty_nonid"&gt;Unknown&lt;/string&gt;
+	&lt;string name="library_recordtype_label_actions"&gt;Actions&lt;/string&gt;
+	&lt;string name="library_recordtype_label_effect_custom"&gt;Effects Custom&lt;/string&gt;
+	
+	&lt;string name="attack_roll_out_of_resources"&gt;%s is out of Resources.&lt;/string&gt;
+	&lt;string name="attack_roll_resource_cost"&gt;Resource Cost: &lt;/string&gt;
+	&lt;string name="attack_roll_attack"&gt;Attack Roll: &lt;/string&gt;
+	&lt;string name="attack_roll_damage"&gt;Damage Roll: &lt;/string&gt;
+	&lt;string name="attack_roll_resource"&gt;Resource&lt;/string&gt;
+	
+	&lt;string name="create_effect"&gt;Create FX&lt;/string&gt;
+	&lt;string name="create_effect_action"&gt;Create FX Action&lt;/string&gt;
+	&lt;string name="remove_effect"&gt;Remove FX&lt;/string&gt;
+	&lt;string name="remove_effect_action"&gt;Remove FX Action&lt;/string&gt;
+	
+	&lt;!-- Action Sheets --&gt;
+	&lt;string name="damage_roll_weapon"&gt;Weapon&lt;/string&gt;
+	&lt;string name="damage_roll_bonus"&gt;Bonus&lt;/string&gt;
+	
+	&lt;!-- Effect Sheets --&gt;
+	&lt;string name="dt_revise_warning"&gt;Warning: Changing this will reset everything in the Action.&lt;/string&gt;
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

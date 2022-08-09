@@ -1,0 +1,599 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBRollManager</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Roll Type Lists
+*****************************************************
+]]--
+local n = 0;
+function count(bReset)	
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+rStrRollList = {
+	rRollTypes = {--FBRollManager.rStrRollList.rRollTypes
+		Check = {count(true), "Check"},
+		Quick = {count(), "Quick"},
+		Attack = {count(), "Attack"},  --This has a separate Trigger
+		Action = {count(), "Action"},
+		Damage = {count(), "Damage"},
+		Initiative = {count(), "Initiative"},			
+	},
+	rAttackTypes = { 
+		Melee = {count(true), "Melee"},
+		Range = {count(), "Range"},
+		Any = {count(), "Any"},
+	},	
+}
+
+--[[
+*************************************************************************************************************************************
+														Init Function
+*************************************************************************************************************************************
+Notes:
+
+rAddInfo.bHideResults - Adding this will force the dice results to show (false) or hide (true) from Host. Otherwise it will default to settings.
+
+*************************************************************************************************************************************
+]]--
+
+local nCount = 0;
+
+function rollInit(nodeChar, sType, rAddInfo)
+    --Debug.chat("rollInit\n\nnodeChar",nodeChar, "\n\nsType",sType, "\n\nrAddInfo", rAddInfo);
+     
+     -- stack overflow prevention.
+     if nCount &gt; 3 then 
+		return;
+     end     
+     nCount = nCount + 1;
+     
+    --Update Stacks
+    PrepStacks(rAddInfo);
+    
+    -- Cleanup AddInfo if blank
+    rAddInfo = PrepAddInfo(sType, rAddInfo);
+	
+	-- Alert Effects
+	FBEffectsManager.checkForTriggers(FBEffectsManager.StrEffectList.rTriggers.RollType[2], nodeChar, rAddInfo);
+    
+    --Choose Roll Type
+    -- Action
+    if sType == rStrRollList.rRollTypes.Action[2] then --Debug.Cleanup Depending on the game, you may want to make attack its own function.
+        preActionRoll(nodeChar, rAddInfo);
+	
+	-- Attack
+	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] then
+        preActionRoll(nodeChar, rAddInfo);      
+    
+    -- Initiative
+    elseif sType == rStrRollList.rRollTypes.Initiative[2] then
+		preInitiativeRoll(nodeChar, rAddInfo);     
+	
+	-- Quick
+	elseif sType == rStrRollList.rRollTypes.Quick[2] then
+        preQuickRoll(nodeChar, rAddInfo);
+    end
+
+	nCount = nCount - 1;
+end
+
+--[[
+*************************************************************************************************************************************
+********************************************** Helper Functions *********************************************************************
+*************************************************************************************************************************************
+]]--
+
+function PrepAddInfo(sType, rAddInfo)
+	--If rAddInfo is blank
+	if not rAddInfo then 
+		rAddInfo = {};
+	end
+	
+	--set Roll Type
+	rAddInfo.sRollType = sType;
+	
+	--set Skills list
+	rAddInfo.rSkillsList = manager_prep_roll.getSkillList();
+	
+	--pull from prepRoll
+	local sRollDescription, nDieNum = manager_prep_roll.GetRoll();
+	rAddInfo.rGetRoll = {
+		sRollDescription = sRollDescription,
+		nDieNum = nDieNum,
+	}
+	
+	return rAddInfo;
+end
+
+function PrepStacks(rAddInfo)
+	--Debug.chat("rAddInfo",rAddInfo);
+	-- accept Dice and Diff stack
+    DifficultyStack.AcceptRoll();
+    DiceStack.AcceptRoll();
+    ModifierStack.AcceptRoll();
+    
+	if not rAddInfo then 
+		return;
+	end
+	
+	--Update Diff if given
+    if rAddInfo.nDiff and rAddInfo.nDiff &gt; 0 then
+		local nValue = rAddInfo.nDiff;
+        DifficultyStack.setBaseDifficulty(nValue);
+    end
+    
+    --Update Dice if given
+    if rAddInfo.nDice and rAddInfo.nDice &gt; 0 then
+		local nValue = rAddInfo.nDice;
+		local sValue = rAddInfo.sActionName;		
+        DiceStack.addSlot(sValue, nValue);
+    end
+    
+    --Update Mod if given
+    if rAddInfo.nMod and rAddInfo.nMod &gt; 0 then
+		local nValue = rAddInfo.nMod;
+		local sValue = rAddInfo.sActionName;
+        ModifierStack.addSlot(sValue, nValue);        
+    end
+end
+
+function HealthMod(nodeChar)
+    local bIgnoreHealth = DB.getValue(nodeChar, "btn_health_ignore", 0) == 1;
+    local nHealthPenalty = 0;
+    
+    if not bIgnoreHealth then
+		nHealthPenalty = DB.getValue(nodeChar, "num_health_penalty", 0);
+	else 
+		DB.setValue(nodeChar, "btn_health_ignore", "number", 0);
+    end
+    
+    return bIgnoreHealth, nHealthPenalty;
+end
+
+function DiceDescription(rAddInfo)
+    --Debug.chat("DiceDescription:\nrAddInfo:",rAddInfo);
+    --Declaration
+    local revisedDescription = "";
+    
+    -- Action Name
+    if rAddInfo.sActionName and string.len(rAddInfo.sActionName) &gt; 0 then
+		revisedDescription = revisedDescription..rAddInfo.sActionName.."\n";
+    end
+    
+    -- Dice Total
+    if rAddInfo.nDieNum and rAddInfo.nDieNum &gt; 0 then
+		revisedDescription = revisedDescription..Interface.getString("roll_manager_roll").."["..rAddInfo.nDieNum.."] = ";
+    end
+    
+    --Base Dice
+    if rAddInfo.sRollDescription and string.len(rAddInfo.sRollDescription) &gt; 0 then
+        revisedDescription = revisedDescription..rAddInfo.sRollDescription.."\n";
+    end
+    
+    --Dice Stack
+    if rAddInfo.sDiceStackDescription and rAddInfo.sRollDescription and string.len(rAddInfo.sDiceStackDescription) &gt; 0 then
+        if string.len(rAddInfo.sRollDescription) &gt; 0 then
+            revisedDescription = revisedDescription.." + "..rAddInfo.sDiceStackDescription;
+        else
+            revisedDescription = rAddInfo.sDiceStackDescription;
+        end
+        revisedDescription = revisedDescription.."\n";
+    end
+    
+    --Dice Multiplier    
+    if rAddInfo.nDiceMultiply and rAddInfo.nDiceMultiply ~=1 then
+		revisedDescription = revisedDescription..string.format(Interface.getString("roll_manager_dice_multiplier"),rAddInfo.nDiceMultiply).."\n";
+    end
+    
+    -- Difficulty
+    if rAddInfo.nDiffNum and rAddInfo.nDiffNum &gt; 0 then
+		revisedDescription = revisedDescription..Interface.getString("roll_manager_difficulty")..string.format("[%d]", rAddInfo.nDiffNum).." = "..rAddInfo.sDiffDesc.."\n";
+    end
+    
+    --Difficulty Multiplier
+    if rAddInfo.nDiffMultiply and rAddInfo.nDiffMultiply ~=1 then
+		revisedDescription = revisedDescription..string.format(Interface.getString("roll_manager_diff_multiplier"),rAddInfo.nDiffMultiply).."\n";
+    end
+    
+    -- Success Mod
+    if rAddInfo.nMod and rAddInfo.nMod ~= 0 then
+		revisedDescription = revisedDescription..Interface.getString("roll_manager_mod")..string.format("[%d]", rAddInfo.nMod).." = "..rAddInfo.sMod.."\n";
+    end
+    
+    --Mod Multiplier
+    if rAddInfo.nModMultiply and rAddInfo.nModMultiply ~=1 then
+		revisedDescription = revisedDescription..string.format(Interface.getString("roll_manager_mod_multiplier"),rAddInfo.nModMultiply).."\n";
+    end
+    
+    -- Resources Used  Debug.Testing(JQ this needs revised)
+    if rAddInfo.sResourceAction and rAddInfo.nResourceAction and rAddInfo.nResourceChar and rAddInfo.nResourceAction &gt; 0 and string.len(rAddInfo.sResourceAction) &gt; 0 then
+		revisedDescription = revisedDescription..string.format("%s spent: [%s / %s]",rAddInfo.sResourceAction, rAddInfo.nResourceAction, rAddInfo.nResourceChar).."\n";
+    end    
+    
+    --Add Health Mod
+    if rAddInfo.nHealthPenalty and rAddInfo.nHealthPenalty &gt; 0 then
+		revisedDescription = revisedDescription..string.format(Interface.getString("roll_manager_penalty"),rAddInfo.nHealthPenalty).."\n";
+    end
+    
+    if rAddInfo.bIgnoreHealth then
+		revisedDescription = revisedDescription..Interface.getString("roll_manager_penalty_ignored");
+    end
+    
+    return revisedDescription;    
+end
+
+function postRollDescription(rRoll)
+	--Debug.chat("postRollDescription:\nrRoll",rRoll,"\n\nrAddInfo",rAddInfo);
+	
+	
+	-- Add Message to Descrition
+	if rRoll.sMsgSuccess and rRoll.nTotal &gt; 0 then
+		rRoll.sDesc = rRoll.sDesc.."\n"..rRoll.sMsgSuccess;
+	elseif rRoll.sMsgFail then
+		rRoll.sDesc = rRoll.sDesc.."\n"..rRoll.sMsgFail;
+	end
+	return rRoll;
+end
+
+function CheckDiceValue(rRoll)
+    --Debug.chat("CheckDiceValue:\nrRoll",rRoll);
+    
+    --dice declarations
+    local nModMultiply = rRoll.nModMultiply;
+    local nTotal = rRoll.nMod;    
+    local nTotalDice = rRoll.nDieNum;
+    local nDiffNum = rRoll.nDiffNum;
+    local nRageDice = 0;
+    if rRoll.nRageDice then nRageDice = rRoll.nRageDice; end
+    local bStress = rRoll.bStress;
+    local b10Again = false;
+
+     -- Loop dice and count successes    
+    for nDieIdx,aDie in ipairs(rRoll.aDice) do
+        --Debug.chat("nDieIdx: ",nDieIdx," aDie: ",aDie);
+        --set Rage Dice
+        if nDieIdx &gt; (nTotalDice - nRageDice) then
+			aDie.type = "d10rage";
+        end
+        if aDie.result then
+            -- set dice color and set value
+            if aDie.result &gt;= nDiffNum then
+                aDie.fontcolor = "#FF00FF00"; -- regular Green
+                aDie.value = 1;
+                nTotal = nTotal + 1;
+                
+                --handle 10s
+                if aDie.result == 10 then
+					if b10Again then
+						b10Again = false;
+						aDie.value = 3;
+						nTotal = nTotal + 2;
+					else
+						b10Again = true;
+					end
+                end
+			elseif (nDieIdx &gt; (nTotalDice - nRageDice) or bStress) and aDie.result == 1 then
+				aDie.fontcolor = "#FFFF0000"; -- regular Red
+				aDie.value = -1;
+				nTotal = nTotal - 1;
+            else
+                aDie.value = 0;
+            end
+        end
+    end   
+    
+    -- Add Multiplied results to roll and update Totals
+    local nNewTotal =  Funct.round(nTotal * nModMultiply,0,-1);
+    if rRoll and rRoll.aDice and rRoll.aDice[1] then
+		rRoll.aDice[1].value = rRoll.aDice[1].value + (nNewTotal - nTotal);
+    end    
+    rRoll.nTotal = nNewTotal;
+    rRoll.aDice.total = nNewTotal;
+    
+    return rRoll;
+end
+
+function addEffect(rSource, rRoll)
+	--Debug.chat("addEffect - rRoll",rRoll, "rSource", rSource);
+	if not rRoll.pathEffect or string.len(rRoll.pathEffect) == 0 then return end
+	if not rSource.sCTNode or string.len(rSource.sCTNode) == 0 then return end
+		
+	FBEffectsManager.SendEffectToTargets(rSource, rRoll);	
+end
+
+function sendReturn(rSource, rRoll)
+	--Debug.chat("rSource",rSource, "sReturn", sReturn, "nResult",nResult);
+	local sNodeType, nodeChar = ActorManager.getTypeAndNode(rSource);
+	local sReturn = rRoll.sReturnLoc;
+	local nResult = rRoll.nTotal;
+	
+	--Shift Forms
+	if sReturn == "garou_shift_forms" then								
+		DB.setValue(nodeChar, "num_shift_result", "number", nResult);
+	
+	--Meditate Gnosis	
+	elseif sReturn == "garou_meditate" then								
+		local nGnosis = DB.getValue(nodeChar,"num_gnosis_current",0);
+		local nGnosisTotal = DB.getValue(nodeChar,"num_gnosis_total",0);
+		DB.setValue(nodeChar,"num_gnosis_current","number",math.min(nGnosis+nResult,nGnosisTotal));
+	
+	--Spend Rage
+	elseif sReturn == "garou_rage_spend" then							
+		local nRage = DB.getValue(nodeChar,"num_frenzy",0);
+		local nRageTotal = DB.getValue(nodeChar,"num_rage_total",0);
+		DB.setValue(nodeChar,"num_frenzy","number",math.min(nRage+nResult,nRageTotal));
+	
+	--Inititive 
+	elseif sReturn == FBCTManager.OOB_MSGTYPE_FB_Host_Add_Char then		
+		--set Init Value
+		local nodeCT = ActorManager.getCTNode(rSource);
+		if nodeCT then
+			if Session.IsHost then
+				DB.setValue(DB.getChild(nodeCT, "initresult").getPath(), "number", nResult);
+			else
+				RulesetWizard.changeDBValueOOB(DB.getChild(nodeCT, "initresult").getPath(), nResult);
+			end				
+		else
+			nodeCT = FBCTManager.AddToCT(nodeChar, rRoll);
+			if Session.IsHost then
+				DB.setValue(DB.getChild(nodeCT, "initresult").getPath(), "number", nResult);
+			end
+		end
+		
+	--Regeneration 
+	elseif sReturn == "postCheckRegen" then								
+		FBHandleEffects.postCheckRegen(nodeChar,nResult);	
+		
+	-- Effect Roll
+	elseif sReturn == FBHandleEffects.MSG_After_Effect_Roll then
+		FBHandleEffects.actionRollContinue(rSource, rRoll);
+	
+	end	
+end
+--[[
+*************************************************************************************************************************************
+********************************************** Action Rolls *************************************************************************
+*************************************************************************************************************************************
+]]--
+
+function preActionRoll(nodeChar, rAddInfo)
+    --Debug.chat("preActionRoll\n\nnodeChar",nodeChar, "\n\nrAddInfo", rAddInfo);
+    --Roll Type
+    local sRollType = rAddInfo.sRollType;
+    
+    --get Dice and Description
+    local sRollDescription = rAddInfo.rGetRoll.sRollDescription;
+    local nDieNum = rAddInfo.rGetRoll.nDieNum;
+    local sDiceStackDescription, nDiceStackDieNum, nDiceMultiply = DiceStack.getStack();
+    nDieNum = Funct.round((nDieNum + nDiceStackDieNum)*nDiceMultiply,0,1);
+      
+	--Mod for Health
+	local bIgnoreHealth, nHealthPenalty = HealthMod(nodeChar);
+	nDieNum = math.max(nDieNum - nHealthPenalty,0);
+	
+    --set Die String
+    sDieRollString = nDieNum.."d10"
+    
+    -- Use Diff Stack to set Difficulty
+    local sDiffDesc, nDiffNum, nDiffMultiply = DifficultyStack.getStack();
+    nDiffNum = math.min(math.max(Funct.round(nDiffNum * nDiffMultiply,0,1),0),10); --Debug.comment() This really should be handled better. Maybe a process Stacks, and the Stacks should handle the muliplication and filtering. 
+    
+    -- Use Mod Stack to adjust Success
+    local sMod, nMod, nModMultiply = ModifierStack.getStack();
+    
+    --Set Additional Info for post Roll. This will be stored in rRoll[].
+    rAddInfo.nDieNum = nDieNum;
+	rAddInfo.sRollDescription = sRollDescription;
+	rAddInfo.sDiceStackDescription = sDiceStackDescription;
+	rAddInfo.nDiceMultiply = nDiceMultiply;
+	rAddInfo.nDiffNum = nDiffNum;
+	rAddInfo.sDiffDesc = sDiffDesc;
+	rAddInfo.nDiffMultiply = nDiffMultiply;
+	rAddInfo.nMod = nMod;
+	rAddInfo.sMod = sMod;
+	rAddInfo.nModMultiply = nModMultiply;
+	rAddInfo.nHealthPenalty = nHealthPenalty;
+	rAddInfo.bIgnoreHealth = bIgnoreHealth;
+	rAddInfo.nRageDice = DB.getValue(nodeChar, "num_frenzy", 0);	
+	--if rAddInfo.bStress then rAddInfo.nbStress = 1; else rAddInfo.nbStress = 0; end
+    
+    -- Set Description
+    sRollDescription = DiceDescription(rAddInfo);
+    
+    --Register Handler
+    ActionsManager.registerResultHandler(rAddInfo.sRollType, FBRollManager.postActionRoll);
+    
+    --Rollify
+    rAddInfo = FBOOBManager.Rollify(rAddInfo);
+        
+    --Use RSW Roller
+    RulesetWizardDiceRoller.Roll(nil, nodeChar, sRollType, sRollDescription, sDieRollString, 0, rAddInfo);    
+end
+
+function postActionRoll(rSource, rTarget, rRoll)
+    --Debug.chat("postActionRoll\n\nrSource", rSource, "\n\nrTarget",rTarget, "\n\nrRoll",rRoll);
+    
+    --DeRollify
+    rRoll = FBOOBManager.DeRollify(rRoll);    
+    
+    -- Check Dice with Target Handler
+    rRoll = CheckDiceValue(rRoll);
+    
+    --Check for Effect Interupt       
+    if rRoll.bRunBeforeDiceSuccess == true and rRoll.nTotal &gt; 0 or 
+      rRoll.bRunBeforeDiceFail == true and rRoll.nTotal &lt;= 0 then
+		sendReturn(rSource, rRoll);
+		return; 
+	end
+    
+    --Add Post Roll Description
+    rRoll = postRollDescription(rRoll);
+    
+    --send Message to Chat
+    FBChatManager.sendMessageRoll(rSource, rRoll);
+    
+    -- Add Effect
+    if rRoll.bAddEffect then
+		addEffect(rSource, rRoll);
+	elseif rRoll.bAddEffectSuccess and rRoll.nTotal &gt; 0 then
+		addEffect(rSource, rRoll);
+    end 
+    
+    --send return
+    if rRoll.sReturnLoc and string.len(rRoll.sReturnLoc) &gt; 0 then
+		sendReturn(rSource, rRoll);
+    end
+end
+
+--[[
+*************************************************************************************************************************************
+********************************************** Initiative Rolls *************************************************************************
+*************************************************************************************************************************************
+]]--
+
+function preInitiativeRoll(nodeChar, rAddInfo)
+    --Debug.chat("preInitiativeRoll\n\nnodeChar",nodeChar, "\n\nrAddInfo", rAddInfo);
+    --Roll Type
+    local sRollType = rAddInfo.sRollType;
+	
+	-- For NPC and GMPCs
+	if rAddInfo.isNPC then
+		local nodeCT = ActorManager.getCTNode(nodeChar);
+		if nodeCT then
+			local nBonus = math.random(10)+rAddInfo.nSkillTotal;
+			DB.setValue(DB.getChild(nodeCT, "initresult").getPath(), "number", nBonus);
+			return
+		end		
+	end
+	
+	-- Inititive Bonus
+	local sInitDescription = rAddInfo.rGetRoll.sRollDescription;
+    local nInitBonus = rAddInfo.rGetRoll.nDieNum;
+
+	--Get Stack
+	local sModStackDescription, nModStackNum, nModMultiply = ModifierStack.getStack(false);
+    nInitBonus = nInitBonus + nModStackNum;
+    
+    local sRollDescription = string.format(Interface.getString("roll_manager_init_description"),nInitBonus,sInitDescription);
+    
+    --Set Additional Info for post Roll. This will be stored in rRoll[].
+    rAddInfo.sReturnLoc = FBCTManager.OOB_MSGTYPE_FB_Host_Add_Char;
+    rAddInfo.nInitBonus = nInitBonus;	
+	rAddInfo.sRollDescription = sRollDescription;
+	rAddInfo.nModMultiply = nModMultiply;
+	rAddInfo.sDiceStackDescription = sModStackDescription; -- This uses ModStack because init is a single die and the skills add to the value.
+	
+	-- Set Description
+    sRollDescription = DiceDescription(rAddInfo);
+    
+    --Register Handler
+    ActionsManager.registerResultHandler(rAddInfo.sRollType, FBRollManager.postInitiativeRoll);
+        
+    --set Die String
+    sDieRollString = "d10+"..nInitBonus
+    
+    --Rollify
+    rAddInfo = FBOOBManager.Rollify(rAddInfo);    
+    
+    --Use RSW Roller
+    RulesetWizardDiceRoller.Roll(nil, nodeChar, sRollType, sRollDescription, sDieRollString, 0, rAddInfo);
+end
+
+function postInitiativeRoll(rSource, rTarget, rRoll)
+    --Debug.chat("postInitiativeRoll\n\nrSource", rSource, "\n\nrTarget",rTarget, "\n\nrRoll",rRoll);
+    
+    --DeRollify
+    rRoll = FBOOBManager.DeRollify(rRoll);
+    
+    -- calculate the Inititiate value
+    local nDieValue = rRoll.aDice[1].result;
+    local nInitBonus = rRoll.nBonuses;
+    rRoll.nTotal = nDieValue + nInitBonus;    
+        
+    --send Message to Chat
+    FBChatManager.sendMessageRoll(rSource, rRoll);
+    
+    --load CT
+    
+    
+    --send return
+    if rRoll.sReturnLoc and string.len(rRoll.sReturnLoc) &gt; 0 then
+		sendReturn(rSource, rRoll);
+    end
+end
+
+--[[
+*************************************************************************************************************************************
+********************************************** Quick Rolls *************************************************************************
+*************************************************************************************************************************************
+]]--
+
+function preQuickRoll(nodeChar, rAddInfo)
+    --Debug.chat("preQuickRoll\n\nnodeChar",nodeChar, "\n\nrAddInfo", rAddInfo);
+    --Roll Type
+    local sRollType = rAddInfo.sRollType;
+    
+    --get Dice
+    local sRollDescription, nDieNum, nDiceMultiply = DiceStack.getStack(false);
+    nDieNum = math.max(Funct.round(nDieNum *nDiceMultiply,0,1),0);
+    
+    -- Use Diff Stack to set Difficulty
+    local sDiffDesc, nDiffNum = DifficultyStack.getStack(false);
+    
+    -- Use Mod Stack to adjust Success
+    local sMod, nMod, nModMultiply = ModifierStack.getStack(false);
+    
+    --Set Additional Info for post Roll. This will be stored in rRoll[].
+    rAddInfo.nDieNum = nDieNum;
+	rAddInfo.sRollDescription = sRollDescription;
+	rAddInfo.nDiffNum = nDiffNum;
+	rAddInfo.sDiffDesc = sDiffDesc;
+	rAddInfo.nMod = nMod;
+	rAddInfo.sMod = sMod;
+	rAddInfo.nModMultiply = nModMultiply;
+	--if rAddInfo.bStress then rAddInfo.nbStress = 1; else rAddInfo.nbStress = 0; end
+    
+    -- Set Description
+    sRollDescription = DiceDescription(rAddInfo);
+    
+    --Register Handler
+    ActionsManager.registerResultHandler(rAddInfo.sRollType, FBRollManager.postQuickRoll);
+    
+    --set Targeting
+    GameSystem.actions[rAddInfo.sRollType] = {  sTargeting = "all" } --all,each,self
+       
+    --set Die String
+    sDieRollString = nDieNum.."d10"
+    
+    --Rollify
+    rAddInfo = FBOOBManager.Rollify(rAddInfo);    
+    
+    --Use RSW Roller
+    RulesetWizardDiceRoller.Roll(nil, nodeChar, sRollType, sRollDescription, sDieRollString, 0, rAddInfo);    
+end
+
+function postQuickRoll(rSource, rTarget, rRoll)
+    --Debug.chat("postQuickRoll\n\nrSource", rSource, "\n\nrTarget",rTarget, "\n\nrRoll",rRoll);    
+    
+    --DeRollify
+    rRoll = FBOOBManager.DeRollify(rRoll);
+    
+    -- Check Dice with Target Handler
+    CheckDiceValue(rRoll);
+
+    --send Message to Chat
+    FBChatManager.sendMessageRoll(rSource, rRoll);
+end
+
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

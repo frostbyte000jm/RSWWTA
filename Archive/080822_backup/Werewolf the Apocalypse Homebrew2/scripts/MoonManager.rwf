@@ -1,0 +1,78 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>MoonManager</ScriptName>
+    <FolderID>42</FolderID>
+    <Script>--declaration
+local nSerialCurrentDate = 0;
+local sCurrentDate = "";
+
+function onInit()
+	updateCurrentDate();
+end
+
+function updateCurrentDate()
+	-- Grab Current Date
+	local nCurrentYear = CalendarManager.getCurrentYear();
+	local nCurrentMonth = CalendarManager.getCurrentMonth();
+	local nCurrentDay = CalendarManager.getCurrentDay();
+	sCurrentDate = nCurrentMonth.."/"..nCurrentDay.."/"..nCurrentYear;
+	nSerialCurrentDate = Funct.SerialDate(nCurrentYear,nCurrentMonth,nCurrentDay);
+end
+
+function currentMoon(nMoonYear,nMoonMonth,nMoonDay)
+	updateCurrentDate();
+	
+	--Grab First New Moon Date
+	local nFirstMoonYear = nMoonYear;
+	local nFirstMoonMonth = nMoonMonth;
+	local nFirstMoonDay = nMoonDay;
+	
+	-- Calc Number of Days
+	local nDaysDiff = nSerialCurrentDate - Funct.SerialDate(nFirstMoonYear,nFirstMoonMonth,nFirstMoonDay);
+	--Debug.chat("nDaysDiff",nDaysDiff);
+
+	-- Mod days of the Moon
+	local nMoonDays = nDaysDiff % 29.5;
+	--Debug.chat("nMoonDays",nMoonDays);
+	
+	
+	-- Set Rage Difficulty and Moon Index
+	local nMoonIndex = 0;
+	if nMoonDays &lt;= 2.95 then
+		nMoonIndex = 0;
+	elseif nMoonDays &lt;= 5.9 then
+		nMoonIndex = 1;
+	elseif nMoonDays &lt;= 8.85 then
+		nMoonIndex = 2;
+	elseif nMoonDays &lt;= 11.8 then
+		nMoonIndex = 3;
+	elseif nMoonDays &lt;= 14.75 then
+		nMoonIndex = 4;
+	elseif nMoonDays &lt;= 17.7 then
+		nMoonIndex = 4;
+	elseif nMoonDays &lt;= 20.65 then
+		nMoonIndex = 5;
+	elseif nMoonDays &lt;= 23.6 then
+		nMoonIndex = 6;
+	elseif nMoonDays &lt;= 26.55 then
+		nMoonIndex = 7;
+	elseif nMoonDays &lt;= 29.5 then
+		nMoonIndex = 0;
+	end
+	
+	--Update MoonStack
+	MoonStack.updateMoon(nMoonIndex);	
+	return nMoonIndex;	
+end
+
+function getSerialCurrentDate()
+	return nSerialCurrentDate;
+end
+
+function getStringCurrentDate()
+	return sCurrentDate;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

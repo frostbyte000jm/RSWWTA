@@ -1,0 +1,192 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>Funct</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+function SerialDate(yy,mm,dd) 
+	--decalarations
+	local startYear = 1900;
+	local startLeapYearException = 1600;
+	
+	--set max Days
+	local monthdays= { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	-- check for leapyears and exceptions 
+    local leapyears=tonumber(math.floor((yy - startYear)/4));
+    local nonleapyears=tonumber(math.floor((yy - startYear)/100));
+    local nonnonleapyears=tonumber(math.floor((yy - startLeapYearException)/400));
+
+	-- adjust value if we are in a leap year, but not in march yet.
+    if ((math.mod(yy,4)==0) and mm&lt;3) then
+      leapyears = leapyears - 1
+    end
+
+	-- value for serial date from Years
+    local days= 365 * (yy - startYear) + leapyears - nonleapyears + nonnonleapyears
+
+	-- value for serial date from Months
+    local idx = 1;
+    while (idx&lt;mm) do
+		days = days + monthdays[idx];
+		idx = idx + 1;
+    end
+
+	-- value for serial date from Days
+    days = days + dd + 1;
+    return days;
+end
+
+function replace(source, find, replace, wholeword)
+  if wholeword then
+    find = "%f[^%z%s]"..find.."%f[%z%s]"
+  end
+  return (source:gsub(find,replace))
+end
+
+function IsEmpty(sValue)
+	return sValue == nil or sValue == "";
+end
+
+function round(nNum, nPlace, nUpDown)
+	if nPlace then
+		nNum = nNum * math.pow(10,nPlace);
+	else
+		nPlace = 0;
+	end
+	
+	if not nUpDown then
+		nUpDown = 0;		
+	end
+	
+	if nUpDown &gt; 0 then
+		nNum = math.ceil(nNum);
+	elseif nUpDown &lt; 0 then
+		nNum = math.floor(nNum);
+	else
+		nNum = math.floor(nNum + 0.5);
+	end
+	
+	return nNum / math.pow(10,nPlace);	
+end
+
+local n = 0;
+function count(bReset)
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+
+--[[
+*************** Lock Functions *************************
+]]--
+function doLock(rSkipNames, sRecordName)	
+	-- Standard fields to not adjust locking.
+	if 	StringManager.startsWith(sRecordName, "Label") or
+		StringManager.startsWith(sRecordName, "lbl_") or
+		StringManager.startsWith(sRecordName, "Button") or
+		StringManager.startsWith(sRecordName, "btn_") or
+		StringManager.startsWith(sRecordName, "IconControl") or
+		StringManager.startsWith(sRecordName, "icon_") or
+		StringManager.startsWith(sRecordName, "ScrollBar") or
+		StringManager.startsWith(sRecordName, "scrollbar_") or
+		string.find(sRecordName, "_cbbutton") or
+		string.find(sRecordName, "_cblist") or
+		string.find(sRecordName, "_cblistscroll") then
+			return false;
+	end
+	
+	-- Check list
+	if StringManager.contains(rSkipNames, sRecordName) then
+		return false;
+	end
+	
+	return true;	
+end
+
+function LockControls(bReadOnly, rWindows, rSkipNames)
+	for sWinClass, sWinRecord in pairs(rWindows) do		
+		if doLock(rSkipNames, sWinRecord.getName()) then
+			if StringManager.startsWith(sWinRecord.getName(), "dt_") then			
+				sWinRecord.setComboBoxReadOnly(bReadOnly);
+			elseif StringManager.startsWith(sWinRecord.getName(), "wl_") then
+				for sWLWinClass, wWLWinRecord in pairs(sWinRecord.getWindows()) do
+					wWLWinRecord.updateLockState(bReadOnly);
+				end
+			elseif StringManager.startsWith(sWinRecord.getName(), "sw_") then
+				if sWinRecord.subwindow then
+					sWinRecord.subwindow.updateLockState(bReadOnly);
+				end				
+			else
+				sWinRecord.setReadOnly(bReadOnly);
+			end
+		end
+	end
+end
+
+--[[
+********************************************************
+			 Table Functions 
+	 These are for tables sorted { name = {idx, value}}
+********************************************************
+]]--
+
+function CopyTable(rTable)
+	local rNewTable = {};
+	for name,value in pairs(rTable) do
+		rNewTable[name] = value;
+	end
+	return rNewTable;
+end
+
+function TableConcat(t1,t2)
+	local rTable = {}
+	local nT1Count = 0;
+
+	for name, rt in pairs(t1) do
+		rTable[name] = rt;
+		nT1Count = nT1Count + 1;
+	end
+
+	for name, rt in pairs(t2) do		
+		rTable[name] = {rt[1]+nT1Count, rt[2]};
+	end
+	
+	return rTable;
+end
+
+function tableSortAlpha(rTableOrg)
+	local rTable = {};
+	for idx, val in pairs(rTableOrg) do
+		table.insert(rTable, val[2]);
+	end	
+	table.sort(rTable);
+	return rTable;
+end
+
+function tableSortIndex(rTableOrg)
+	local rTable = {};
+	for i=1,getTableSize(rTableOrg),1 do
+		for idx, val in pairs(rTableOrg) do	
+			if val[1] == i then
+				table.insert(rTable, val[2]);
+			end
+		end
+	end	
+	return rTable;
+end
+
+function getTableSize(rTable)
+	local count = 0;
+	for _, _ in pairs(rTable) do
+		count = count + 1;
+	end
+	return count;
+end
+
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

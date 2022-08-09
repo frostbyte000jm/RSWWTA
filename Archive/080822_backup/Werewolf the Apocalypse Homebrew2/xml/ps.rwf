@@ -1,0 +1,133 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>ps</XmlName>
+    <FolderID>61</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+--&gt;
+
+&lt;root&gt;
+	&lt;windowclass name="partysheet_host"&gt;
+		&lt;frame&gt;partysheet&lt;/frame&gt;
+		&lt;placement&gt;
+			&lt;size width="850" height="500" /&gt;
+		&lt;/placement&gt;
+		&lt;sizelimits&gt;
+			&lt;minimum width="850" height="500" /&gt;
+			&lt;dynamic /&gt;
+		&lt;/sizelimits&gt;
+		&lt;softclose /&gt;
+		&lt;nodelete /&gt;
+		&lt;script  file="ps/scripts/ps_manager.lua" /&gt;
+		&lt;sheetdata&gt;
+			&lt;windowtitlebar name="title"&gt;
+				&lt;resource&gt;ps_window_title&lt;/resource&gt;
+			&lt;/windowtitlebar&gt;
+			&lt;anchor_title_partysheet name="contentanchor" /&gt;
+			
+			&lt;sub_ps name="order"&gt;
+				&lt;class&gt;ps_order&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="inventory"&gt;
+				&lt;class&gt;ps_inventory&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="xp"&gt;
+				&lt;class&gt;ps_xp&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="totem"&gt;
+				&lt;class&gt;ps_totem&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="GMView"&gt;
+				&lt;class&gt;ps_GMView&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="fonts"&gt;
+				&lt;class&gt;ps_fonts&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			
+			&lt;tabs_partysheet name="tabs"&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_order&lt;/icon&gt;
+					&lt;subwindow&gt;order&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_inventory&lt;/icon&gt;
+					&lt;subwindow&gt;inventory&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_xp&lt;/icon&gt;
+					&lt;subwindow&gt;xp&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_ps_totem&lt;/icon&gt;
+					&lt;subwindow&gt;totem&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_GMView&lt;/icon&gt;
+					&lt;subwindow&gt;GMView&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_GMView&lt;/icon&gt;
+					&lt;subwindow&gt;fonts&lt;/subwindow&gt;
+				&lt;/tab&gt;
+			&lt;/tabs_partysheet&gt;
+			
+			&lt;resize_partysheet /&gt;
+			&lt;helper_ps /&gt;
+			&lt;close_partysheet /&gt;
+		&lt;/sheetdata&gt;
+	&lt;/windowclass&gt;
+	
+	&lt;windowclass name="partysheet_client"&gt;
+		&lt;frame&gt;partysheet&lt;/frame&gt;
+		&lt;placement&gt;
+			&lt;size width="850" height="500" /&gt;
+		&lt;/placement&gt;
+		&lt;sizelimits&gt;
+			&lt;minimum width="850" height="500" /&gt;
+			&lt;dynamic /&gt;
+		&lt;/sizelimits&gt;
+		&lt;softclose /&gt;
+		&lt;nodelete /&gt;
+
+		&lt;sheetdata&gt;
+			&lt;windowtitlebar name="title"&gt;
+				&lt;resource&gt;ps_window_title&lt;/resource&gt;
+			&lt;/windowtitlebar&gt;
+			&lt;anchor_title_partysheet name="contentanchor" /&gt;
+			
+			&lt;sub_ps name="order"&gt;
+				&lt;class&gt;ps_order&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="inventory"&gt;
+				&lt;class&gt;ps_inventory&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			&lt;sub_ps name="totem"&gt;
+				&lt;class&gt;ps_totem&lt;/class&gt;
+			&lt;/sub_ps&gt;
+			
+			&lt;tabs_partysheet&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_order&lt;/icon&gt;
+					&lt;subwindow&gt;order&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_inventory&lt;/icon&gt;
+					&lt;subwindow&gt;inventory&lt;/subwindow&gt;
+				&lt;/tab&gt;
+				&lt;tab&gt;
+					&lt;icon&gt;tab_ps_totem&lt;/icon&gt;
+					&lt;subwindow&gt;totem&lt;/subwindow&gt;
+				&lt;/tab&gt;
+			&lt;/tabs_partysheet&gt;
+			
+			&lt;resize_partysheet /&gt;
+			&lt;helper_ps /&gt;
+			&lt;close_partysheet /&gt;
+		&lt;/sheetdata&gt;
+	&lt;/windowclass&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

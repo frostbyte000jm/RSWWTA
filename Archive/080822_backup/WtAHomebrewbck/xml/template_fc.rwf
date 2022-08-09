@@ -1,0 +1,78 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>template_fc</XmlName>
+    <FolderID>36</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;!-- 
+  Please see the license.html file included with this distribution for 
+  attribution and copyright information.
+--&gt;
+
+&lt;root&gt;
+    &lt;!-- 
+        If initresult is removed, set string_ctname, right parent to:
+  
+        &lt;right parent="rightanchor" anchor="left" relation="relative" offset="-100" /&gt;
+        
+        start at -100, then play from there. I can't figure out how to get the Host to anchor to anything else like the client one.
+    --&gt;
+    &lt;template name="string_ctname" merge="replace"&gt;
+		&lt;string_ct&gt;
+			&lt;anchored height="20"&gt;
+				&lt;top parent="active_spacer_top" anchor="bottom"  relation="relative" offset="10" /&gt;
+				&lt;left parent="token" anchor="right" offset="5" /&gt;
+				&lt;right parent="initresult" anchor="left" relation="relative" offset="-10" /&gt;
+			&lt;/anchored&gt;
+			&lt;tabtarget next="initresult" /&gt;
+			&lt;lineoffset default="off"&gt;&lt;/lineoffset&gt;
+			&lt;script file="ct/scripts/ct_name.lua" /&gt;
+		&lt;/string_ct&gt;
+	&lt;/template&gt;
+	
+	&lt;!-- This is to display the name on the client sheet. --&gt;
+	&lt;template name="string_clientct_name"&gt;
+		&lt;stringu name="name"&gt;
+			&lt;anchored height="20"&gt;
+				&lt;top parent="active_spacer_top" anchor="bottom" relation="relative" offset="10" /&gt;
+				&lt;left parent="token" anchor="right" offset="5" /&gt;
+				&lt;right parent="rightanchor_name" anchor="left" relation="relative" offset="-10" /&gt;
+			&lt;/anchored&gt;
+			&lt;readonly /&gt;
+			&lt;lineoffset default="off"&gt;&lt;/lineoffset&gt;
+		&lt;/stringu&gt;
+	&lt;/template&gt;
+	
+	
+	&lt;!--Button to display action list--&gt;
+	&lt;template name="button_ctentry_activateaction"&gt;
+        &lt;buttoncontrol name="activateaction"&gt;
+				&lt;tooltip textres="ct_tooltip_offense" /&gt;
+				&lt;state icon="button_sword" /&gt;
+				&lt;state icon="button_sword_down" /&gt;				
+			&lt;/buttoncontrol&gt;
+	&lt;/template&gt;
+	
+	&lt;!--same as idelete, but always visible--&gt;
+	&lt;template name="button_idelete_visible"&gt;
+		&lt;buttoncontrol&gt;
+			&lt;anchored width="20" height="20" /&gt;
+			&lt;state icon="button_delete" tooltipres="button_delete" /&gt;
+			&lt;state icon="button_deleteconfirm" tooltipres="button_deleteconfirm" /&gt;
+			&lt;tooltip textres="button_delete" /&gt;
+			&lt;script&gt;
+				function onButtonPress()
+					if getValue() == 0 then
+						if window.delete then
+							window.delete();
+						else
+							window.getDatabaseNode().delete();
+						end
+					end
+				end
+			&lt;/script&gt;
+		&lt;/buttoncontrol&gt;
+	&lt;/template&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

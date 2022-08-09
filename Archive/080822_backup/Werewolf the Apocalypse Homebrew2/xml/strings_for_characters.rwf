@@ -1,0 +1,40 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_characters</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+	&lt;!-- Search Ruleset for "LanguageUpdates" as there may be a LUA file that needs language updates as well --&gt;
+	
+	&lt;!-- Charsheet Labels --&gt;
+	&lt;string name="char_label_name"&gt;Name&lt;/string&gt;
+	&lt;string name="char_label_race"&gt;Race&lt;/string&gt;
+	&lt;string name="char_label_gender"&gt;Gender&lt;/string&gt;
+	&lt;string name="char_label_age"&gt;Age&lt;/string&gt;
+	&lt;string name="char_label_height"&gt;Height&lt;/string&gt;
+	&lt;string name="char_label_weight"&gt;Weight&lt;/string&gt;
+	
+	&lt;!-- Garou Forms --&gt;
+	&lt;string name="char_form_homid"&gt;Homid&lt;/string&gt;
+	&lt;string name="char_form_glabro"&gt;Glabro&lt;/string&gt;
+	&lt;string name="char_form_crinos"&gt;Crinos&lt;/string&gt;
+	&lt;string name="char_form_hispo"&gt;Hispo&lt;/string&gt;
+	&lt;string name="char_form_lupus"&gt;Lupus&lt;/string&gt;
+	
+	&lt;!-- Charsheet Main --&gt;
+	&lt;string name="char_roll_stress"&gt;Combat has started. Ones will count on all dice. Press CTRL + [click] to roll without stress.&lt;/string&gt;
+	&lt;string name="char_roll_calm"&gt;Not in Combat. Ones will only count on Rage dice. Press CTRL + [click] to roll with stress.&lt;/string&gt;
+	
+	
+	&lt;!-- Charsheet Notes --&gt;
+	&lt;string name="char_notes_gm_owner_error"&gt;Character has Player ownership. Clear first before taking ownership.&lt;/string&gt;
+	
+	&lt;!-- Charsheet Resource --&gt;
+	&lt;string name="char_resource_roll_msg"&gt;Added %s to Dice Stack&lt;/string&gt;
+	
+	&lt;!-- NPC Notes --&gt;
+	&lt;string name="npc_notes_image_badLink"&gt;Please drop an Image from FG in here.&lt;/string&gt;
+	
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

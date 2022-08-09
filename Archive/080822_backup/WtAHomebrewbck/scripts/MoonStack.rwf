@@ -1,0 +1,35 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>MoonStack</ScriptName>
+    <FolderID>42</FolderID>
+    <Script>
+local control = nil;
+
+function registerControl(ctrl)
+	control = ctrl;
+	updateMoon();
+end
+
+function onInit()
+	DB.addHandler("calendar.num_moon_index","onUpdate",updateMoon);	
+end
+
+function updateMoon()
+	local nIndex = DB.getValue("calendar.num_moon_index","",0);
+	
+	if control then
+		control.num_moon_index.setValue(nIndex);
+	end	
+end
+
+function getDifficulty()
+	return control.num_moon_diff.getValue();
+end
+
+function getRageAmount()
+	return control.num_moon_rage.getValue();
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

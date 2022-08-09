@@ -1,0 +1,71 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>manager_garou</ScriptName>
+    <FolderID>67</FolderID>
+    <Script>
+function updateCharStats(nodeChar, rControls, rStatValues)
+	--update attributes
+	local rStatsMods = {
+		{
+			sName = manager_char_stat_handler.StatList.Attributes.Physical.Strength[2],
+			nMod = rStatValues.nStrMod;
+		},
+		{
+			sName = manager_char_stat_handler.StatList.Attributes.Physical.Dexterity[2],
+			nMod = rStatValues.nDexMod;
+		},
+		{
+			sName = manager_char_stat_handler.StatList.Attributes.Physical.Stamina[2],
+			nMod = rStatValues.nStaMod;
+		},
+		{
+			sName = manager_char_stat_handler.StatList.Attributes.Social.Manipulation[2],
+			nMod = rStatValues.nManMod;
+		},
+	}
+	manager_char_stats.ModStats(nodeChar, rStatsMods);
+	--update form label
+	
+	--set buttons
+	DB.setValue(nodeChar, "num_form_index", "number", rStatValues.nFormIndex);
+end
+
+function updateShiftButtons(nodeChar, rControls)
+	--get form index
+	local nFormIndex = DB.getValue(nodeChar,"num_form_index",0);
+	
+	--dump
+	if nFormIndex == 0 then
+		return false;
+	end
+	
+	--set buttons
+	rControls.btnHomid.setCurrent(1==nFormIndex);
+	rControls.btnGlabro.setCurrent(2==nFormIndex);
+	rControls.btnCrinos.setCurrent(3==nFormIndex);
+	rControls.btnHispo.setCurrent(4==nFormIndex);
+	rControls.btnLupus.setCurrent(5==nFormIndex);
+	
+	-- default result value
+	DB.setValue(nodeChar, "num_shift_result", "number", 0);
+	DB.setValue(nodeChar, "lock_garou", "number", 1);
+end
+
+function shiftResults(nodeChar, rControls, nResult)
+	local nCurrentIndex = DB.getValue(nodeChar, "num_form_index", 0);
+	
+	
+	if nCurrentIndex == 0 then
+		return false;
+	end
+	
+	rControls.btnHomid.setOpen(nCurrentIndex, nResult);
+	rControls.btnGlabro.setOpen(nCurrentIndex, nResult);
+	rControls.btnCrinos.setOpen(nCurrentIndex, nResult);
+	rControls.btnHispo.setOpen(nCurrentIndex, nResult);
+	rControls.btnLupus.setOpen(nCurrentIndex, nResult);
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

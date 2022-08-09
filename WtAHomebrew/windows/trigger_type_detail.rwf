@@ -1,0 +1,300 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <WindowControls>
+    <WindowName>trigger_type_detail</WindowName>
+    <ControlName>dt_trigger_cond</ControlName>
+    <ZIndex>1</ZIndex>
+    <ControlClass>FGComboBox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonOffset"},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"dt_trigger_cond"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"36"}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ListOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumListSize"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Sorted"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>
+--Do not use onInit()
+
+function onFirstLayout()
+	setDropTable();	
+end
+
+function getTrigger()
+	return window.windowlist.window.dt_effect_trigger.getValue();
+end
+
+function setDropTable()
+	local sTrigger = getTrigger();
+	if sTrigger == FBEffectsManager.StrEffectList.rTriggers.BoT[2] then				--BoT
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoT[2] then			--EoT	
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then	--RollType
+		applyTable(true,nil);
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then		--DmgType
+		applyTable(true,nil);
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then	--Resource
+		applyTable(false,Funct.tableSortIndex(FBEffectsManager.StrEffectList.rResourceActions));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then	--Activate
+	
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Now[2] then			--Now
+	
+	end
+end
+
+function applyTable(bDefault,rList)
+	if bDefault == true then
+		add("=","=");
+		add("!=","!=");
+		if string.len(getValue()) == 0 then
+			setValue("=");
+		end		
+		setTooltipText("");
+	else
+		--Create List
+		for idx,value in pairs(rList) do
+			add(value,value);
+		end
+		--set Default
+		if string.len(getValue()) == 0 then
+			setValue(rList[#rList]);
+		end		
+		
+		--Create ToolTip
+		local sTip = "";
+		for value, rAction in pairs(FBEffectsManager.StrEffectList.rResourceActions)do
+			sTip = sTip..rAction[2].." - "..rAction[3].."\n";
+		end		
+		setTooltipText(sTip);
+	end
+end
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>trigger_type_detail</WindowName>
+    <ControlName>dt_trigger_type</ControlName>
+    <ZIndex>2</ZIndex>
+    <ControlClass>FGComboBox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonOffset"},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"dt_trigger_type"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ListOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumListSize"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Sorted","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"32"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>
+-- Do not use OnInit()
+
+function onFirstLayout()
+	local sWinName = window.windowlist.getName();
+    
+    -- Choose Window
+    if sWinName == "wl_trigger_type_1" then
+		setDropTableTrigger1(window.windowlist.window.dt_effect_trigger.getValue());
+    else
+		setDropTableTrigger2(window.windowlist.window.dt_effect_trigger.getValue());
+    end
+end
+
+function setDropTableTrigger1(sTrigger)
+	if sTrigger == FBEffectsManager.StrEffectList.rTriggers.BoT[2] then				--BoT
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoT[2] then			--EoT	
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then	--RollType
+		applyTable(Funct.tableSortAlpha(FBRollManager.rStrRollList.rRollTypes));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then		--DmgType
+		applyTable(Funct.tableSortAlpha(FBRollManager.rStrRollList.rAttackTypes));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then	--Resource
+		applyTable(Funct.tableSortAlpha(FBResourceManager.ResourceList.CharResource));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then	--Activate
+	
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Now[2] then			--Now
+	
+	end
+end
+
+function setDropTableTrigger2(sTrigger)
+	if sTrigger == FBEffectsManager.StrEffectList.rTriggers.BoT[2] then				--BoT
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.EoT[2] then			--EoT	
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.RollType[2] then	--RollType
+		applyTable(Funct.tableSortIndex(manager_char_stat_handler.getAllStats()));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.DmgType[2] then		--DmgType
+		applyTable(Funct.tableSortIndex(FBHealthManager.getDamageList()));
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Resource[2] then	--Resource
+		
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then	--Activate
+	
+	elseif sTrigger == FBEffectsManager.StrEffectList.rTriggers.Now[2] then			--Now
+	
+	end
+end
+
+function applyTable(rList)
+	--Apply
+    for idx,value in pairs(rList) do
+        add(value,value);
+    end
+    add("","");
+end
+
+
+
+
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>trigger_type_detail</WindowName>
+    <ControlName>trigger_type_detail</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"trigger_type_detail"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"135"}},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"FrameName"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>--list of fields to not toggle lock.
+local rDoNotToggleLock = {}
+
+function onInit()
+	updateLockState(WindowManager.getReadOnlyState(windowlist.window.getDatabaseNode()));
+end
+
+function updateLockState(bReadOnly)
+	local rWindows = getControls();	
+	Funct.LockControls(bReadOnly, rWindows, rDoNotToggleLock);
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+</DocumentElement>

@@ -1,0 +1,19 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>strings_for_ct</XmlName>
+    <FolderID>68</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+
+	&lt;string name="ct_tooltip_actionadd"&gt;Add Action&lt;/string&gt;
+	&lt;string name="ct_not_setup"&gt;%s has been added to Combat Tracker, please re-roll.&lt;/string&gt;
+	&lt;string name="ct_init_skill_description"&gt;Initiative Mod[%s]&lt;/string&gt;
+	&lt;string name="ct_init_tooltip_not_rolled"&gt;To roll initiative, press "Fight!" above, or double click here on the characters you want to include.&lt;/string&gt;
+	&lt;string name="ct_init_tooltip_rolled"&gt;Initiative has already been rolled. To re-roll initiative, ctrl+Double Click here.&lt;/string&gt;
+	
+	&lt;string name="ct_create_character"&gt;Add Character&lt;/string&gt;
+	&lt;string name="ct_remove_character"&gt;Remove Character&lt;/string&gt;
+&lt;/root&gt;
+</XML>
+  </XMLFiles>
+</DocumentElement>

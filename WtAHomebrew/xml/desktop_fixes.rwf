@@ -1,0 +1,29 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>desktop_fixes</XmlName>
+    <FolderID>37</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+
+&lt;root&gt;
+	&lt;panel name="chat" merge="join"&gt;
+		&lt;bounds&gt;15,90,390,-125&lt;/bounds&gt;
+	&lt;/panel&gt;
+	
+	&lt;template name="chatwindow_step"&gt;
+		&lt;chatwindow name="chat"&gt;
+			&lt;modeframe mode="chat" name="chatframe_chat" offset="15,5,5,5" /&gt;
+			&lt;modeframe mode="story" name="chatframe_story" offset="15,10,15,10" /&gt;
+			&lt;modeframe mode="whisper" name="chatframe_whisper" offset="15,5,5,5" /&gt;
+			&lt;linkcolor&gt;0000FF&lt;/linkcolor&gt;
+			&lt;linkicon normal="button_link" pressed="button_link_down" /&gt;
+			&lt;droptypes&gt;
+				&lt;type&gt;dice&lt;/type&gt;
+				&lt;type&gt;number&lt;/type&gt;
+				&lt;type&gt;string&lt;/type&gt;
+			&lt;/droptypes&gt;
+			&lt;script file="desktop/scripts/chat_window.lua" /&gt;
+		&lt;/chatwindow&gt;
+	&lt;/template&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>
