@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>FBCTDropHandler</ScriptName>
-    <FolderID>35</FolderID>
+    <FolderID>36</FolderID>
     <Script>
 function receiveDrop(nodeCTCurrent,winCTDrop,dragdata)	
 	if Session.IsHost then

@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>FBChatManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>    
 --[[	
 	- "action" - Action Message: When a character uses some game function

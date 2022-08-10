@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>manager_garou</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function updateCharStats(nodeChar, rControls, rStatValues)
 	--update attributes

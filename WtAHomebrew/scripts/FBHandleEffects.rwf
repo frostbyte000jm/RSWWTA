@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>FBHandleEffects</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 MSG_After_Effect_Roll = "MSG_After_Effect_Roll";
 local nMargin = 0;

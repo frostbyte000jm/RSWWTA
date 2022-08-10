@@ -134,282 +134,287 @@ Credits:
   </Folders>
   <Folders>
     <ID>19</ID>
-    <ParentFolderID>17</ParentFolderID>
-    <Folder>background_sheet</Folder>
+    <ParentFolderID>18</ParentFolderID>
+    <Folder>subwindows</Folder>
   </Folders>
   <Folders>
     <ID>20</ID>
     <ParentFolderID>17</ParentFolderID>
-    <Folder>effect_sheets</Folder>
+    <Folder>background_sheet</Folder>
   </Folders>
   <Folders>
     <ID>21</ID>
-    <ParentFolderID>20</ParentFolderID>
-    <Folder>details</Folder>
+    <ParentFolderID>17</ParentFolderID>
+    <Folder>effect_sheets</Folder>
   </Folders>
   <Folders>
     <ID>22</ID>
-    <ParentFolderID>20</ParentFolderID>
-    <Folder>effect_action_sheets</Folder>
-  </Folders>
-  <Folders>
-    <ID>23</ID>
-    <ParentFolderID>22</ParentFolderID>
+    <ParentFolderID>21</ParentFolderID>
     <Folder>details</Folder>
   </Folders>
   <Folders>
+    <ID>23</ID>
+    <ParentFolderID>21</ParentFolderID>
+    <Folder>effect_action_sheets</Folder>
+  </Folders>
+  <Folders>
     <ID>24</ID>
-    <ParentFolderID>22</ParentFolderID>
-    <Folder>subwindows</Folder>
+    <ParentFolderID>23</ParentFolderID>
+    <Folder>details</Folder>
   </Folders>
   <Folders>
     <ID>25</ID>
-    <ParentFolderID>17</ParentFolderID>
-    <Folder>questsheet</Folder>
+    <ParentFolderID>23</ParentFolderID>
+    <Folder>subwindows</Folder>
   </Folders>
   <Folders>
     <ID>26</ID>
     <ParentFolderID>17</ParentFolderID>
-    <Folder>scripts</Folder>
+    <Folder>questsheet</Folder>
   </Folders>
   <Folders>
     <ID>27</ID>
     <ParentFolderID>17</ParentFolderID>
-    <Folder>xp_player_sheets</Folder>
-  </Folders>
-  <Folders>
-    <ID>28</ID>
-    <ParentFolderID>27</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
+    <ID>28</ID>
+    <ParentFolderID>17</ParentFolderID>
+    <Folder>xp_player_sheets</Folder>
+  </Folders>
+  <Folders>
     <ID>29</ID>
-    <ParentFolderID>1</ParentFolderID>
+    <ParentFolderID>28</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
     <ID>30</ID>
+    <ParentFolderID>1</ParentFolderID>
+    <Folder>scripts</Folder>
+  </Folders>
+  <Folders>
+    <ID>31</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>common</Folder>
   </Folders>
   <Folders>
-    <ID>31</ID>
-    <ParentFolderID>30</ParentFolderID>
+    <ID>32</ID>
+    <ParentFolderID>31</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
-    <ID>32</ID>
+    <ID>33</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>ct</Folder>
   </Folders>
   <Folders>
-    <ID>33</ID>
-    <ParentFolderID>32</ParentFolderID>
+    <ID>34</ID>
+    <ParentFolderID>33</ParentFolderID>
     <Folder>ct_client</Folder>
   </Folders>
   <Folders>
-    <ID>34</ID>
-    <ParentFolderID>32</ParentFolderID>
+    <ID>35</ID>
+    <ParentFolderID>33</ParentFolderID>
     <Folder>ct_host</Folder>
   </Folders>
   <Folders>
-    <ID>35</ID>
-    <ParentFolderID>32</ParentFolderID>
+    <ID>36</ID>
+    <ParentFolderID>33</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
-    <ID>36</ID>
-    <ParentFolderID>32</ParentFolderID>
+    <ID>37</ID>
+    <ParentFolderID>33</ParentFolderID>
     <Folder>templates</Folder>
   </Folders>
   <Folders>
-    <ID>37</ID>
+    <ID>38</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>desktop</Folder>
   </Folders>
   <Folders>
-    <ID>38</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>39</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>bonus_panel</Folder>
   </Folders>
   <Folders>
-    <ID>39</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>40</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>dicestack</Folder>
   </Folders>
   <Folders>
-    <ID>40</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>41</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>difficultystack</Folder>
   </Folders>
   <Folders>
-    <ID>41</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>42</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>modifierstack</Folder>
   </Folders>
   <Folders>
-    <ID>42</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>43</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>moonstack</Folder>
   </Folders>
   <Folders>
-    <ID>43</ID>
-    <ParentFolderID>37</ParentFolderID>
+    <ID>44</ID>
+    <ParentFolderID>38</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
-    <ID>44</ID>
+    <ID>45</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>graphics</Folder>
   </Folders>
   <Folders>
-    <ID>45</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>buttons</Folder>
-  </Folders>
-  <Folders>
     <ID>46</ID>
     <ParentFolderID>45</ParentFolderID>
-    <Folder>health</Folder>
+    <Folder>buttons</Folder>
   </Folders>
   <Folders>
     <ID>47</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>dice</Folder>
+    <ParentFolderID>46</ParentFolderID>
+    <Folder>health</Folder>
   </Folders>
   <Folders>
     <ID>48</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>fonts</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>dice</Folder>
   </Folders>
   <Folders>
     <ID>49</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>frames</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>fonts</Folder>
   </Folders>
   <Folders>
     <ID>50</ID>
-    <ParentFolderID>49</ParentFolderID>
-    <Folder>buttons</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>frames</Folder>
   </Folders>
   <Folders>
     <ID>51</ID>
-    <ParentFolderID>49</ParentFolderID>
-    <Folder>charsheet</Folder>
+    <ParentFolderID>50</ParentFolderID>
+    <Folder>buttons</Folder>
   </Folders>
   <Folders>
     <ID>52</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>icons</Folder>
-  </Folders>
-  <Folders>
-    <ID>53</ID>
-    <ParentFolderID>52</ParentFolderID>
+    <ParentFolderID>50</ParentFolderID>
     <Folder>charsheet</Folder>
   </Folders>
   <Folders>
+    <ID>53</ID>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>icons</Folder>
+  </Folders>
+  <Folders>
     <ID>54</ID>
-    <ParentFolderID>52</ParentFolderID>
-    <Folder>health_bar</Folder>
+    <ParentFolderID>53</ParentFolderID>
+    <Folder>charsheet</Folder>
   </Folders>
   <Folders>
     <ID>55</ID>
-    <ParentFolderID>52</ParentFolderID>
-    <Folder>moons</Folder>
+    <ParentFolderID>53</ParentFolderID>
+    <Folder>health_bar</Folder>
   </Folders>
   <Folders>
     <ID>56</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>logo</Folder>
+    <ParentFolderID>53</ParentFolderID>
+    <Folder>moons</Folder>
   </Folders>
   <Folders>
     <ID>57</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>portraits</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>logo</Folder>
   </Folders>
   <Folders>
     <ID>58</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>sidebar</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>portraits</Folder>
   </Folders>
   <Folders>
     <ID>59</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>tabs</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>sidebar</Folder>
   </Folders>
   <Folders>
     <ID>60</ID>
-    <ParentFolderID>44</ParentFolderID>
-    <Folder>toolbar</Folder>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>tabs</Folder>
   </Folders>
   <Folders>
     <ID>61</ID>
+    <ParentFolderID>45</ParentFolderID>
+    <Folder>toolbar</Folder>
+  </Folders>
+  <Folders>
+    <ID>62</ID>
     <ParentFolderID>0</ParentFolderID>
     <Folder>ps</Folder>
   </Folders>
   <Folders>
-    <ID>62</ID>
-    <ParentFolderID>61</ParentFolderID>
+    <ID>63</ID>
+    <ParentFolderID>62</ParentFolderID>
     <Folder>ps_fonts</Folder>
   </Folders>
   <Folders>
-    <ID>63</ID>
-    <ParentFolderID>61</ParentFolderID>
+    <ID>64</ID>
+    <ParentFolderID>62</ParentFolderID>
     <Folder>ps_GMView</Folder>
   </Folders>
   <Folders>
-    <ID>64</ID>
-    <ParentFolderID>61</ParentFolderID>
+    <ID>65</ID>
+    <ParentFolderID>62</ParentFolderID>
     <Folder>ps_totem</Folder>
   </Folders>
   <Folders>
-    <ID>65</ID>
-    <ParentFolderID>61</ParentFolderID>
+    <ID>66</ID>
+    <ParentFolderID>62</ParentFolderID>
     <Folder>ps_xp</Folder>
   </Folders>
   <Folders>
-    <ID>66</ID>
-    <ParentFolderID>61</ParentFolderID>
-    <Folder>scripts</Folder>
-  </Folders>
-  <Folders>
     <ID>67</ID>
-    <ParentFolderID>0</ParentFolderID>
+    <ParentFolderID>62</ParentFolderID>
     <Folder>scripts</Folder>
   </Folders>
   <Folders>
     <ID>68</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>strings</Folder>
+    <Folder>scripts</Folder>
   </Folders>
   <Folders>
     <ID>69</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>utility</Folder>
+    <Folder>strings</Folder>
   </Folders>
   <Folders>
     <ID>70</ID>
-    <ParentFolderID>69</ParentFolderID>
-    <Folder>calendar</Folder>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>utility</Folder>
   </Folders>
   <Folders>
     <ID>71</ID>
-    <ParentFolderID>69</ParentFolderID>
-    <Folder>effects</Folder>
+    <ParentFolderID>70</ParentFolderID>
+    <Folder>calendar</Folder>
   </Folders>
   <Folders>
     <ID>72</ID>
-    <ParentFolderID>69</ParentFolderID>
-    <Folder>modifiers</Folder>
+    <ParentFolderID>70</ParentFolderID>
+    <Folder>effects</Folder>
   </Folders>
   <Folders>
     <ID>73</ID>
-    <ParentFolderID>69</ParentFolderID>
-    <Folder>scripts</Folder>
+    <ParentFolderID>70</ParentFolderID>
+    <Folder>modifiers</Folder>
   </Folders>
   <Folders>
     <ID>74</ID>
-    <ParentFolderID>69</ParentFolderID>
+    <ParentFolderID>70</ParentFolderID>
+    <Folder>scripts</Folder>
+  </Folders>
+  <Folders>
+    <ID>75</ID>
+    <ParentFolderID>70</ParentFolderID>
     <Folder>templates</Folder>
   </Folders>
 </DocumentElement>
@@ -417,19 +422,19 @@ Credits:
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Windows>
     <Name>action_adj_effect</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_adj_resource</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_adj_roll</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_adj_stat</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_detail</Name>
@@ -437,31 +442,31 @@ Credits:
   </Windows>
   <Windows>
     <Name>action_dmg</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_dmg_detail</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>action_effect_detail</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>action_healing</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_mod_detail</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>action_resource_detail</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>action_roll</Name>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
   </Windows>
   <Windows>
     <Name>action_sheet_content</Name>
@@ -469,11 +474,11 @@ Credits:
   </Windows>
   <Windows>
     <Name>action_stat_detail</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>action_watch</Name>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
   </Windows>
   <Windows>
     <Name>attribute_roll_detail</Name>
@@ -481,31 +486,31 @@ Credits:
   </Windows>
   <Windows>
     <Name>background_sheet</Name>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
   </Windows>
   <Windows>
     <Name>background_sheet_content</Name>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
   </Windows>
   <Windows>
     <Name>background_sheet_detail</Name>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
   </Windows>
   <Windows>
     <Name>background_sheet_header</Name>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
   </Windows>
   <Windows>
     <Name>bonus_panel</Name>
-    <FolderID>38</FolderID>
+    <FolderID>39</FolderID>
   </Windows>
   <Windows>
     <Name>calendar</Name>
-    <FolderID>70</FolderID>
+    <FolderID>71</FolderID>
   </Windows>
   <Windows>
     <Name>calendar_main</Name>
-    <FolderID>70</FolderID>
+    <FolderID>71</FolderID>
   </Windows>
   <Windows>
     <Name>char_invitem</Name>
@@ -553,95 +558,99 @@ Credits:
   </Windows>
   <Windows>
     <Name>client_ct_entry</Name>
-    <FolderID>33</FolderID>
+    <FolderID>34</FolderID>
   </Windows>
   <Windows>
     <Name>clientct_effect</Name>
-    <FolderID>33</FolderID>
+    <FolderID>34</FolderID>
   </Windows>
   <Windows>
     <Name>clientct_effects</Name>
-    <FolderID>33</FolderID>
+    <FolderID>34</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_client</Name>
-    <FolderID>33</FolderID>
+    <FolderID>34</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_host</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_actions</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_conditions</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_defense</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_effect</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_effects</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_entry</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>ct_spacing</Name>
-    <FolderID>34</FolderID>
+    <FolderID>35</FolderID>
   </Windows>
   <Windows>
     <Name>dicestack</Name>
-    <FolderID>39</FolderID>
-  </Windows>
-  <Windows>
-    <Name>difficultystack</Name>
     <FolderID>40</FolderID>
   </Windows>
   <Windows>
-    <Name>effect_action_detail</Name>
-    <FolderID>21</FolderID>
+    <Name>difficultystack</Name>
+    <FolderID>41</FolderID>
   </Windows>
   <Windows>
-    <Name>effect_action_sheet_content</Name>
+    <Name>effect_action_detail</Name>
     <FolderID>22</FolderID>
   </Windows>
   <Windows>
+    <Name>effect_action_sheet_content</Name>
+    <FolderID>23</FolderID>
+  </Windows>
+  <Windows>
     <Name>effect_sheet_content</Name>
-    <FolderID>20</FolderID>
+    <FolderID>21</FolderID>
   </Windows>
   <Windows>
     <Name>effectsmall</Name>
-    <FolderID>71</FolderID>
+    <FolderID>72</FolderID>
   </Windows>
   <Windows>
     <Name>fonts_window</Name>
-    <FolderID>62</FolderID>
-  </Windows>
-  <Windows>
-    <Name>GMView_detail</Name>
     <FolderID>63</FolderID>
   </Windows>
   <Windows>
+    <Name>GMView_detail</Name>
+    <FolderID>64</FolderID>
+  </Windows>
+  <Windows>
     <Name>modifiers</Name>
-    <FolderID>72</FolderID>
+    <FolderID>73</FolderID>
   </Windows>
   <Windows>
     <Name>modifiersmall</Name>
-    <FolderID>72</FolderID>
+    <FolderID>73</FolderID>
   </Windows>
   <Windows>
     <Name>modifierstack</Name>
-    <FolderID>41</FolderID>
+    <FolderID>42</FolderID>
+  </Windows>
+  <Windows>
+    <Name>NewWindow</Name>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>npc</Name>
@@ -669,47 +678,47 @@ Credits:
   </Windows>
   <Windows>
     <Name>panel_moon_stack</Name>
-    <FolderID>42</FolderID>
+    <FolderID>43</FolderID>
   </Windows>
   <Windows>
     <Name>pc_xp_detail</Name>
-    <FolderID>65</FolderID>
+    <FolderID>66</FolderID>
   </Windows>
   <Windows>
     <Name>ps_fonts</Name>
-    <FolderID>62</FolderID>
-  </Windows>
-  <Windows>
-    <Name>ps_GMView</Name>
     <FolderID>63</FolderID>
   </Windows>
   <Windows>
-    <Name>ps_quest_detail</Name>
-    <FolderID>65</FolderID>
-  </Windows>
-  <Windows>
-    <Name>ps_totem</Name>
+    <Name>ps_GMView</Name>
     <FolderID>64</FolderID>
   </Windows>
   <Windows>
-    <Name>ps_xp</Name>
+    <Name>ps_quest_detail</Name>
+    <FolderID>66</FolderID>
+  </Windows>
+  <Windows>
+    <Name>ps_totem</Name>
     <FolderID>65</FolderID>
   </Windows>
   <Windows>
+    <Name>ps_xp</Name>
+    <FolderID>66</FolderID>
+  </Windows>
+  <Windows>
     <Name>quest</Name>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
   </Windows>
   <Windows>
     <Name>quest_header</Name>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
   </Windows>
   <Windows>
     <Name>quest_sheet_detail</Name>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
   </Windows>
   <Windows>
     <Name>quest_stats</Name>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
   </Windows>
   <Windows>
     <Name>skill_roll_detail</Name>
@@ -717,15 +726,15 @@ Credits:
   </Windows>
   <Windows>
     <Name>trigger_type_detail</Name>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
   </Windows>
   <Windows>
     <Name>xp_player_sheet_content</Name>
-    <FolderID>27</FolderID>
+    <FolderID>28</FolderID>
   </Windows>
   <Windows>
     <Name>xp_player_sheet_detail</Name>
-    <FolderID>27</FolderID>
+    <FolderID>28</FolderID>
   </Windows>
   <Windows>
     <Name>xp_ps_player_detail</Name>
@@ -58776,6 +58785,1717 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>box_after_roll</ControlName>
+    <ZIndex>19</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_after_roll"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"115"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>box_before_roll</ControlName>
+    <ZIndex>17</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_before_roll"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"111"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"115"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>box_effect_only</ControlName>
+    <ZIndex>2</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_effect_only"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"8"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>box_manually</ControlName>
+    <ZIndex>23</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_manually"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"139"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>box_on_success</ControlName>
+    <ZIndex>21</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_on_success"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"111"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"139"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>dt_stat1</ControlName>
+    <ZIndex>7</ZIndex>
+    <ControlClass>FGComboBox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonOffset"},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"dt_stat1"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"ListOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumListSize"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Sorted"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"13"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+]}}</Definition>
+    <LUACode>
+function updateList(rList)
+	clear();
+	add("","");
+    
+    local rSkills = Funct.tableSortIndex(rList);
+    for idx,skill in pairs(rSkills) do
+        add(skill,skill);
+    end
+end
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>dt_stat2</ControlName>
+    <ZIndex>8</ZIndex>
+    <ControlClass>FGComboBox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonOffset"},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"dt_stat2"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"ListOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumListSize"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Sorted"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+]}}</Definition>
+    <LUACode>
+function updateList(rList)
+	clear();
+	add("","");
+    
+    local rSkills = Funct.tableSortIndex(rList);
+    for idx,skill in pairs(rSkills) do
+        add(skill,skill);
+    end
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>IconControl4</ControlName>
+    <ZIndex>1</ZIndex>
+    <ControlClass>FGIconControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"IconControl4"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"189"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"328"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"groupbox"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"IconName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>Label27</ControlName>
+    <ZIndex>16</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label27"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Add Effect:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"115"}}
+]}}</Definition>
+    <LUACode>
+function onDoubleClick(x, y)
+	local nValue = 1 - window.box_attack_add_effect.getValue();
+	window.box_attack_add_effect.setValue(nValue);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>Label28</ControlName>
+    <ZIndex>12</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label28"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"65"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Dice Bonus"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"246"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"70"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>Label29</ControlName>
+    <ZIndex>11</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label29"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Difficulty"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"132"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"70"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>Label30</ControlName>
+    <ZIndex>6</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label30"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Specialty"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"172"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>Label38</ControlName>
+    <ZIndex>10</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label38"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Mod"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"13"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"70"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_after_roll</ControlName>
+    <ZIndex>20</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_after_roll"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"After Roll"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"245"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"115"}}
+]}}</Definition>
+    <LUACode>
+function onClickRelease(button, x, y)
+	local nValue = window.box_after_roll.getValue();
+	if nValue == 0 then
+		window.box_after_roll.setValue(1);
+	else
+		window.box_after_roll.setValue(0);
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_before_roll</ControlName>
+    <ZIndex>18</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_before_roll"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Before Roll"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"115"}}
+]}}</Definition>
+    <LUACode>
+function onClickRelease(button, x, y)
+	local nValue = window.box_before_roll.getValue();
+	if nValue == 0 then
+		window.box_before_roll.setValue(1);
+	else
+		window.box_before_roll.setValue(0);
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_effect_only</ControlName>
+    <ZIndex>3</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_effect_only"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Effect Only"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"35"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
+]}}</Definition>
+    <LUACode>
+function onClickRelease(button, x, y)
+	local nValue = window.box_effect_only.getValue();
+	if nValue == 0 then
+		window.box_effect_only.setValue(1);
+	else
+		window.box_effect_only.setValue(0);
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_manually</ControlName>
+    <ZIndex>24</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_manually"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Manually"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"245"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"139"}}
+]}}</Definition>
+    <LUACode>
+function onClickRelease(button, x, y)
+	local nValue = window.box_before_roll.getValue();
+	if nValue == 0 then
+		window.box_before_roll.setValue(1);
+	else
+		window.box_before_roll.setValue(0);
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_on_success</ControlName>
+    <ZIndex>22</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_on_success"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"63"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"On Success"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"139"}}
+]}}</Definition>
+    <LUACode>
+function onClickRelease(button, x, y)
+	local nValue = window.box_on_success.getValue();
+	if nValue == 0 then
+		window.box_on_success.setValue(1);
+	else
+		window.box_on_success.setValue(0);
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_stat1</ControlName>
+    <ZIndex>4</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_stat1"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"13"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	local sValue = "";
+	if string.len(getValue()) == 0 then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2];
+		setValue(sValue);		
+	end	
+	setTable(sValue);
+end
+
+function onDoubleClick(x, y)	
+	local sValue = "";
+	if getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Skill[2];
+		setValue(sValue);		
+	elseif getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Skill[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Resource[2];
+		setValue(sValue);		
+	elseif getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Resource[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2];
+		setValue(sValue);		
+	end	
+	setTable(sValue);
+end
+
+function setTable(sValue)
+	if sValue == manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2] then
+		window.dt_stat1.updateList(manager_char_stat_handler.getAttributes());
+	elseif sValue == manager_char_stat_handler.StatList.rStatTypesFull.Skill[2] then
+		window.dt_stat1.updateList(manager_char_stat_handler.getSkills());
+	elseif sValue == manager_char_stat_handler.StatList.rStatTypesFull.Resource[2] then
+		window.dt_stat1.updateList(FBResourceManager.getResources());
+	end
+end
+
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>lbl_stat2</ControlName>
+    <ZIndex>5</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_stat2"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"93"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	local sValue = "";
+	if string.len(getValue()) == 0 then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Skill[2];
+		setValue(sValue);		
+	end	
+	setTable(sValue);
+end
+
+function onDoubleClick(x, y)	
+	local sValue = "";
+	if getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Skill[2];
+		setValue(sValue);		
+	elseif getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Skill[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Resource[2];
+		setValue(sValue);		
+	elseif getValue() == manager_char_stat_handler.StatList.rStatTypesFull.Resource[2] then
+		sValue = manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2];
+		setValue(sValue);		
+	end	
+	setTable(sValue);
+end
+
+function setTable(sValue)
+	if sValue == manager_char_stat_handler.StatList.rStatTypesFull.Attribute[2] then
+		window.dt_stat2.updateList(manager_char_stat_handler.getAttributes());
+	elseif sValue == manager_char_stat_handler.StatList.rStatTypesFull.Skill[2] then
+		window.dt_stat2.updateList(manager_char_stat_handler.getSkills());
+	elseif sValue == manager_char_stat_handler.StatList.rStatTypesFull.Resource[2] then
+		window.dt_stat2.updateList(FBResourceManager.getResources());
+	end
+end
+
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>link_effect</ControlName>
+    <ZIndex>25</ZIndex>
+    <ControlClass>FGLinkField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"link_effect"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LinkFieldAllowDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"effect_sheet"}},
+      {"Name":"LinkFieldDescriptionField","Value":{"@xsi:type":"xsd:string","#text":"str_effect_name"}},
+      {"Name":"LinkFieldRecordName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"LinkFieldSelfOnEmpty","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"16"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"162"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	--updateLink();
+	registerMenuItem(Interface.getString("create_effect"), "insert", 5);
+	registerMenuItem(Interface.getString("remove_effect"), "delete", 3);
+	registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 3, 4);
+	onFirstOpen();
+end
+
+function onFirstOpen()
+	if getTargetDatabaseNode() == window.getDatabaseNode() then
+		setValue("");
+	end
+end
+
+function onMenuSelection(selection, subselection1, subselection2, subselection3)
+	if selection == 5 then
+		CreateEffect();
+	elseif selection == 3 and subselection1 ==4 then
+		RemoveEffect();
+	end
+end
+
+function onDrop(x, y, dragdata)
+	--declarations	
+	local nodeDragdata = dragdata.getDatabaseNode();
+	
+	-- Check if effect_custom or effects. If so, copy the link, and add copy.
+	if StringManager.startsWith(nodeDragdata.getNodeName(), "effect_custom.") or StringManager.startsWith(nodeDragdata.getNodeName(), "effects.") then
+		CreateEffect(dragdata);
+	end
+end
+
+function CreateEffect(dragdata)
+	local nodeAction = window.getDatabaseNode();	
+	local childEffect = DB.createChild(nodeAction, "effect_sheet");
+	
+	if dragdata then
+		local nodeDragdata = dragdata.getDatabaseNode();
+		DB.copyNode(nodeDragdata, childEffect);
+	end
+	
+	setValue("effect_sheet",childEffect.getPath());
+	local winEffect = Interface.openWindow("effect_sheet", childEffect.getPath());
+	local nodeEffect = winEffect.getDatabaseNode();
+	local pathAction = window.getDatabaseNode().getPath();
+	
+	--Set Add Effect Box
+	if window.box_effect_only.getValue() == 0 and 
+	  window.box_before_roll.getValue() == 0 and 
+	  window.box_after_roll.getValue() == 0 and 
+	  window.box_on_success.getValue() == 0 and 
+	  window.box_manually.getValue() == 0 and then
+		window.box_after_roll.setValue(1);
+	end	
+	
+	--create Handler
+	window.str_link_effect_name.createHandler();
+end
+
+function RemoveEffect() -- left off here
+	local node = getTargetDatabaseNode();
+	DB.deleteChildren(node);
+	setValue("");
+	window.str_link_effect_name.setValue("");
+	window.box_attack_add_effect.setValue(0);
+	window.box_effect_only.getValue() == 0
+	  window.box_before_roll.getValue() == 0 and 
+	  window.box_after_roll.getValue() == 0 and 
+	  window.box_on_success.getValue() == 0 and 
+	  window.box_manually.getValue() == 0 and then
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>NewWindow</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"NewWindow"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"189"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"330"}},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"FrameName"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>num_dice</ControlName>
+    <ZIndex>15</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_dice"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"249"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"86"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>num_diff</ControlName>
+    <ZIndex>14</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_diff"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue","Value":{"@xsi:type":"xsd:decimal","#text":"6"}},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"3"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue","Value":{"@xsi:type":"xsd:decimal","#text":"10"}},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue","Value":{"@xsi:type":"xsd:decimal","#text":"1"}},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"132"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"86"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>num_mod</ControlName>
+    <ZIndex>13</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_mod"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue","Value":{"@xsi:type":"xsd:decimal","#text":"6"}},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue","Value":{"@xsi:type":"xsd:decimal","#text":"10"}},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue","Value":{"@xsi:type":"xsd:decimal","#text":"1"}},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"13"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"86"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>str_link_effect_name</ControlName>
+    <ZIndex>26</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"str_link_effect_name"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"268"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"42"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"162"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	createHandler();
+end
+
+function createHandler()
+	local wLink = window.link_effect;
+	local sClass, _ = wLink.getValue();
+	
+	if string.len(sClass) &gt; 0 then
+		local node = wLink.getTargetDatabaseNode();
+		local path = DB.getPath(node,"name");
+		DB.addHandler(path, "onUpdate", update);
+		update(DB.getChild(node, "name"));
+	end	
+end
+
+function update(node)
+	setValue(DB.getValue(node, "", ""));
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>NewWindow</WindowName>
+    <ControlName>str_speciality</ControlName>
+    <ZIndex>9</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"str_speciality"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"141"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"174"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"48"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
     <WindowName>npc</WindowName>
     <ControlName>btn_close</ControlName>
     <ZIndex>7</ZIndex>
@@ -72202,7 +73922,7 @@ end</LUACode>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>award_exp</ScriptName>
-    <FolderID>66</FolderID>
+    <FolderID>67</FolderID>
     <Script>--- Created by Frostbyte.
 --- DateTime: 8/13/2020 10:28 PM
 ---
@@ -72361,7 +74081,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>button_record_locked_local</ScriptName>
-    <FolderID>31</FolderID>
+    <FolderID>32</FolderID>
     <Script>function isLocked()
     local bValue = (getValue()==1) --Debug.comment()  I just don't like this.
     return bValue;
@@ -72379,7 +74099,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>chat_window</ScriptName>
-    <FolderID>43</FolderID>
+    <FolderID>44</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -72439,7 +74159,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>container_sheet</ScriptName>
-    <FolderID>26</FolderID>
+    <FolderID>27</FolderID>
     <Script>function onInit()	
 	DB.addHandler(DB.getPath(getDatabaseNode(), "locked"), "onUpdate", onLockChanged);
 	onLockChanged();
@@ -72463,7 +74183,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>container_sheet_header</ScriptName>
-    <FolderID>26</FolderID>
+    <FolderID>27</FolderID>
     <Script>function onInit()
 	updateLockState();
 end
@@ -72477,7 +74197,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>DiceStack</ScriptName>
-    <FolderID>39</FolderID>
+    <FolderID>40</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -72721,7 +74441,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>dicestack_modifier</ScriptName>
-    <FolderID>39</FolderID>
+    <FolderID>40</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -72813,7 +74533,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>DifficultyStack</ScriptName>
-    <FolderID>40</FolderID>
+    <FolderID>41</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -73073,7 +74793,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>difficultystack_modifier</ScriptName>
-    <FolderID>40</FolderID>
+    <FolderID>41</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -73171,7 +74891,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBActionsManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function AddStatsToRollAttack(nodeChar,nodeAction)
 	--[[
@@ -73249,7 +74969,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBActorManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function isActivePC(nodeCharOrCT)
 	local nodeChar = ActorManager.getCreatureNode(nodeCharOrCT);
@@ -73335,7 +75055,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBChatManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>    
 --[[	
 	- "action" - Action Message: When a character uses some game function
@@ -73489,7 +75209,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBCTDropHandler</ScriptName>
-    <FolderID>35</FolderID>
+    <FolderID>36</FolderID>
     <Script>
 function receiveDrop(nodeCTCurrent,winCTDrop,dragdata)	
 	if Session.IsHost then
@@ -73558,7 +75278,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>FBCTManager</ScriptName>
-    <FolderID>35</FolderID>
+    <FolderID>36</FolderID>
     <Script>--[[
 	Lexicon:
 	charLoad - On Load Character to CT.
@@ -73734,7 +75454,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBCTObjects</ScriptName>
-    <FolderID>35</FolderID>
+    <FolderID>36</FolderID>
     <Script>
 local rObjects = {}
 
@@ -73750,7 +75470,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBEffectsManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>local n = 0;
 function count(bReset)
 	if bReset then
@@ -74283,7 +76003,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>FBHandleEffects</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 MSG_After_Effect_Roll = "MSG_After_Effect_Roll";
 local nMargin = 0;
@@ -75095,7 +76815,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBHealthManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>--Debug.Update(Clean this up to use more modern coding)
 
 --[[
@@ -75273,7 +76993,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBOOBManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 --[[
 	*** OOBify ***
@@ -75399,7 +77119,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBResourceManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>local n = 0;
 function count(bReset)
 	if bReset then
@@ -75563,7 +77283,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>FBRollManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>--[[
 Warning: This page has LanguageUpdates
 *****************************************************
@@ -76160,7 +77880,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>Funct</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function SerialDate(yy,mm,dd) 
 	--decalarations
@@ -76350,7 +78070,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>manager_char_stat_handler</ScriptName>
-    <FolderID>29</FolderID>
+    <FolderID>30</FolderID>
     <Script>
 local n = 0;
 function count(bReset)
@@ -76518,7 +78238,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>manager_char_stats</ScriptName>
-    <FolderID>29</FolderID>
+    <FolderID>30</FolderID>
     <Script>--declaration
 local rCharSheetValues;
 
@@ -76804,7 +78524,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>manager_garou</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function updateCharStats(nodeChar, rControls, rStatValues)
 	--update attributes
@@ -76873,7 +78593,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>manager_prep_roll</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>--declaration
 local rRollInfo;
 
@@ -76992,7 +78712,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>manager_sidebar</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>--[[
     Use this to add new sidebar containers
 ]]--
@@ -77029,7 +78749,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>ModifierStack</ScriptName>
-    <FolderID>41</FolderID>
+    <FolderID>42</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -77290,7 +79010,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>modifierstack_modifier</ScriptName>
-    <FolderID>41</FolderID>
+    <FolderID>42</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -77397,7 +79117,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>MoonManager</ScriptName>
-    <FolderID>42</FolderID>
+    <FolderID>43</FolderID>
     <Script>--declaration
 local nSerialCurrentDate = 0;
 local sCurrentDate = "";
@@ -77473,7 +79193,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>MoonStack</ScriptName>
-    <FolderID>42</FolderID>
+    <FolderID>43</FolderID>
     <Script>
 local control = nil;
 
@@ -77506,7 +79226,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>xp_player_sheet</ScriptName>
-    <FolderID>28</FolderID>
+    <FolderID>29</FolderID>
     <Script>-- When setting up, make sure Register is false
 
 function onInit()
@@ -77532,7 +79252,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>xp_player_sheet_header</ScriptName>
-    <FolderID>28</FolderID>
+    <FolderID>29</FolderID>
     <Script>-- When setting up, make sure Register is false
 
 function onInit()
@@ -77636,7 +79356,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>desktop_fixes</XmlName>
-    <FolderID>37</FolderID>
+    <FolderID>38</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;root&gt;
@@ -77663,7 +79383,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>effect_action_sheet</XmlName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -77748,7 +79468,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>effect_sheet</XmlName>
-    <FolderID>20</FolderID>
+    <FolderID>21</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -77883,7 +79603,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>ps</XmlName>
-    <FolderID>61</FolderID>
+    <FolderID>62</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -78014,7 +79734,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_characters</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;!-- Search Ruleset for "LanguageUpdates" as there may be a LUA file that needs language updates as well --&gt;
@@ -78052,7 +79772,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_containers</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	
@@ -78082,7 +79802,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_ct</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 
@@ -78099,7 +79819,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_ps</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 
@@ -78111,7 +79831,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_scripts</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 
@@ -78148,7 +79868,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_stackcontrols</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 
@@ -78179,7 +79899,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>strings_for_stats</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	
@@ -78200,7 +79920,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>template_fc</XmlName>
-    <FolderID>36</FolderID>
+    <FolderID>37</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -78336,7 +80056,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>template_objects</XmlName>
-    <FolderID>30</FolderID>
+    <FolderID>31</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -78376,7 +80096,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>utility_template</XmlName>
-    <FolderID>74</FolderID>
+    <FolderID>75</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -78404,7 +80124,7 @@ end</Script>
   </XMLFiles>
   <XMLFiles>
     <XmlName>xp_player_sheet</XmlName>
-    <FolderID>27</FolderID>
+    <FolderID>28</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 
 &lt;!-- 
@@ -78492,7 +80212,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Frames>
     <FrameName>button_blank</FrameName>
-    <FolderID>50</FolderID>
+    <FolderID>51</FolderID>
     <ImageFile>base graphics\frames\buttons\button_blank.png</ImageFile>
     <Definition>2,2,2,2</Definition>
     <TopLeft />
@@ -78509,7 +80229,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>button_blank_down</FrameName>
-    <FolderID>50</FolderID>
+    <FolderID>51</FolderID>
     <ImageFile>base graphics\frames\buttons\button_blank_down.png</ImageFile>
     <Definition>2,2,2,2</Definition>
     <TopLeft />
@@ -78526,7 +80246,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>button_na</FrameName>
-    <FolderID>50</FolderID>
+    <FolderID>51</FolderID>
     <ImageFile>base graphics\frames\buttons\button_na.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -78543,7 +80263,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>charsheet</FrameName>
-    <FolderID>51</FolderID>
+    <FolderID>52</FolderID>
     <ImageFile>new graphics\frames\charsheet.png</ImageFile>
     <Definition>25,40,25,25</Definition>
     <TopLeft />
@@ -78560,7 +80280,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>desktop</FrameName>
-    <FolderID>49</FolderID>
+    <FolderID>50</FolderID>
     <ImageFile>base graphics\frames\desktop.jpg</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -78577,7 +80297,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>frame_charsheet_behindtext</FrameName>
-    <FolderID>51</FolderID>
+    <FolderID>52</FolderID>
     <ImageFile>new graphics\frames\frame_charsheet_behindtext.png</ImageFile>
     <Definition>25,25,25,25</Definition>
     <TopLeft />
@@ -78594,7 +80314,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>frame_glass_bubble</FrameName>
-    <FolderID>49</FolderID>
+    <FolderID>50</FolderID>
     <ImageFile>base graphics\frames\frame_glass_bubble.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -78611,7 +80331,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>modstack_frame</FrameName>
-    <FolderID>49</FolderID>
+    <FolderID>50</FolderID>
     <ImageFile>base graphics\frames\modstack_frame.png</ImageFile>
     <Definition>7,5,7,5</Definition>
     <TopLeft />
@@ -78631,277 +80351,277 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Icons>
     <IconName>button_advantage_checkoff</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>new graphics\buttons\button_advantage_checkoff.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_advantage_checkon</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>new graphics\buttons\button_advantage_checkon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_add_A</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_add_A.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_add_B</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_add_B.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_add_L</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_add_L.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_A</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_A.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_B</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_B.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_H0</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_H0.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_H1</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_H1.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_H2</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_H2.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_H5</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_H5.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_HI</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_HI.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_check_L</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_check_L.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_remove_A</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_remove_A.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_remove_B</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_remove_B.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_health_remove_L</IconName>
-    <FolderID>46</FolderID>
+    <FolderID>47</FolderID>
     <IconFile>new graphics\buttons\health\button_health_remove_L.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_minus</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>base graphics\buttons\button_minus.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_plus</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>base graphics\buttons\button_plus.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_remove</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>base graphics\buttons\button_remove.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_skill_checkoff</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>base graphics\buttons\button_skill_checkoff.png</IconFile>
   </Icons>
   <Icons>
     <IconName>button_skill_checkon</IconName>
-    <FolderID>45</FolderID>
+    <FolderID>46</FolderID>
     <IconFile>base graphics\buttons\button_skill_checkon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>GMFrostbyteLogo</IconName>
-    <FolderID>56</FolderID>
+    <FolderID>57</FolderID>
     <IconFile>base graphics\logo\frostbyteGMLogo.jpg</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_0</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_0.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_100</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_100.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_12</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_12.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_25</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_25.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_38</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_38.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_50</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_50.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_62</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_62.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_75</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_75.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_83</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_83.png</IconFile>
   </Icons>
   <Icons>
     <IconName>health_bar_95</IconName>
-    <FolderID>54</FolderID>
+    <FolderID>55</FolderID>
     <IconFile>base graphics\icons\health_bar\health_bar_95.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_d10_black</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\icon_d10_black.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_d10_gold</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\icon_d10_gold.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_d10_red</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\icon_d10_red.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_d10rage</IconName>
-    <FolderID>47</FolderID>
+    <FolderID>48</FolderID>
     <IconFile>new graphics\dice\icon_d10rage.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_divider_wta</IconName>
-    <FolderID>53</FolderID>
+    <FolderID>54</FolderID>
     <IconFile>new graphics\icons\icon_divider_wta.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_frenzy_off</IconName>
-    <FolderID>53</FolderID>
+    <FolderID>54</FolderID>
     <IconFile>new graphics\icons\icon_frenzy_off.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_frenzy_on</IconName>
-    <FolderID>53</FolderID>
+    <FolderID>54</FolderID>
     <IconFile>new graphics\icons\icon_frenzy_on.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_half_divider_wta</IconName>
-    <FolderID>53</FolderID>
+    <FolderID>54</FolderID>
     <IconFile>new graphics\icons\icon_half_divider_wta.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_first_quarter</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_first_quarter.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_full</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_full.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_last_quarter</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_last_quarter.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_new</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_new.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_waning_crescent</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_waning_crescent.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_waning_gibbous</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_waning_gibbous.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_waxing_crescent</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_waxing_crescent.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_moon_waxing_gibbous</IconName>
-    <FolderID>55</FolderID>
+    <FolderID>56</FolderID>
     <IconFile>new graphics\icons\moon\icon_moon_waxing_gibbous.png</IconFile>
   </Icons>
   <Icons>
     <IconName>icon_newModstack</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\newModstack.png</IconFile>
   </Icons>
   <Icons>
     <IconName>minus_sign</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\minus_sign.png</IconFile>
   </Icons>
   <Icons>
     <IconName>multiplication_sign</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\multiplication_sign.png</IconFile>
   </Icons>
   <Icons>
     <IconName>plus_sign</IconName>
-    <FolderID>52</FolderID>
+    <FolderID>53</FolderID>
     <IconFile>base graphics\icons\plus_sign.png</IconFile>
   </Icons>
   <Icons>
     <IconName>portrait_player_token</IconName>
-    <FolderID>57</FolderID>
+    <FolderID>58</FolderID>
     <IconFile>base graphics\portraits\portrait_player_token.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_garou</IconName>
-    <FolderID>59</FolderID>
+    <FolderID>60</FolderID>
     <IconFile>new graphics\tabs\tab_garou.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_GMView</IconName>
-    <FolderID>59</FolderID>
+    <FolderID>60</FolderID>
     <IconFile>base graphics\tabs\tab_GMView.png</IconFile>
   </Icons>
 </DocumentElement>
@@ -78909,7 +80629,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Fonts>
     <FontName>dosis_small</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>base graphics\fonts\Dosis\Dosis-Light.ttf</FontFile>
     <FontFamilyName>Dosis</FontFamilyName>
     <FontSize>12</FontSize>
@@ -78919,7 +80639,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>font_attribute</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>base graphics\fonts\Goudy SSi Bold.ttf</FontFile>
     <FontFamilyName>Goudy SSi</FontFamilyName>
     <FontSize>22</FontSize>
@@ -78929,7 +80649,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>font_name</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>base graphics\fonts\Goudy SSi.ttf</FontFile>
     <FontFamilyName>Goudy SSi</FontFamilyName>
     <FontSize>24</FontSize>
@@ -78939,7 +80659,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>font_skill</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>base graphics\fonts\MinionPro-Regular_0.otf</FontFile>
     <FontFamilyName>Minion Pro</FontFamilyName>
     <FontSize>20</FontSize>
@@ -78949,7 +80669,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>GarouFontH1</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>new graphics\fonts\Garou.ttf</FontFile>
     <FontFamilyName>Garou</FontFamilyName>
     <FontSize>32</FontSize>
@@ -78959,7 +80679,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>GarouFontH2</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>new graphics\fonts\Garou.ttf</FontFile>
     <FontFamilyName>Garou</FontFamilyName>
     <FontSize>28</FontSize>
@@ -78969,7 +80689,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>skill_rage</FontName>
-    <FolderID>48</FolderID>
+    <FolderID>49</FolderID>
     <FontFile>new graphics\fonts\Roadrage-owgBd.otf</FontFile>
     <FontFamilyName>Road Rage</FontFamilyName>
     <FontSize>32</FontSize>

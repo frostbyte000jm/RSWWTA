@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>button_record_locked_local</ScriptName>
-    <FolderID>31</FolderID>
+    <FolderID>32</FolderID>
     <Script>function isLocked()
     local bValue = (getValue()==1) --Debug.comment()  I just don't like this.
     return bValue;

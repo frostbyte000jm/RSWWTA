@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>FBActorManager</ScriptName>
-    <FolderID>67</FolderID>
+    <FolderID>68</FolderID>
     <Script>
 function isActivePC(nodeCharOrCT)
 	local nodeChar = ActorManager.getCreatureNode(nodeCharOrCT);

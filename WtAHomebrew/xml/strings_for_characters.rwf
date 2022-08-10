@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
     <XmlName>strings_for_characters</XmlName>
-    <FolderID>68</FolderID>
+    <FolderID>69</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;!-- Search Ruleset for "LanguageUpdates" as there may be a LUA file that needs language updates as well --&gt;

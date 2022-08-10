@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>FBCTManager</ScriptName>
-    <FolderID>35</FolderID>
+    <FolderID>36</FolderID>
     <Script>--[[
 	Lexicon:
 	charLoad - On Load Character to CT.
