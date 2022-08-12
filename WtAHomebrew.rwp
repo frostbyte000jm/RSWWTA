@@ -3638,7 +3638,11 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"112"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onValueChanged()
+	window.parentcontrol.window.parentcontrol.setEffectButton(getValue());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4825,7 +4829,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_action</ControlName>
-    <ZIndex>48</ZIndex>
+    <ZIndex>26</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4869,7 +4873,10 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer6.setVisible(getValue()==1);
 	window.btn_action.setVisible(getValue()==1);
@@ -4881,7 +4888,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_action_effect</ControlName>
-    <ZIndex>49</ZIndex>
+    <ZIndex>27</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4925,7 +4932,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer5.setVisible(getValue()==1);
 	window.btn_effect_action.setVisible(getValue()==1);
@@ -4937,7 +4947,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_attack</ControlName>
-    <ZIndex>51</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4981,7 +4991,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"64"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer4.setVisible(getValue()==1);
 	window.btn_attack.setVisible(getValue()==1);
@@ -4993,7 +5006,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_attack_effect</ControlName>
-    <ZIndex>52</ZIndex>
+    <ZIndex>30</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5037,7 +5050,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"64"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer3.setVisible(getValue()==1);
 	window.btn_effect_attack.setVisible(getValue()==1);
@@ -5049,7 +5065,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_damage</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>32</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5093,7 +5109,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"84"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer2.setVisible(getValue()==1);
 	window.btn_damage.setVisible(getValue()==1);
@@ -5105,7 +5124,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_damage_effect</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>33</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5149,7 +5168,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"84"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer1.setVisible(getValue()==1);
 	window.btn_effect_damage.setVisible(getValue()==1);
@@ -5161,7 +5183,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_effect</ControlName>
-    <ZIndex>45</ZIndex>
+    <ZIndex>23</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5205,11 +5227,15 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"24"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer8.setVisible(getValue()==1);
 	window.btn_effect.setVisible(getValue()==1);
 end
+
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -5217,7 +5243,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_effect_effect</ControlName>
-    <ZIndex>46</ZIndex>
+    <ZIndex>24</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5261,7 +5287,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"24"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer7.setVisible(getValue()==1);
 	window.btn_effect_effect.setVisible(getValue()==1);
@@ -5273,7 +5302,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_action</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>18</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer6"}}},
@@ -5330,7 +5359,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_attack</ControlName>
-    <ZIndex>24</ZIndex>
+    <ZIndex>16</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer4"}}},
@@ -5528,7 +5557,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect</ControlName>
-    <ZIndex>28</ZIndex>
+    <ZIndex>20</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer8"}}},
@@ -5585,7 +5614,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_action</ControlName>
-    <ZIndex>25</ZIndex>
+    <ZIndex>17</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer5"}}},
@@ -5642,7 +5671,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_attack</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>15</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer3"}}},
@@ -5756,7 +5785,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_effect</ControlName>
-    <ZIndex>27</ZIndex>
+    <ZIndex>19</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer7"}}},
@@ -5896,7 +5925,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label1</ControlName>
-    <ZIndex>47</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -5948,7 +5977,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label2</ControlName>
-    <ZIndex>43</ZIndex>
+    <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -6000,7 +6029,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label3</ControlName>
-    <ZIndex>44</ZIndex>
+    <ZIndex>22</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -6052,7 +6081,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label4</ControlName>
-    <ZIndex>50</ZIndex>
+    <ZIndex>28</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -6104,7 +6133,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label5</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>31</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -6156,7 +6185,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label6</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>34</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -10969,9 +10998,12 @@ end</LUACode>
     <LUACode>
 function onValueChanged()
 	window.sw_action_controls.setControlsVisibility();
+	DB.setValue(window.getDatabaseNode(),"box_show_both","number",1-getValue());
 end
 
-</LUACode>
+function setChatFields()
+	
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -11554,14 +11586,16 @@ local rDoNotToggleLock = {}
 function updateLockState(bReadOnly)
 	local rWindows = getControls();	
 	Funct.LockControls(bReadOnly, rWindows, rDoNotToggleLock);
-end</LUACode>
+end
+
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>action_sheet_chat</WindowName>
     <ControlName>bottom_spacer</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -11611,8 +11645,134 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>action_sheet_chat</WindowName>
-    <ControlName>Label31</ControlName>
-    <ZIndex>1</ZIndex>
+    <ControlName>box_show_both</ControlName>
+    <ZIndex>7</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_show_both"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"334"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode>
+function onInit()
+	setChatFields(getValue()==1);
+end
+
+function onValueChanged()
+	setChatFields(getValue()==1);
+end
+
+function setChatFields(bBoth)
+	-- chat Success Label
+	if bBoth then		
+		window.lbl_chat_success.setValue(Interface.getString("action_chat_success_both"));
+	else
+		window.lbl_chat_success.setValue(Interface.getString("action_chat_success_one"));	
+	end
+	
+	-- Chat Fail 
+	window.lbl_chat_fail.setVisible(bBoth);
+	window.str_chat_fail.setVisible(bBoth);
+end
+
+
+
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>action_sheet_chat</WindowName>
+    <ControlName>control_windows</ControlName>
+    <ZIndex>6</ZIndex>
+    <ControlClass>FGCustomControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"control_windows"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomClassName"},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"5"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"str_chat_fail"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"288"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>action_sheet_chat</WindowName>
+    <ControlName>Label1</ControlName>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -11620,7 +11780,7 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label31"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
@@ -11636,8 +11796,8 @@ end</LUACode>
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Chat on Success"}},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"box_show_both"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -11649,12 +11809,12 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"StackVertWith"},
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"356"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode />
@@ -11663,7 +11823,7 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>action_sheet_chat</WindowName>
-    <ControlName>Label32</ControlName>
+    <ControlName>lbl_chat_fail</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -11672,12 +11832,12 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label32"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_chat_fail"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"138"}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -11689,7 +11849,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Chat on Fail"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Send to Chat on Fail:"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -11715,6 +11875,58 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>action_sheet_chat</WindowName>
+    <ControlName>lbl_chat_success</ControlName>
+    <ZIndex>1</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"lbl_chat_success"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"138"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Send to Chat on Success:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>action_sheet_chat</WindowName>
     <ControlName>str_chat_fail</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -11731,7 +11943,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"300"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"324"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -11763,7 +11975,7 @@ end</LUACode>
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"str_chat_success"}},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"lbl_chat_fail"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -11792,7 +12004,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"300"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"324"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -13942,6 +14154,10 @@ function showWindow()
 	local bValue = window.box_effect.getValue() == 1;
 	window.lbl_effect.setVisible(bValue);
 	window.sw_effect.setVisible(bValue);
+end
+
+function setEffectButton(nValue)
+	window.box_show_effect_effect.setValue(nValue);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -79115,6 +79331,8 @@ end</Script>
 	&lt;!-- Action Sheets --&gt;
 	&lt;string name="damage_roll_weapon"&gt;Weapon&lt;/string&gt;
 	&lt;string name="damage_roll_bonus"&gt;Bonus&lt;/string&gt;
+	&lt;string name="action_chat_success_both"&gt;Send to Chat on Success:&lt;/string&gt;
+	&lt;string name="action_chat_success_one"&gt;Send to Chat:&lt;/string&gt;
 	
 	&lt;!-- Effect Sheets --&gt;
 	&lt;string name="dt_revise_warning"&gt;Warning: Changing this will reset everything in the Action.&lt;/string&gt;

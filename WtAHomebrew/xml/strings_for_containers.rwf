@@ -23,6 +23,8 @@
 	&lt;!-- Action Sheets --&gt;
 	&lt;string name="damage_roll_weapon"&gt;Weapon&lt;/string&gt;
 	&lt;string name="damage_roll_bonus"&gt;Bonus&lt;/string&gt;
+	&lt;string name="action_chat_success_both"&gt;Send to Chat on Success:&lt;/string&gt;
+	&lt;string name="action_chat_success_one"&gt;Send to Chat:&lt;/string&gt;
 	
 	&lt;!-- Effect Sheets --&gt;
 	&lt;string name="dt_revise_warning"&gt;Warning: Changing this will reset everything in the Action.&lt;/string&gt;

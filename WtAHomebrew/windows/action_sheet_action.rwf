@@ -161,9 +161,12 @@ end</LUACode>
     <LUACode>
 function onValueChanged()
 	window.sw_action_controls.setControlsVisibility();
+	DB.setValue(window.getDatabaseNode(),"box_show_both","number",1-getValue());
 end
 
-</LUACode>
+function setChatFields()
+	
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

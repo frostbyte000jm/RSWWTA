@@ -209,7 +209,11 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"112"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onValueChanged()
+	window.parentcontrol.window.parentcontrol.setEffectButton(getValue());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

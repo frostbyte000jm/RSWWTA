@@ -67,7 +67,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_action</ControlName>
-    <ZIndex>48</ZIndex>
+    <ZIndex>26</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -111,7 +111,10 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer6.setVisible(getValue()==1);
 	window.btn_action.setVisible(getValue()==1);
@@ -123,7 +126,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_action_effect</ControlName>
-    <ZIndex>49</ZIndex>
+    <ZIndex>27</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -167,7 +170,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer5.setVisible(getValue()==1);
 	window.btn_effect_action.setVisible(getValue()==1);
@@ -179,7 +185,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_attack</ControlName>
-    <ZIndex>51</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -223,7 +229,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"64"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer4.setVisible(getValue()==1);
 	window.btn_attack.setVisible(getValue()==1);
@@ -235,7 +244,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_attack_effect</ControlName>
-    <ZIndex>52</ZIndex>
+    <ZIndex>30</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -279,7 +288,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"64"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer3.setVisible(getValue()==1);
 	window.btn_effect_attack.setVisible(getValue()==1);
@@ -291,7 +303,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_damage</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>32</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -335,7 +347,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"84"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer2.setVisible(getValue()==1);
 	window.btn_damage.setVisible(getValue()==1);
@@ -347,7 +362,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_damage_effect</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>33</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -391,7 +406,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"84"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer1.setVisible(getValue()==1);
 	window.btn_effect_damage.setVisible(getValue()==1);
@@ -403,7 +421,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_effect</ControlName>
-    <ZIndex>45</ZIndex>
+    <ZIndex>23</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -447,11 +465,15 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"317"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"24"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer8.setVisible(getValue()==1);
 	window.btn_effect.setVisible(getValue()==1);
 end
+
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -459,7 +481,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>box_show_effect_effect</ControlName>
-    <ZIndex>46</ZIndex>
+    <ZIndex>24</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -503,7 +525,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"355"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"24"}}
 ]}}</Definition>
-    <LUACode>
+    <LUACode>function onInit()
+	onValueChanged();
+end
+
 function onValueChanged()
 	window.spacer7.setVisible(getValue()==1);
 	window.btn_effect_effect.setVisible(getValue()==1);
@@ -515,7 +540,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_action</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>18</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer6"}}},
@@ -572,7 +597,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_attack</ControlName>
-    <ZIndex>24</ZIndex>
+    <ZIndex>16</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer4"}}},
@@ -770,7 +795,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect</ControlName>
-    <ZIndex>28</ZIndex>
+    <ZIndex>20</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer8"}}},
@@ -827,7 +852,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_action</ControlName>
-    <ZIndex>25</ZIndex>
+    <ZIndex>17</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer5"}}},
@@ -884,7 +909,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_attack</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>15</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer3"}}},
@@ -998,7 +1023,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>btn_effect_effect</ControlName>
-    <ZIndex>27</ZIndex>
+    <ZIndex>19</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right","Parent":"spacer7"}}},
@@ -1138,7 +1163,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label1</ControlName>
-    <ZIndex>47</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1190,7 +1215,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label2</ControlName>
-    <ZIndex>43</ZIndex>
+    <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1242,7 +1267,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label3</ControlName>
-    <ZIndex>44</ZIndex>
+    <ZIndex>22</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1294,7 +1319,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label4</ControlName>
-    <ZIndex>50</ZIndex>
+    <ZIndex>28</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1346,7 +1371,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label5</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>31</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1398,7 +1423,7 @@ end
   <WindowControls>
     <WindowName>action_detail</WindowName>
     <ControlName>Label6</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>34</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
