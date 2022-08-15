@@ -3,6 +3,18 @@
     <ScriptName>FBActionsManager</ScriptName>
     <FolderID>68</FolderID>
     <Script>
+function AddActionToEffect(nodeChar, nodeAction)
+
+end
+
+function AddActionToRoll(nodeChar, nodeAction)
+
+end
+
+function AddActionEffectToRoll(nodeChar, nodeAction,bOnSuccess)
+
+end
+
 function AddStatsToRollAttack(nodeChar,nodeAction)
 	--[[
 		This will collect from the action.
