@@ -104,7 +104,7 @@ function registerAdditionalEffectFields()
 	EffectManager.registerEffectVar("str_effect_id",{sDBType = "string", sDBField = "str_effect_id"});	
 end
 
-function registerAfterEffectAdd() --this needs to be split out.
+function registerAfterEffectAdd() --Debug.todo() this needs to be split out.
 	function afterEffect(nodeEffect, rNewEffect)
 		if rNewEffect.nActive then
 			-- Set Active
@@ -127,7 +127,7 @@ function registerAfterEffectAdd() --this needs to be split out.
 							rActor = ActorManager.resolveActor(nodeCT),
 							nodeEffect = nodeEffect,
 							sTriggerCalled = FBEffectsManager.StrEffectList.rTriggers.Now[2],
-						}					
+						}
 						
 						-- Run Effect			
 						FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);						
@@ -411,15 +411,14 @@ end
 --[[********** Place Effects on Targets **********]]--
 
 function SendEffectToTargets(rSource, rRoll)
-	--Debug.chat("SendEffectToTargets: \nrSource",rSource,"\n\nrTarget",rTarget,"\n\nrRoll",rRoll);
+	--Debug.chat("SendEffectToTargets: \nrSource",rSource,"\n\nrRoll",rRoll);
 	--[[
 		Who to apply Effect to? Self / Target(s)
 		Get CT Node
 		Add Effect
 		return
 	]]--
-	local pathEffect = rRoll.pathEffect;
-	local nodeEffectTrigger = DB.findNode(pathEffect);
+	local nodeEffectTrigger = rRoll.nodeEffectToAdd;
 	local sApplyEffect = DB.getValue(nodeEffectTrigger,"dt_effect_apply","");
 	local rSourceTargets = {};
 	

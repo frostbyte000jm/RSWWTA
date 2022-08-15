@@ -2,17 +2,113 @@
   <Scripts>
     <ScriptName>FBActionsManager</ScriptName>
     <FolderID>68</FolderID>
-    <Script>
-function AddActionToEffect(nodeChar, nodeAction)
+    <Script>--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Roll Type Lists
+*****************************************************
+]]--
+local n = 0;
+function count(bReset)	
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+rStrActionsList = {	--FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]
+	rAddActionTypes = { 
+		Effect = {count(true), "Effect"},		
+	},	
+}
 
+function AddActionToEffect(nodeChar, nodeAction, rAddInfo)
+	--Debug.chat("nodeChar",nodeChar,"nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	if not(rAddInfo) then
+		rAddInfo = {}
+	end
+	rAddInfo.nodeEffectToAdd = DB.getChild(nodeAction,"effect_sheet");
+	rAddInfo.rActor = ActorManager.resolveActor(nodeChar);
+	FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
+	
+	if rAddInfo.sMsgSuccess then
+		FBChatManager.sendMessage(nodeChar, rAddInfo.sMsgSuccess,  "action");
+	end
 end
 
-function AddActionToRoll(nodeChar, nodeAction)
-
+function AddActionToRoll(nodeChar, nodeAction, rAddInfo)
+	-- Check for Stress
+	--Debug.todo() This should check to see if the user is holding control to do the inverse
+    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
+    
+    --Send to Roller
+    FBRollManager.rollInit(nodeChar, rAddInfo.sActionType, rAddInfo);
 end
 
-function AddActionEffectToRoll(nodeChar, nodeAction,bOnSuccess)
+function ChooseActionNode(nodeAction, sActionType)
+	if sActionType == FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2] then
+		return DB.getChild(nodeAction,"effect");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Action[2] then
+		return DB.getChild(nodeAction,"action");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Attack[2] then
+		return DB.getChild(nodeAction,"attack");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Damage[2] then
+		return DB.getChild(nodeAction,"damage");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Defense[2] then
+		return DB.getChild(nodeAction,"defense");
+	end
+end
 
+function ToggleAction(nodeChar, nodeAction, sActionType)
+	nodeAction = ChooseActionNode(nodeAction, sActionType);
+	
+	if nodeAction then
+		rAddInfo = {}
+		
+		--box groups
+		bEffectOnly = DB.getValue(nodeAction,"box_effect_only",0) == 1;
+		bEffectBeforeRoll = DB.getValue(nodeAction,"box_before_roll",0) == 1;
+		bEffectAfterRoll = DB.getValue(nodeAction,"box_after_roll",0) == 1;
+		bEffectOnSuccess = DB.getValue(nodeAction,"box_on_success",0) == 1;
+		bEffectManual = DB.getValue(nodeAction,"box_manually",0) == 1;
+		
+		--fields for chat message
+		rAddInfo.sMsgSuccess = DB.getValue(nodeAction,"str_chat_success", "");
+		rAddInfo.sMsgFail = DB.getValue(nodeAction,"str_chat_fail", "");
+		
+		if bEffectOnly then
+			AddActionToEffect(nodeChar, nodeAction, rAddInfo);			
+			return;
+		elseif bEffectBeforeRoll then
+			AddActionToEffect(nodeChar, nodeAction);
+		end
+		
+		--Debug.toDo() This is where we should add in a Resource Check		
+		
+		--stats for Roller
+		local sStat1 = DB.getValue(nodeAction,"dt_stat1","");
+		local sStat2 = DB.getValue(nodeAction,"dt_stat2","");
+		local sSpecialty = DB.getValue(nodeAction,"str_speciality","");
+		
+		--Load Stats for Roller
+		manager_char_stats.AddStatsToRoll(nodeChar, {sStat1, sStat2}, sSpecialty);
+		
+		--stats for Roll Manager
+		rAddInfo.sActionType = sActionType;
+		rAddInfo.sActionName = DB.getValue(nodeAction.getParent(),"name", "");
+		rAddInfo.nMod = DB.getValue(nodeAction,"num_mod", 0);
+		rAddInfo.nDiff = DB.getValue(nodeAction,"num_diff", 0);
+		rAddInfo.nDice = DB.getValue(nodeAction,"num_dice", 0);
+			
+		--stats for effects
+		if bEffectAfterRoll or bEffectOnSuccess then
+			rAddInfo.nodeEffectToAdd = DB.getChild(nodeAction,"effect_sheet");
+			rAddInfo.bEffectOnSuccess = bEffectOnSuccess;			
+		end
+		
+		-- Create Roll
+		AddActionToRoll(nodeChar, nodeAction, rAddInfo)
+	end
 end
 
 function AddStatsToRollAttack(nodeChar,nodeAction)

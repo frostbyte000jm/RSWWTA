@@ -708,7 +708,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"74"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Action[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -765,7 +780,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Attack[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -822,67 +852,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"202"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_detail</WindowName>
-    <ControlName>btn_damage_bck</ControlName>
-    <ZIndex>13</ZIndex>
-    <ControlClass>FGButton</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Dam"}},
-      {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_damage_bck"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":null,"DiceRollDescription":null,"DiceRollType":null,"UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":null,"ResultHandlerFunction":null,"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"HoverIconName"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"PressedIconName"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
-]}}</Definition>
     <LUACode>
-
 function onClickRelease(button, x, y)
-    -- Create Char and Action container node
+	-- Create Char and Action container node
     local whereAmI = window.getDatabaseNode().getPath();
     whereAmI = string.match(whereAmI,"%a+");
     local nodeChar = nil;
@@ -892,21 +864,10 @@ function onClickRelease(button, x, y)
     else
         nodeChar = window.windowlist.window.getDatabaseNode();
     end
-    local nodeLink = window.link.getTargetDatabaseNode();
+    local nodeAction = window.link.getTargetDatabaseNode();
     
-    -- Build roll
-    local rAddInfo = FBActionsManager.AddStatsToRollDamage(nodeChar,nodeLink);
-        
-    -- crap out
-    if rAddInfo == nil then return end
-    
-    -- Check for Stress
-    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
-    
-    --Send to Roller
-    FBRollManager.rollInit(nodeChar, "Attack", rAddInfo);
-end
-</LUACode>
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Damage[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -963,7 +924,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"266"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Defense[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1018,9 +994,24 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"28"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1077,7 +1068,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"116"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Action[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1134,7 +1141,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"180"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Attack[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1189,9 +1212,25 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"244"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"28"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Damage[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1248,7 +1287,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"308"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Defense[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1302,69 +1357,12 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"52"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"51"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"30"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_detail</WindowName>
-    <ControlName>btn_hit_bck</ControlName>
-    <ZIndex>12</ZIndex>
-    <ControlClass>FGButton</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Hit"}},
-      {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_hit_bck"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":null,"DiceRollDescription":null,"DiceRollType":null,"UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":null,"ResultHandlerFunction":null,"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"HoverIconName"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"PressedIconName"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"90"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
 ]}}</Definition>
     <LUACode>
 function onClickRelease(button, x, y)
-    -- Create Char and Action container node
+	-- Create Char and Action container node
     local whereAmI = window.getDatabaseNode().getPath();
     whereAmI = string.match(whereAmI,"%a+");
     local nodeChar = nil;
@@ -1374,19 +1372,10 @@ function onClickRelease(button, x, y)
     else
         nodeChar = window.windowlist.window.getDatabaseNode();
     end
-    local nodeLink = window.link.getTargetDatabaseNode();
+    local nodeAction = window.link.getTargetDatabaseNode();
     
-    -- Build roll
-    local rAddInfo = FBActionsManager.AddStatsToRollAttack(nodeChar,nodeLink);
-        
-    -- crap out
-    if rAddInfo == nil then return end
-    
-    -- Check for Stress
-    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
-    
-    --Send to Roller
-    FBRollManager.rollInit(nodeChar, "Attack", rAddInfo);
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]);    
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction);    
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>

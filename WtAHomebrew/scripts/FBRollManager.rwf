@@ -17,12 +17,13 @@ function count(bReset)
 	return n;
 end
 rStrRollList = {
-	rRollTypes = {--FBRollManager.rStrRollList.rRollTypes
+	rRollTypes = { --FBRollManager.rStrRollList.rRollTypes.Action[2]
 		Check = {count(true), "Check"},
 		Quick = {count(), "Quick"},
 		Attack = {count(), "Attack"},  --This has a separate Trigger
 		Action = {count(), "Action"},
 		Damage = {count(), "Damage"},
+		Defense = {count(), "Defense"},
 		Initiative = {count(), "Initiative"},			
 	},
 	rAttackTypes = { 
@@ -69,7 +70,7 @@ function rollInit(nodeChar, sType, rAddInfo)
         preActionRoll(nodeChar, rAddInfo);
 	
 	-- Attack
-	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] then
+	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] or sType == rStrRollList.rRollTypes.Defense[2] then
         preActionRoll(nodeChar, rAddInfo);      
     
     -- Initiative
@@ -302,7 +303,7 @@ end
 
 function addEffect(rSource, rRoll)
 	--Debug.chat("addEffect - rRoll",rRoll, "rSource", rSource);
-	if not rRoll.pathEffect or string.len(rRoll.pathEffect) == 0 then return end
+	if not rRoll.nodeEffectToAdd then return end
 	if not rSource.sCTNode or string.len(rSource.sCTNode) == 0 then return end
 		
 	FBEffectsManager.SendEffectToTargets(rSource, rRoll);	
@@ -440,11 +441,16 @@ function postActionRoll(rSource, rTarget, rRoll)
     FBChatManager.sendMessageRoll(rSource, rRoll);
     
     -- Add Effect
-    if rRoll.bAddEffect then
-		addEffect(rSource, rRoll);
-	elseif rRoll.bAddEffectSuccess and rRoll.nTotal &gt; 0 then
-		addEffect(rSource, rRoll);
-    end 
+    if rRoll.nodeEffectToAdd then
+		if rRoll.bAddEffectSuccess then
+			if rRoll.nTotal &gt; 0 then
+				addEffect(rSource, rRoll);
+			end
+		else
+			addEffect(rSource, rRoll);
+		end
+	end
+		
     
     --send return
     if rRoll.sReturnLoc and string.len(rRoll.sReturnLoc) &gt; 0 then

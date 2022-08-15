@@ -5470,7 +5470,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"74"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Action[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5527,7 +5542,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Attack[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5584,67 +5614,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"202"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_detail</WindowName>
-    <ControlName>btn_damage_bck</ControlName>
-    <ZIndex>13</ZIndex>
-    <ControlClass>FGButton</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Dam"}},
-      {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_damage_bck"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":null,"DiceRollDescription":null,"DiceRollType":null,"UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":null,"ResultHandlerFunction":null,"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"HoverIconName"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"PressedIconName"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
-]}}</Definition>
     <LUACode>
-
 function onClickRelease(button, x, y)
-    -- Create Char and Action container node
+	-- Create Char and Action container node
     local whereAmI = window.getDatabaseNode().getPath();
     whereAmI = string.match(whereAmI,"%a+");
     local nodeChar = nil;
@@ -5654,21 +5626,10 @@ function onClickRelease(button, x, y)
     else
         nodeChar = window.windowlist.window.getDatabaseNode();
     end
-    local nodeLink = window.link.getTargetDatabaseNode();
+    local nodeAction = window.link.getTargetDatabaseNode();
     
-    -- Build roll
-    local rAddInfo = FBActionsManager.AddStatsToRollDamage(nodeChar,nodeLink);
-        
-    -- crap out
-    if rAddInfo == nil then return end
-    
-    -- Check for Stress
-    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
-    
-    --Send to Roller
-    FBRollManager.rollInit(nodeChar, "Attack", rAddInfo);
-end
-</LUACode>
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Damage[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5725,7 +5686,22 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"266"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBRollManager.rStrRollList.rRollTypes.Defense[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5780,9 +5756,24 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"28"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    FBActionsManager.ToggleAction(nodeChar, nodeAction, FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5839,7 +5830,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"116"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Action[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5896,7 +5903,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"180"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+    
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Attack[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5951,9 +5974,25 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"244"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"28"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Damage[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -6010,7 +6049,23 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"308"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"29"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onClickRelease(button, x, y)
+	-- Create Char and Action container node
+    local whereAmI = window.getDatabaseNode().getPath();
+    whereAmI = string.match(whereAmI,"%a+");
+    local nodeChar = nil;
+    if whereAmI == "combattracker" then
+		rActor = ActorManager.resolveActor(window.getDatabaseNode().getParent().getParent());
+		nodeChar = DB.findNode(rActor.sCreatureNode);
+    else
+        nodeChar = window.windowlist.window.getDatabaseNode();
+    end
+    local nodeAction = window.link.getTargetDatabaseNode();
+        
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBRollManager.rStrRollList.rRollTypes.Defense[2]);
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction); 
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -6064,69 +6119,12 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"52"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"51"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"30"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_detail</WindowName>
-    <ControlName>btn_hit_bck</ControlName>
-    <ZIndex>12</ZIndex>
-    <ControlClass>FGButton</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Hit"}},
-      {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_hit_bck"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":null,"DiceRollDescription":null,"DiceRollType":null,"UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":null,"ResultHandlerFunction":null,"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"buttonup"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"HoverIconName"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"PressedIconName"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"90"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
 ]}}</Definition>
     <LUACode>
 function onClickRelease(button, x, y)
-    -- Create Char and Action container node
+	-- Create Char and Action container node
     local whereAmI = window.getDatabaseNode().getPath();
     whereAmI = string.match(whereAmI,"%a+");
     local nodeChar = nil;
@@ -6136,19 +6134,10 @@ function onClickRelease(button, x, y)
     else
         nodeChar = window.windowlist.window.getDatabaseNode();
     end
-    local nodeLink = window.link.getTargetDatabaseNode();
+    local nodeAction = window.link.getTargetDatabaseNode();
     
-    -- Build roll
-    local rAddInfo = FBActionsManager.AddStatsToRollAttack(nodeChar,nodeLink);
-        
-    -- crap out
-    if rAddInfo == nil then return end
-    
-    -- Check for Stress
-    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
-    
-    --Send to Roller
-    FBRollManager.rollInit(nodeChar, "Attack", rAddInfo);
+    nodeAction = FBActionsManager.ChooseActionNode(nodeAction, FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]);    
+    FBActionsManager.AddActionToEffect(nodeChar, nodeAction);    
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -29484,7 +29473,7 @@ end</LUACode>
       {"Name":"HoverIconName"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -61135,10 +61124,74 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>npc</WindowName>
+    <ControlName>box_stress</ControlName>
+    <ZIndex>24</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"box_stress"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"687"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"178"}}
+]}}</Definition>
+    <LUACode>--Debug.ToDo() This probably shouldn't create an addhandler
+function onInit()
+	DB.addHandler("combattracker.round", "onUpdate", updateBox);
+	updateBox(DB.getChild("combattracker", "round"));
+end
+
+function updateBox(node)
+	if DB.getValue(node,"", 0) &gt; 0 then
+		setValue(1);
+	else
+		setValue(0);
+	end
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc</WindowName>
     <ControlName>btn_close</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"close_base"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
@@ -61147,6 +61200,7 @@ end</LUACode>
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_close"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"24"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"24"}},
@@ -61164,7 +61218,11 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_close"}},
       {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"button_close_down"}},
@@ -61190,7 +61248,9 @@ end</LUACode>
     <ZIndex>6</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CustomControl1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"line_column"}},
@@ -61210,7 +61270,11 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -61236,6 +61300,7 @@ end</LUACode>
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61256,8 +61321,13 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -61278,10 +61348,63 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>npc</WindowName>
+    <ControlName>Label1</ControlName>
+    <ZIndex>25</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label1"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"98"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"box_stress"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"715"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"180"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc</WindowName>
     <ControlName>Label2</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61304,7 +61427,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Health:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61329,6 +61456,7 @@ end</LUACode>
     <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61351,7 +61479,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"space"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61376,6 +61508,7 @@ end</LUACode>
     <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61398,7 +61531,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"reach"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61423,6 +61560,7 @@ end</LUACode>
     <ZIndex>12</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61445,7 +61583,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"senses"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61470,6 +61612,7 @@ end</LUACode>
     <ZIndex>16</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61492,7 +61635,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Resource:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61517,6 +61664,7 @@ end</LUACode>
     <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61539,7 +61687,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"num_init_base"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61564,6 +61716,7 @@ end</LUACode>
     <ZIndex>19</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -61586,7 +61739,11 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"/"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -61683,6 +61840,7 @@ end
     <ZIndex>17</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_char_resource"}},
@@ -61710,8 +61868,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -61740,6 +61902,7 @@ end
     <ZIndex>15</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_health_current"}},
@@ -61767,8 +61930,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -61797,6 +61964,7 @@ end
     <ZIndex>18</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_health_total"}},
@@ -61824,8 +61992,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -61854,6 +62026,7 @@ end
     <ZIndex>20</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"num_init_base"}},
@@ -61881,8 +62054,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -61911,6 +62088,7 @@ end
     <ZIndex>11</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"reach"}},
@@ -61938,8 +62116,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -61968,6 +62150,7 @@ end
     <ZIndex>13</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -61995,7 +62178,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -62024,6 +62211,7 @@ end
     <ZIndex>9</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"space"}},
@@ -62051,8 +62239,12 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MinValue"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
@@ -62081,6 +62273,7 @@ end
     <ZIndex>22</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -62108,7 +62301,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -62142,6 +62339,7 @@ end
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -62162,8 +62360,13 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -62189,6 +62392,7 @@ end
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -62209,8 +62413,13 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge","Value":{"@xsi:type":"xsd:string","#text":"replace"}},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -62236,6 +62445,7 @@ end
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -62256,8 +62466,13 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge","Value":{"@xsi:type":"xsd:string","#text":"replace"}},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -62283,6 +62498,7 @@ end
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -62303,8 +62519,13 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -62329,6 +62550,7 @@ end
     <ZIndex>2</ZIndex>
     <ControlClass>FGVerticalTab</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"tabs"}},
@@ -62349,7 +62571,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge","Value":{"@xsi:type":"xsd:string","#text":"replace"}},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -62972,9 +63198,10 @@ end</LUACode>
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Button1</ControlName>
-    <ZIndex>2</ZIndex>
+    <ZIndex>1</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
@@ -62983,6 +63210,7 @@ end</LUACode>
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Button1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
@@ -63000,7 +63228,11 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"PressedIconName"},
@@ -63011,7 +63243,7 @@ end</LUACode>
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"508"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -63031,10 +63263,12 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>divider1</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"divider1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"line_column"}},
@@ -63054,7 +63288,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -63064,7 +63302,7 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"5"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
@@ -63076,9 +63314,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>IconControl5</ControlName>
-    <ZIndex>12</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"IconControl5"}},
@@ -63099,7 +63338,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -63120,9 +63363,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label2</ControlName>
-    <ZIndex>3</ZIndex>
+    <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -63145,7 +63389,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Non-ID Name:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -63155,7 +63403,7 @@ end
       {"Name":"StackVertWith"},
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"7"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"4"}}
@@ -63167,9 +63415,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label4</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -63192,7 +63441,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Attributes"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -63214,9 +63467,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label5</ControlName>
-    <ZIndex>13</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -63239,7 +63493,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Abilities"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -63261,9 +63519,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>nonid_name</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -63291,7 +63550,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63305,7 +63568,7 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"95"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
@@ -63377,10 +63640,11 @@ end</LUACode>
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_knowledges</ControlName>
-    <ZIndex>16</ZIndex>
+    <ZIndex>13</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63407,7 +63671,11 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -63455,10 +63723,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_skills</ControlName>
-    <ZIndex>15</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63485,7 +63754,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -63533,10 +63806,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_talents</ControlName>
-    <ZIndex>14</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63563,7 +63837,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -63611,10 +63889,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_mental</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63641,7 +63920,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -63690,10 +63973,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_physical</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63720,7 +64004,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -63769,10 +64057,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_social</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -63799,7 +64088,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -75530,17 +75823,113 @@ end</Script>
   <Scripts>
     <ScriptName>FBActionsManager</ScriptName>
     <FolderID>68</FolderID>
-    <Script>
-function AddActionToEffect(nodeChar, nodeAction)
+    <Script>--[[
+Warning: This page has LanguageUpdates
+*****************************************************
+			Roll Type Lists
+*****************************************************
+]]--
+local n = 0;
+function count(bReset)	
+	if bReset then
+		n = 0;
+	end
+	n = n+1;
+	return n;
+end
+rStrActionsList = {	--FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2]
+	rAddActionTypes = { 
+		Effect = {count(true), "Effect"},		
+	},	
+}
 
+function AddActionToEffect(nodeChar, nodeAction, rAddInfo)
+	--Debug.chat("nodeChar",nodeChar,"nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	if not(rAddInfo) then
+		rAddInfo = {}
+	end
+	rAddInfo.nodeEffectToAdd = DB.getChild(nodeAction,"effect_sheet");
+	rAddInfo.rActor = ActorManager.resolveActor(nodeChar);
+	FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
+	
+	if rAddInfo.sMsgSuccess then
+		FBChatManager.sendMessage(nodeChar, rAddInfo.sMsgSuccess,  "action");
+	end
 end
 
-function AddActionToRoll(nodeChar, nodeAction)
-
+function AddActionToRoll(nodeChar, nodeAction, rAddInfo)
+	-- Check for Stress
+	--Debug.todo() This should check to see if the user is holding control to do the inverse
+    rAddInfo.bStress = DB.getValue(nodeChar, "box_stress", 0) == 1;
+    
+    --Send to Roller
+    FBRollManager.rollInit(nodeChar, rAddInfo.sActionType, rAddInfo);
 end
 
-function AddActionEffectToRoll(nodeChar, nodeAction,bOnSuccess)
+function ChooseActionNode(nodeAction, sActionType)
+	if sActionType == FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2] then
+		return DB.getChild(nodeAction,"effect");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Action[2] then
+		return DB.getChild(nodeAction,"action");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Attack[2] then
+		return DB.getChild(nodeAction,"attack");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Damage[2] then
+		return DB.getChild(nodeAction,"damage");
+	elseif sActionType == FBRollManager.rStrRollList.rRollTypes.Defense[2] then
+		return DB.getChild(nodeAction,"defense");
+	end
+end
 
+function ToggleAction(nodeChar, nodeAction, sActionType)
+	nodeAction = ChooseActionNode(nodeAction, sActionType);
+	
+	if nodeAction then
+		rAddInfo = {}
+		
+		--box groups
+		bEffectOnly = DB.getValue(nodeAction,"box_effect_only",0) == 1;
+		bEffectBeforeRoll = DB.getValue(nodeAction,"box_before_roll",0) == 1;
+		bEffectAfterRoll = DB.getValue(nodeAction,"box_after_roll",0) == 1;
+		bEffectOnSuccess = DB.getValue(nodeAction,"box_on_success",0) == 1;
+		bEffectManual = DB.getValue(nodeAction,"box_manually",0) == 1;
+		
+		--fields for chat message
+		rAddInfo.sMsgSuccess = DB.getValue(nodeAction,"str_chat_success", "");
+		rAddInfo.sMsgFail = DB.getValue(nodeAction,"str_chat_fail", "");
+		
+		if bEffectOnly then
+			AddActionToEffect(nodeChar, nodeAction, rAddInfo);			
+			return;
+		elseif bEffectBeforeRoll then
+			AddActionToEffect(nodeChar, nodeAction);
+		end
+		
+		--Debug.toDo() This is where we should add in a Resource Check		
+		
+		--stats for Roller
+		local sStat1 = DB.getValue(nodeAction,"dt_stat1","");
+		local sStat2 = DB.getValue(nodeAction,"dt_stat2","");
+		local sSpecialty = DB.getValue(nodeAction,"str_speciality","");
+		
+		--Load Stats for Roller
+		manager_char_stats.AddStatsToRoll(nodeChar, {sStat1, sStat2}, sSpecialty);
+		
+		--stats for Roll Manager
+		rAddInfo.sActionType = sActionType;
+		rAddInfo.sActionName = DB.getValue(nodeAction.getParent(),"name", "");
+		rAddInfo.nMod = DB.getValue(nodeAction,"num_mod", 0);
+		rAddInfo.nDiff = DB.getValue(nodeAction,"num_diff", 0);
+		rAddInfo.nDice = DB.getValue(nodeAction,"num_dice", 0);
+			
+		--stats for effects
+		if bEffectAfterRoll or bEffectOnSuccess then
+			rAddInfo.nodeEffectToAdd = DB.getChild(nodeAction,"effect_sheet");
+			rAddInfo.bEffectOnSuccess = bEffectOnSuccess;			
+		end
+		
+		-- Create Roll
+		AddActionToRoll(nodeChar, nodeAction, rAddInfo)
+	end
 end
 
 function AddStatsToRollAttack(nodeChar,nodeAction)
@@ -76223,7 +76612,7 @@ function registerAdditionalEffectFields()
 	EffectManager.registerEffectVar("str_effect_id",{sDBType = "string", sDBField = "str_effect_id"});	
 end
 
-function registerAfterEffectAdd() --this needs to be split out.
+function registerAfterEffectAdd() --Debug.todo() this needs to be split out.
 	function afterEffect(nodeEffect, rNewEffect)
 		if rNewEffect.nActive then
 			-- Set Active
@@ -76246,7 +76635,7 @@ function registerAfterEffectAdd() --this needs to be split out.
 							rActor = ActorManager.resolveActor(nodeCT),
 							nodeEffect = nodeEffect,
 							sTriggerCalled = FBEffectsManager.StrEffectList.rTriggers.Now[2],
-						}					
+						}
 						
 						-- Run Effect			
 						FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);						
@@ -76530,15 +76919,14 @@ end
 --[[********** Place Effects on Targets **********]]--
 
 function SendEffectToTargets(rSource, rRoll)
-	--Debug.chat("SendEffectToTargets: \nrSource",rSource,"\n\nrTarget",rTarget,"\n\nrRoll",rRoll);
+	--Debug.chat("SendEffectToTargets: \nrSource",rSource,"\n\nrRoll",rRoll);
 	--[[
 		Who to apply Effect to? Self / Target(s)
 		Get CT Node
 		Add Effect
 		return
 	]]--
-	local pathEffect = rRoll.pathEffect;
-	local nodeEffectTrigger = DB.findNode(pathEffect);
+	local nodeEffectTrigger = rRoll.nodeEffectToAdd;
 	local sApplyEffect = DB.getValue(nodeEffectTrigger,"dt_effect_apply","");
 	local rSourceTargets = {};
 	
@@ -76818,7 +77206,7 @@ local rActions = {};
 function handleEffectAction(nodeCT, rAddInfo)
 	--Debug.chat("handleEffectAction - nodeCT",nodeCT,"\n\nrAddInfo",rAddInfo);
 	
-	
+	clearActionList();
 	for idx, nodeAction in ipairs(rAddInfo.rNodeActions) do
 		--Debug.chat("idx",idx,"nodeAction",nodeAction);
 		--[[
@@ -76829,7 +77217,7 @@ function handleEffectAction(nodeCT, rAddInfo)
 		]]--
 		if nodeAction then
 			--Add anything you need rAddInfo into here. 
-			table.insert(rActions, nodeAction);			
+			table.insert(rActions, nodeAction);	
 --			local bBreak = chooseAction(nodeAction, rAddInfo);
 --			if bBreak and bBreak == true then
 --				--Debug.chat("Stop!");
@@ -76841,16 +77229,26 @@ function handleEffectAction(nodeCT, rAddInfo)
 end
 
 function popAction(rAddInfo)
-	if not next(rActions) then
-		return;
+	--Debug.chat("\npopAction - rActions",rActions,"rAddInfo",rAddInfo);
+	if #rActions &gt; 0 then
+		local nodeAction = table.remove(rActions,1);
+		if type(nodeAction) == "string" then
+			if nodeAction == "Delete_Effect" then
+				local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+				removeEffect(nodeChar, rAddInfo.nodeEffect);
+			end
+		elseif type(nodeAction) == "databasenode" then
+			chooseAction(nodeAction, rAddInfo);
+		end
 	end
-	
-	local nodeAction = table.remove(rActions,1);	
-	chooseAction(nodeAction, rAddInfo);
+end
+
+function clearActionList()
+	rActions = {}
 end
 
 function chooseAction(nodeAction, rAddInfo)
-	--Debug.chat("chooseAction - nodeAction",nodeAction,"rAddInfo",rAddInfo, "rActions",rActions);
+	--Debug.chat("chooseAction - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local sActionType = DB.getValue(nodeAction,"dt_action","");
 	if sActionType and string.len(sActionType) &gt; 0 then
 		rAddInfo.sActionType = sActionType;
@@ -76868,7 +77266,7 @@ function chooseAction(nodeAction, rAddInfo)
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Heal[2] then
 			actionHealing(nodeAction, rAddInfo);
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Resource[2] then
-			return actionResource(nodeAction, rAddInfo);
+			actionResource(nodeAction, rAddInfo);
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Routine[2] then
 		
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Effect[2] then
@@ -77270,9 +77668,9 @@ end
 *********************************************************************************
 ]]--
 function actionAddEffects(nodeAction, rAddInfo)
-	--Debug.chat("actionAddEffects - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	--Debug.chat("\nactionAddEffects - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_action_effect")) do
-		rAddInfo.pathEffect = DB.getPath(nodeRecord);
+		rAddInfo.nodeEffectToAdd = nodeRecord;
 		FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
 	end 
 end
@@ -77284,6 +77682,7 @@ end
 ]]--
 
 function handleEffectActionComplete(nodeAction, rAddInfo)
+	--Debug.chat("\nhandleEffectActionComplete - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	
 	--Skip Rounds
 	setSkipRounds(nodeAction, rAddInfo);
@@ -77326,12 +77725,14 @@ function sendChatMessage(nodeAction, rAddInfo)
 	end	
 end
 
-function checkRemoveEffect(nodeAction, rAddInfo)	
+function checkRemoveEffect(nodeAction, rAddInfo)
+	--Debug.chat("\ncheckRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local bRemoveEffect = DB.getValue(nodeAction,"box_remove_effect",0) == 1;
 	if bRemoveEffect then
 		--Debug.chat("checkRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
-		local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
-		removeEffect(nodeChar, rAddInfo.nodeEffect);
+		--local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+		--removeEffect(nodeChar, rAddInfo.nodeEffect);
+		table.insert(rActions, "Delete_Effect");			
 	end
 end
 
@@ -77449,6 +77850,10 @@ function addActionWatch(nodeEffect, nodeAction)
 end
 
 function removeEffect(nodeChar, nodeEffect)
+	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);
+	
+	
+	
 	if Session.IsHost then	
 		FBEffectsManager.removeEffect(nodeChar, nodeEffect);
 	else
@@ -77459,7 +77864,9 @@ function removeEffect(nodeChar, nodeEffect)
 		}
 		FBOOBManager.OOBifySend(msgOOB);
 	end
-end</Script>
+end
+
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
@@ -77949,12 +78356,13 @@ function count(bReset)
 	return n;
 end
 rStrRollList = {
-	rRollTypes = {--FBRollManager.rStrRollList.rRollTypes
+	rRollTypes = { --FBRollManager.rStrRollList.rRollTypes.Action[2]
 		Check = {count(true), "Check"},
 		Quick = {count(), "Quick"},
 		Attack = {count(), "Attack"},  --This has a separate Trigger
 		Action = {count(), "Action"},
 		Damage = {count(), "Damage"},
+		Defense = {count(), "Defense"},
 		Initiative = {count(), "Initiative"},			
 	},
 	rAttackTypes = { 
@@ -78001,7 +78409,7 @@ function rollInit(nodeChar, sType, rAddInfo)
         preActionRoll(nodeChar, rAddInfo);
 	
 	-- Attack
-	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] then
+	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] or sType == rStrRollList.rRollTypes.Defense[2] then
         preActionRoll(nodeChar, rAddInfo);      
     
     -- Initiative
@@ -78234,7 +78642,7 @@ end
 
 function addEffect(rSource, rRoll)
 	--Debug.chat("addEffect - rRoll",rRoll, "rSource", rSource);
-	if not rRoll.pathEffect or string.len(rRoll.pathEffect) == 0 then return end
+	if not rRoll.nodeEffectToAdd then return end
 	if not rSource.sCTNode or string.len(rSource.sCTNode) == 0 then return end
 		
 	FBEffectsManager.SendEffectToTargets(rSource, rRoll);	
@@ -78372,11 +78780,16 @@ function postActionRoll(rSource, rTarget, rRoll)
     FBChatManager.sendMessageRoll(rSource, rRoll);
     
     -- Add Effect
-    if rRoll.bAddEffect then
-		addEffect(rSource, rRoll);
-	elseif rRoll.bAddEffectSuccess and rRoll.nTotal &gt; 0 then
-		addEffect(rSource, rRoll);
-    end 
+    if rRoll.nodeEffectToAdd then
+		if rRoll.bAddEffectSuccess then
+			if rRoll.nTotal &gt; 0 then
+				addEffect(rSource, rRoll);
+			end
+		else
+			addEffect(rSource, rRoll);
+		end
+	end
+		
     
     --send return
     if rRoll.sReturnLoc and string.len(rRoll.sReturnLoc) &gt; 0 then

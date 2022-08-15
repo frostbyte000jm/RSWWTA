@@ -2,9 +2,10 @@
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Button1</ControlName>
-    <ZIndex>2</ZIndex>
+    <ZIndex>1</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Roll"}},
@@ -13,6 +14,7 @@
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Button1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
@@ -30,7 +32,11 @@
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"PressedIconName"},
@@ -41,7 +47,7 @@
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"508"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -61,10 +67,12 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>divider1</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"divider1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomClassName","Value":{"@xsi:type":"xsd:string","#text":"line_column"}},
@@ -84,7 +92,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -94,7 +106,7 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"5"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
@@ -106,9 +118,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>IconControl5</ControlName>
-    <ZIndex>12</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"IconControl5"}},
@@ -129,7 +142,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
@@ -150,9 +167,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label2</ControlName>
-    <ZIndex>3</ZIndex>
+    <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -175,7 +193,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Non-ID Name:"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -185,7 +207,7 @@ end
       {"Name":"StackVertWith"},
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"7"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"4"}}
@@ -197,9 +219,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label4</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -222,7 +245,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Attributes"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -244,9 +271,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>Label5</ControlName>
-    <ZIndex>13</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -269,7 +297,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Abilities"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
@@ -291,9 +323,10 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>nonid_name</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
@@ -321,7 +354,11 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -335,7 +372,7 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"95"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"1"}}
@@ -407,10 +444,11 @@ end</LUACode>
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_knowledges</ControlName>
-    <ZIndex>16</ZIndex>
+    <ZIndex>13</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -437,7 +475,11 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -485,10 +527,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_skills</ControlName>
-    <ZIndex>15</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -515,7 +558,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -563,10 +610,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_abilities_talents</ControlName>
-    <ZIndex>14</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -593,7 +641,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -641,10 +693,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_mental</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -671,7 +724,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -720,10 +777,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_physical</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -750,7 +808,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},
@@ -799,10 +861,11 @@ end
   <WindowControls>
     <WindowName>npc_main</WindowName>
     <ControlName>wl_attributes_social</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
@@ -829,7 +892,11 @@ end
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
       {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
       {"Name":"NoScroll","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"OwnedOnly"},

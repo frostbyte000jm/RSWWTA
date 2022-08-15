@@ -166,7 +166,7 @@ local rActions = {};
 function handleEffectAction(nodeCT, rAddInfo)
 	--Debug.chat("handleEffectAction - nodeCT",nodeCT,"\n\nrAddInfo",rAddInfo);
 	
-	
+	clearActionList();
 	for idx, nodeAction in ipairs(rAddInfo.rNodeActions) do
 		--Debug.chat("idx",idx,"nodeAction",nodeAction);
 		--[[
@@ -177,7 +177,7 @@ function handleEffectAction(nodeCT, rAddInfo)
 		]]--
 		if nodeAction then
 			--Add anything you need rAddInfo into here. 
-			table.insert(rActions, nodeAction);			
+			table.insert(rActions, nodeAction);	
 --			local bBreak = chooseAction(nodeAction, rAddInfo);
 --			if bBreak and bBreak == true then
 --				--Debug.chat("Stop!");
@@ -189,16 +189,26 @@ function handleEffectAction(nodeCT, rAddInfo)
 end
 
 function popAction(rAddInfo)
-	if not next(rActions) then
-		return;
+	--Debug.chat("\npopAction - rActions",rActions,"rAddInfo",rAddInfo);
+	if #rActions &gt; 0 then
+		local nodeAction = table.remove(rActions,1);
+		if type(nodeAction) == "string" then
+			if nodeAction == "Delete_Effect" then
+				local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+				removeEffect(nodeChar, rAddInfo.nodeEffect);
+			end
+		elseif type(nodeAction) == "databasenode" then
+			chooseAction(nodeAction, rAddInfo);
+		end
 	end
-	
-	local nodeAction = table.remove(rActions,1);	
-	chooseAction(nodeAction, rAddInfo);
+end
+
+function clearActionList()
+	rActions = {}
 end
 
 function chooseAction(nodeAction, rAddInfo)
-	--Debug.chat("chooseAction - nodeAction",nodeAction,"rAddInfo",rAddInfo, "rActions",rActions);
+	--Debug.chat("chooseAction - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local sActionType = DB.getValue(nodeAction,"dt_action","");
 	if sActionType and string.len(sActionType) &gt; 0 then
 		rAddInfo.sActionType = sActionType;
@@ -216,7 +226,7 @@ function chooseAction(nodeAction, rAddInfo)
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Heal[2] then
 			actionHealing(nodeAction, rAddInfo);
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Resource[2] then
-			return actionResource(nodeAction, rAddInfo);
+			actionResource(nodeAction, rAddInfo);
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Routine[2] then
 		
 		elseif sActionType == FBEffectsManager.StrEffectList.rActions.Effect[2] then
@@ -618,9 +628,9 @@ end
 *********************************************************************************
 ]]--
 function actionAddEffects(nodeAction, rAddInfo)
-	--Debug.chat("actionAddEffects - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	--Debug.chat("\nactionAddEffects - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_action_effect")) do
-		rAddInfo.pathEffect = DB.getPath(nodeRecord);
+		rAddInfo.nodeEffectToAdd = nodeRecord;
 		FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
 	end 
 end
@@ -632,6 +642,7 @@ end
 ]]--
 
 function handleEffectActionComplete(nodeAction, rAddInfo)
+	--Debug.chat("\nhandleEffectActionComplete - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	
 	--Skip Rounds
 	setSkipRounds(nodeAction, rAddInfo);
@@ -674,12 +685,14 @@ function sendChatMessage(nodeAction, rAddInfo)
 	end	
 end
 
-function checkRemoveEffect(nodeAction, rAddInfo)	
+function checkRemoveEffect(nodeAction, rAddInfo)
+	--Debug.chat("\ncheckRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local bRemoveEffect = DB.getValue(nodeAction,"box_remove_effect",0) == 1;
 	if bRemoveEffect then
 		--Debug.chat("checkRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
-		local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
-		removeEffect(nodeChar, rAddInfo.nodeEffect);
+		--local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
+		--removeEffect(nodeChar, rAddInfo.nodeEffect);
+		table.insert(rActions, "Delete_Effect");			
 	end
 end
 
@@ -797,6 +810,10 @@ function addActionWatch(nodeEffect, nodeAction)
 end
 
 function removeEffect(nodeChar, nodeEffect)
+	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);
+	
+	
+	
 	if Session.IsHost then	
 		FBEffectsManager.removeEffect(nodeChar, nodeEffect);
 	else
@@ -807,7 +824,9 @@ function removeEffect(nodeChar, nodeEffect)
 		}
 		FBOOBManager.OOBifySend(msgOOB);
 	end
-end</Script>
+end
+
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
