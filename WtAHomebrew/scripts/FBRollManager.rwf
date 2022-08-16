@@ -70,7 +70,7 @@ function rollInit(nodeChar, sType, rAddInfo)
         preActionRoll(nodeChar, rAddInfo);
 	
 	-- Attack
-	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] or sType == rStrRollList.rRollTypes.Defense[2] then
+	elseif sType == rStrRollList.rRollTypes.Attack[2] or sType == rStrRollList.rRollTypes.Damage[2] or sType == rStrRollList.rRollTypes.Defense[2] or FBActionsManager.rStrActionsList.rAddActionTypes.Effect[2] then
         preActionRoll(nodeChar, rAddInfo);      
     
     -- Initiative
