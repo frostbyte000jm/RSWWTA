@@ -31,7 +31,7 @@ function AddActionToEffect(nodeChar, nodeAction, rAddInfo)
 	rAddInfo.rActor = ActorManager.resolveActor(nodeChar);
 	FBEffectsManager.SendEffectToTargets(rAddInfo.rActor, rAddInfo);
 	
-	if rAddInfo.sMsgSuccess then
+	if rAddInfo.sMsgSuccess and string.len(rAddInfo.sMsgSuccess) &gt; 0 then
 		FBChatManager.sendMessage(nodeChar, rAddInfo.sMsgSuccess,  "action");
 	end
 end

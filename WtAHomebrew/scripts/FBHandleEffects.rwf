@@ -654,8 +654,11 @@ function handleEffectActionComplete(nodeAction, rAddInfo)
 		sendChatMessage(nodeAction, rAddInfo);
 	end	
 	
+	-- Check to Prevent other Effects
+	checkStopEffect(nodeAction, rAddInfo);
+	
 	-- Check if Remove Effect
-	checkRemoveEffect(nodeAction, rAddInfo);
+	checkRemoveEffect(nodeAction, rAddInfo);	
 	
 	--Pop next Effect
 	popAction(rAddInfo);
@@ -678,7 +681,8 @@ function sendChatMessage(nodeAction, rAddInfo)
 	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local sChatMessage = DB.getValue(nodeAction,"str_chat_message","");
 	if sChatMessage and string.len(sChatMessage) &gt; 0 then
-		local bSecret = DB.getValue(nodeAction,"box_chat_secret",0) == 1;		
+		Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+		local bSecret = DB.getValue(nodeAction,"box_chat_secret",0) == 1;	
 		if bSecret then
 			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sChatMessage,  "system", bSecret);		
 		else
@@ -687,14 +691,31 @@ function sendChatMessage(nodeAction, rAddInfo)
 	end	
 end
 
+function checkStopEffect(nodeAction, rAddInfo)
+	--Debug.chat("\ncheckRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
+	local bStopEffect = DB.getValue(nodeAction,"box_stop_effects",0) == 1;
+	if bStopEffect then
+		clearActionList();				
+	end
+end
+
 function checkRemoveEffect(nodeAction, rAddInfo)
 	--Debug.chat("\ncheckRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local bRemoveEffect = DB.getValue(nodeAction,"box_remove_effect",0) == 1;
 	if bRemoveEffect then
+		if Session.IsHost then
+			DB.setValue(rAddInfo.nodeEffect,"duration", "number", 1);
+			DB.setValue(rAddInfo.nodeEffect,"init", "number", DB.getValue(ActorManager.getCTNode(rAddInfo.rActor),"initresult",0) - 1); 
+			DB.setValue(rAddInfo.nodeEffect,"isactive", "number", 0);
+		else
+			RulesetWizard.changeDBValueOOB(DB.getChild(rAddInfo.nodeEffect,"duration"), 2);
+			RulesetWizard.changeDBValueOOB(DB.getChild(rAddInfo.nodeEffect,"init"), DB.getValue(ActorManager.getCTNode(rAddInfo.rActor),"initresult",0) - 1);
+			RulesetWizard.changeDBValueOOB(DB.getChild(rAddInfo.nodeEffect,"isactive"), 0);
+		end
 		--Debug.chat("checkRemoveEffect - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 		--local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
 		--removeEffect(nodeChar, rAddInfo.nodeEffect);
-		table.insert(rActions, "Delete_Effect");			
+		--table.insert(rActions, "Delete_Effect");			
 	end
 end
 
