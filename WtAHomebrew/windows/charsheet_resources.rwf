@@ -5119,7 +5119,7 @@ end
 function onValueChanged()
 	-- Update value to send and previous value
 	local nValue = getValue() - nPrevValue;
-	nPrevValue = getValue();
+	nPrevValue = getValue();	
 	
 	FBResourceManager.updateResourceCurrent(window.getDatabaseNode(),FBResourceManager.ResourceList.CharResource.Willpower[2],nValue,true,true);
 end

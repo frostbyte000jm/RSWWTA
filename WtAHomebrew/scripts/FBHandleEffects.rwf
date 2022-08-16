@@ -602,7 +602,9 @@ end
 ]]--
 
 function actionResource(nodeAction, rAddInfo)
+	--Debug.chat("actionResource - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_resource")) do
+		--Debug.chat("sClass",sClass,"nodeRecord",nodeRecord);
 		
 		-- collect data from Resource
 		local sResource = DB.getValue(nodeRecord, "dt_stat", "");
@@ -617,7 +619,7 @@ function actionResource(nodeAction, rAddInfo)
 			-- Update Value
 			FBResourceManager.updateResourceCurrent(nodeChar,sResource,nValue,true);
 		else
-			return true; -- to break the cycle
+			return true; -- Debug.todo() to break the cycle
 		end
 	end
 end

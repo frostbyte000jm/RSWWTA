@@ -106,6 +106,7 @@ function updateResourceMod(nodeChar,sResource,nValue,bNotify)
 end
 
 function updateResourceCurrent(nodeChar,sResource,nValue,bNotify,bFromControl)
+	--Debug.chat("updateResourceCurrent - nodeChar",nodeChar,"sResource",sResource,"nValue",nValue,"bNotify",bNotify,"bFromControl",bFromControl);
 	--Dump if ==0
 	if nValue == 0 then
 		return;
@@ -138,10 +139,11 @@ function updateResourceCurrent(nodeChar,sResource,nValue,bNotify,bFromControl)
 			end
 		end
 		
+		--Debug.todo() create a list of characters that have been opened, and check against those.
 		-- if notify, then alert the control
-		if bNotify then
-			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
-		end
+--		if bNotify then
+--			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
+--		end
 	end
 	
 end

@@ -36754,7 +36754,7 @@ end
 function onValueChanged()
 	-- Update value to send and previous value
 	local nValue = getValue() - nPrevValue;
-	nPrevValue = getValue();
+	nPrevValue = getValue();	
 	
 	FBResourceManager.updateResourceCurrent(window.getDatabaseNode(),FBResourceManager.ResourceList.CharResource.Willpower[2],nValue,true,true);
 end
@@ -44044,11 +44044,11 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"407"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"428"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"168"}}
 ]}}</Definition>
     <LUACode>
-function onInit()
+function onFirstLayout()
 	local node = window.getDatabaseNode();
 	if DB.getValue(DB.getChild(node,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
 		setValue(1);
@@ -44057,9 +44057,12 @@ function onInit()
 	end
 end
 
+
 function onValueChanged()
 	window.btn_activate.showActivate();
 end
+
+
 
 
 </LUACode>
@@ -44075,7 +44078,7 @@ end
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"duration"}}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string","#text":"Activate"}},
       {"Name":"ButtonField"},
       {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"btn_activate"}},
@@ -44084,7 +44087,7 @@ end
       {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"40"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -44116,7 +44119,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"256"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"246"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
@@ -44126,6 +44129,22 @@ end
 function showActivate()
 	local node = window.getDatabaseNode();
 	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
+end
+
+function onClickRelease(button, x, y)
+	local nodeEffect = window.getDatabaseNode();
+	local nodeEffectTrigger = DB.getChild(nodeEffect, "effect_action");
+	local nodeCT = nodeEffect.getParent().getParent();
+						
+	local rAddInfo = {
+		rNodeActions = FBEffectsManager.getActions(nodeEffectTrigger),
+		rActor = ActorManager.resolveActor(nodeCT),
+		nodeEffect = nodeEffect,
+		sTriggerCalled = FBEffectsManager.StrEffectList.rTriggers.Activate[2],
+	}
+	
+	-- Run Effect			
+	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -44320,7 +44339,7 @@ end</LUACode>
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"232"}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -44518,8 +44537,8 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"434"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"169"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"456"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"168"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -77866,7 +77885,9 @@ end
 ]]--
 
 function actionResource(nodeAction, rAddInfo)
+	--Debug.chat("actionResource - nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	for sClass, nodeRecord in pairs(DB.getChildren(nodeAction,"wl_resource")) do
+		--Debug.chat("sClass",sClass,"nodeRecord",nodeRecord);
 		
 		-- collect data from Resource
 		local sResource = DB.getValue(nodeRecord, "dt_stat", "");
@@ -77881,7 +77902,7 @@ function actionResource(nodeAction, rAddInfo)
 			-- Update Value
 			FBResourceManager.updateResourceCurrent(nodeChar,sResource,nValue,true);
 		else
-			return true; -- to break the cycle
+			return true; -- Debug.todo() to break the cycle
 		end
 	end
 end
@@ -78505,6 +78526,7 @@ function updateResourceMod(nodeChar,sResource,nValue,bNotify)
 end
 
 function updateResourceCurrent(nodeChar,sResource,nValue,bNotify,bFromControl)
+	--Debug.chat("updateResourceCurrent - nodeChar",nodeChar,"sResource",sResource,"nValue",nValue,"bNotify",bNotify,"bFromControl",bFromControl);
 	--Dump if ==0
 	if nValue == 0 then
 		return;
@@ -78537,10 +78559,11 @@ function updateResourceCurrent(nodeChar,sResource,nValue,bNotify,bFromControl)
 			end
 		end
 		
+		--Debug.todo() create a list of characters that have been opened, and check against those.
 		-- if notify, then alert the control
-		if bNotify then
-			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
-		end
+--		if bNotify then
+--			notifyEffectManager(sResource,nodeChar,nValue &gt; 0);
+--		end
 	end
 	
 end
