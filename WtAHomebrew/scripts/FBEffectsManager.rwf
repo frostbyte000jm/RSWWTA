@@ -17,7 +17,7 @@ Warning: This page has LanguageUpdates
 *****************************************************
 ]]--
 StrEffectList = { 
-	rTriggers = {  --FBEffectsManager.StrEffectList.rTriggers.Now[2]
+	rTriggers = {  --FBEffectsManager.StrEffectList.rTriggers.Activate[2]
 		BoT = {count(true), "BoT"},	-- Beginning of Turn
 		EoT = {count(), "EoT"},	-- End of Turn
 		ToR = {count(), "ToR"},	-- Top of Round
