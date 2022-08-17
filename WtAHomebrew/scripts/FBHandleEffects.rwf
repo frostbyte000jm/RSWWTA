@@ -162,11 +162,13 @@ end
 ]]--
 
 local rActions = {};
+local rOrgAddInfo = {}
 
 function handleEffectAction(nodeCT, rAddInfo)
 	--Debug.chat("handleEffectAction - nodeCT",nodeCT,"\n\nrAddInfo",rAddInfo);
 	
 	clearActionList();
+	rOrgAddInfo = Funct.CopyTable(rAddInfo);
 	for idx, nodeAction in ipairs(rAddInfo.rNodeActions) do
 		--Debug.chat("idx",idx,"nodeAction",nodeAction);
 		--[[
@@ -185,19 +187,16 @@ function handleEffectAction(nodeCT, rAddInfo)
 --			end		
 		end			
 	end
-	popAction(rAddInfo);
+	popAction();
 end
 
-function popAction(rAddInfo)
+function popAction()
 	--Debug.chat("\npopAction - rActions",rActions,"rAddInfo",rAddInfo);
 	if #rActions &gt; 0 then
 		local nodeAction = table.remove(rActions,1);
-		if type(nodeAction) == "string" then
-			if nodeAction == "Delete_Effect" then
-				local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
-				removeEffect(nodeChar, rAddInfo.nodeEffect);
-			end
-		elseif type(nodeAction) == "databasenode" then
+		rAddInfo = {}
+		rAddInfo = Funct.CopyTable(rOrgAddInfo);
+		if type(nodeAction) == "databasenode" then
 			chooseAction(nodeAction, rAddInfo);
 		end
 	end
@@ -661,7 +660,7 @@ function handleEffectActionComplete(nodeAction, rAddInfo)
 	checkRemoveEffect(nodeAction, rAddInfo);	
 	
 	--Pop next Effect
-	popAction(rAddInfo);
+	popAction();
 end
 
 function setSkipRounds(nodeAction, rAddInfo)

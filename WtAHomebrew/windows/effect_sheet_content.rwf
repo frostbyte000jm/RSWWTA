@@ -2051,7 +2051,14 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"359"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"12"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onFirstLayout()
+	if string.len(getValue()) == 0 then
+		local node = window.getDatabaseNode();
+		local nodeParent = DB.getParent(DB.getParent(node));
+		DB.setValue(node,"name","string",DB.getValue(nodeParent,"name",""));
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

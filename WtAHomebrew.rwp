@@ -11536,16 +11536,18 @@ function CreateEffect(dragdata)
 	local pathAction = window.getDatabaseNode().getPath();
 	
 	--Set Add Effect Box
-	if window.box_effect_only.getValue() == 0 and 
-	  window.box_before_roll.getValue() == 0 and 
-	  window.box_after_roll.getValue() == 0 and 
-	  window.box_on_success.getValue() == 0 and 
-	  window.box_manually.getValue() == 0 then
-		window.box_after_roll.setValue(1);
+	if DB.getValue(nodeAction,"box_effect_only", 0) == 0 and
+	 DB.getValue(nodeAction,"box_before_roll", 0) == 0 and
+	 DB.getValue(nodeAction,"box_after_roll", 0) == 0 and
+	 DB.getValue(nodeAction,"box_on_success", 0) == 0 and
+	 DB.getValue(nodeAction,"box_manually", 0) == 0 then
+		DB.setValue(nodeAction,"box_after_roll","number",1);	
 	end	
 	
 	--create Handler
-	window.str_link_effect_name.createHandler();
+	if window.str_link_effect_name then
+		window.str_link_effect_name.createHandler();
+	end	
 end
 
 function RemoveEffect() -- left off here
@@ -11561,123 +11563,6 @@ function RemoveEffect() -- left off here
 	window.box_manually.setValue(0);
 end
 </LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_sheet_action</WindowName>
-    <ControlName>LinkField1</ControlName>
-    <ZIndex>7</ZIndex>
-    <ControlClass>FGLinkField</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LinkField1"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"LinkFieldAllowDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"effect_sheet"}},
-      {"Name":"LinkFieldDescriptionField","Value":{"@xsi:type":"xsd:string","#text":"str_effect_name"}},
-      {"Name":"LinkFieldRecordName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"LinkFieldSelfOnEmpty","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NoDrag"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"340"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"197"}}
-]}}</Definition>
-    <LUACode>--
---function onInit()
---	--updateLink();
---	registerMenuItem(Interface.getString("create_effect"), "insert", 5);
---	registerMenuItem(Interface.getString("remove_effect"), "delete", 3);
---	registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 3, 4);
---	onFirstOpen();
---end
---
---function onFirstOpen()
---	if getTargetDatabaseNode() == window.getDatabaseNode() then
---		setValue("");
---	end
---end
---
---function onMenuSelection(selection, subselection1, subselection2, subselection3)
---	if selection == 5 then
---		CreateEffect();
---	elseif selection == 3 and subselection1 ==4 then
---		RemoveEffect();
---	end
---end
---
---function onDrop(x, y, dragdata)
---	--declarations	
---	local nodeDragdata = dragdata.getDatabaseNode();
---	
---	-- Check if effect_custom or effects. If so, copy the link, and add copy.
---	if StringManager.startsWith(nodeDragdata.getNodeName(), "effect_custom.") or StringManager.startsWith(nodeDragdata.getNodeName(), "effects.") then
---		CreateEffect(dragdata);
---	end
---end
---
---function CreateEffect(dragdata)
---	local nodeAction = window.getDatabaseNode();	
---	local childEffect = DB.createChild(nodeAction, "effect_sheet");
---	
---	if dragdata then
---		local nodeDragdata = dragdata.getDatabaseNode();
---		DB.copyNode(nodeDragdata, childEffect);
---	end
---	
---	setValue("effect_sheet",childEffect.getPath());
---	local winEffect = Interface.openWindow("effect_sheet", childEffect.getPath());
---	local nodeEffect = winEffect.getDatabaseNode();
---	local pathAction = window.getDatabaseNode().getPath();
---	
---	--Set Add Effect Box
---	if window.box_attack_add_effect.getValue() == 0 and window.box_attack_add_effect_success.getValue() == 0 then
---		window.box_attack_add_effect.setValue(1);
---	end	
---	
---	--create Handler
---	window.str_effect_name.createHandler();
---end
---
---function RemoveEffect()
---	local node = getTargetDatabaseNode();
---	DB.deleteChildren(node);
---	setValue("");
---	window.str_effect_name.setValue("");
---	window.box_attack_add_effect.setValue(0);
---end
---</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -11759,87 +11644,6 @@ function update(node)
 	setValue(DB.getValue(node, "", ""));
 end
 </LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>action_sheet_action</WindowName>
-    <ControlName>StringField1</ControlName>
-    <ZIndex>8</ZIndex>
-    <ControlClass>FGStringField</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"CanGrowVert"},
-      {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"StringField1"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"200"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"EmptyText"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"MultilineSpacing"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"368"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"197"}}
-]}}</Definition>
-    <LUACode>--
---function onInit()
---	createHandler();
---end
---
---function createHandler()
---	local wLink = window.link_effect;
---	local sClass, _ = wLink.getValue();
---	
---	if string.len(sClass) &gt; 0 then
---		local node = wLink.getTargetDatabaseNode();
---		local path = DB.getPath(node,"name");
---		DB.addHandler(path, "onUpdate", update);
---		update(DB.getChild(node, "name"));
---	end	
---end
---
---function update(node)
---	setValue(DB.getValue(node, "", ""));
---end
---</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -51956,6 +51760,58 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>effect_action_sheet_content</WindowName>
+    <ControlName>Label5</ControlName>
+    <ZIndex>29</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label5"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"name"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"490"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"8"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>effect_action_sheet_content</WindowName>
     <ControlName>lbl_chat_secret</ControlName>
     <ZIndex>23</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -52307,6 +52163,74 @@ function clearAllNodes()
 		end
 	end
 	window.lbl_reset.setVisible(true);
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>effect_action_sheet_content</WindowName>
+    <ControlName>name</ControlName>
+    <ZIndex>28</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"name"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"61"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"426"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"6"}}
+]}}</Definition>
+    <LUACode>
+function onFirstLayout()
+	if string.len(getValue()) == 0 then
+		local node = window.getDatabaseNode();
+		local nodeParent = DB.getParent(DB.getParent(node));
+		DB.setValue(node,"name","string",DB.getValue(nodeParent,"name",""));
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -54988,7 +54912,14 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"359"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"12"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onFirstLayout()
+	if string.len(getValue()) == 0 then
+		local node = window.getDatabaseNode();
+		local nodeParent = DB.getParent(DB.getParent(node));
+		DB.setValue(node,"name","string",DB.getValue(nodeParent,"name",""));
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -77674,11 +77605,13 @@ end
 ]]--
 
 local rActions = {};
+local rOrgAddInfo = {}
 
 function handleEffectAction(nodeCT, rAddInfo)
 	--Debug.chat("handleEffectAction - nodeCT",nodeCT,"\n\nrAddInfo",rAddInfo);
 	
 	clearActionList();
+	rOrgAddInfo = Funct.CopyTable(rAddInfo);
 	for idx, nodeAction in ipairs(rAddInfo.rNodeActions) do
 		--Debug.chat("idx",idx,"nodeAction",nodeAction);
 		--[[
@@ -77697,19 +77630,16 @@ function handleEffectAction(nodeCT, rAddInfo)
 --			end		
 		end			
 	end
-	popAction(rAddInfo);
+	popAction();
 end
 
-function popAction(rAddInfo)
+function popAction()
 	--Debug.chat("\npopAction - rActions",rActions,"rAddInfo",rAddInfo);
 	if #rActions &gt; 0 then
 		local nodeAction = table.remove(rActions,1);
-		if type(nodeAction) == "string" then
-			if nodeAction == "Delete_Effect" then
-				local nodeChar = ActorManager.getCreatureNode(rAddInfo.rActor);
-				removeEffect(nodeChar, rAddInfo.nodeEffect);
-			end
-		elseif type(nodeAction) == "databasenode" then
+		rAddInfo = {}
+		rAddInfo = Funct.CopyTable(rOrgAddInfo);
+		if type(nodeAction) == "databasenode" then
 			chooseAction(nodeAction, rAddInfo);
 		end
 	end
@@ -78173,7 +78103,7 @@ function handleEffectActionComplete(nodeAction, rAddInfo)
 	checkRemoveEffect(nodeAction, rAddInfo);	
 	
 	--Pop next Effect
-	popAction(rAddInfo);
+	popAction();
 end
 
 function setSkipRounds(nodeAction, rAddInfo)
