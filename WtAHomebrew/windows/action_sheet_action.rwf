@@ -342,13 +342,14 @@ function RemoveEffect() -- left off here
 	local node = getTargetDatabaseNode();
 	DB.deleteChildren(node);
 	setValue("");
-	window.str_link_effect_name.setValue("");
+	local node = window.getDatabaseNode();
+	DB.setValue(node, "str_link_effect_name", "string", "");
 
-	window.box_effect_only.setValue(0);
-	window.box_before_roll.setValue(0);
-	window.box_after_roll.setValue(0);
-	window.box_on_success.setValue(0);
-	window.box_manually.setValue(0);
+	DB.setValue(node, "box_effect_only", "number", 0);
+	DB.setValue(node, "box_before_roll", "number", 0);
+	DB.setValue(node, "box_after_roll", "number", 0);
+	DB.setValue(node, "box_on_success", "number", 0);
+	DB.setValue(node, "box_manually", "number", 0);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
