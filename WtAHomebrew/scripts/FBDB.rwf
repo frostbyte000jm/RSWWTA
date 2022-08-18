@@ -1,0 +1,23 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>FBDB</ScriptName>
+    <FolderID>68</FolderID>
+    <Script>
+function getValueParents(node, sName, default)
+	for i = 1,10,1 do
+		node = DB.getParent(node);
+		
+		if not(node) then
+			return default;
+		end
+		
+		if DB.getChild(node, sName) then
+			return DB.getValue(node, sName, default);
+		end
+	end
+	return default;
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
