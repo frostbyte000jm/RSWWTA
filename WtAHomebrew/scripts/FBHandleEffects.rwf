@@ -155,6 +155,19 @@ function permResource(nodeCT, rAddInfo)
 	end	
 end
 
+function permStaticType(nodeCT, rAddInfo)
+	--Debug.chat(DB.getValue(nodeCT,"name",""), " DMG Type", "rAddInfo",rAddInfo);
+	--Host Only
+	if Session.IsHost then
+		--Debug.chat("permDmgType - IsHost");
+	end
+	
+	-- if ActivePC, then client with the ActivePC, else Host
+	if FBActorManager.isUserActivePC(nodeCT, rAddInfo) then
+		--Debug.chat("permDmgType - IsActiveUser");
+	end
+end
+
 --[[
 **************************************************************************
 							Effects from CT

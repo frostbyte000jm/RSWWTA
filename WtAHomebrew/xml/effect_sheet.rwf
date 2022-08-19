@@ -38,7 +38,7 @@
 				&lt;anchored&gt;
 					&lt;top parent="header" anchor="bottom" offset="5" /&gt;
 					&lt;left offset="15" /&gt;
-					&lt;right offset="-15" /&gt;
+					&lt;right offset="-20" /&gt;
 					&lt;bottom offset="-10" /&gt;
 				&lt;/anchored&gt;
 				&lt;class&gt;effect_sheet_content&lt;/class&gt; 	&lt;!-- Update Name --&gt;
@@ -46,7 +46,7 @@
 			&lt;/subwindow&gt;
 			&lt;!-- Scrollbar for Content Window --&gt;
 			&lt;scrollbar_list name="sb_content"&gt;
-				&lt;anchored to="content" width="20" offset="-13,0"&gt;
+				&lt;anchored to="content" width="20" offset="-5,0"&gt;
 					&lt;top offset="5" /&gt;
 					&lt;bottom offset="-30"/&gt;
 				&lt;/anchored&gt;
