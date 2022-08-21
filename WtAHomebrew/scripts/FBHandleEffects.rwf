@@ -155,8 +155,8 @@ function permResource(nodeCT, rAddInfo)
 	end	
 end
 
-function permStaticType(nodeCT, rAddInfo)
-	--Debug.chat(DB.getValue(nodeCT,"name",""), " DMG Type", "rAddInfo",rAddInfo);
+function handleStatic(nodeCT, rAddInfo)
+	Debug.chat("permStaticType - nodeCT",nodeCT,"rAddInfo",rAddInfo);
 	--Host Only
 	if Session.IsHost then
 		--Debug.chat("permDmgType - IsHost");

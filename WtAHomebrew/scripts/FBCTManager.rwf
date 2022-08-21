@@ -28,7 +28,7 @@ end
 
 function setHandlers()
 	--button active
-	DB.addHandler("combattracker.list.*.active", "onUpdate", charTurn);   
+	DB.addHandler("combattracker.list.*.active", "onUpdate", charTurn); 
 	
 	 -- OOB Message Handlers
 	 OOBManager.registerOOBMsgHandler(OOB_MSGTYPE_SetPlayerActive, setActive); 
@@ -39,6 +39,8 @@ function endHandlers()
 	--button active
 	DB.removeHandler("combattracker.list.*.active", "onUpdate", charTurn);
 end
+
+
 
 --[[   Triggers   ]]--
 function charLoad(nodeCT)	
@@ -82,6 +84,7 @@ end
 function setActive(msgOOB)
 	CombatManager.requestActivation(DB.findNode(msgOOB.pathNodeCT), OptionsManager.isOption("RING", "off"));
 end
+
 
 function openCT()	   
     if Session.IsHost then
