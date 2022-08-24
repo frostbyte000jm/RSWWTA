@@ -157,6 +157,9 @@ end
 
 function handleStatic(nodeCT, rAddInfo)
 	Debug.chat("permStaticType - nodeCT",nodeCT,"rAddInfo",rAddInfo);
+	--[[
+		This will be how to type routines. Like Dead, 
+	]]--
 	--Host Only
 	if Session.IsHost then
 		--Debug.chat("permDmgType - IsHost");
