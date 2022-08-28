@@ -16,7 +16,7 @@
 	&lt;windowclass name="effect_sheet"&gt; 					&lt;!-- Update Name --&gt;
 		&lt;frame&gt;referencepage&lt;/frame&gt;
 		&lt;placement&gt;
-			&lt;size width="370" height="355" /&gt; &lt;!-- Content Height: +75, Width: +40 --&gt;
+			&lt;size width="370" height="355" /&gt; &lt;!-- Content Width: +35, Height: +75 --&gt;
 		&lt;/placement&gt;
 		&lt;sizelimits&gt;
 			&lt;minimum width="370" height="355" /&gt;

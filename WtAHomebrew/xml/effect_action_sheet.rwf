@@ -16,10 +16,10 @@
 	&lt;windowclass name="effect_action_sheet"&gt; 					&lt;!-- Update Name --&gt;
 		&lt;frame&gt;referencepage&lt;/frame&gt;
 		&lt;placement&gt;
-			&lt;size width="365" height="355" /&gt; &lt;!-- Content Height: +75, Width: +35 --&gt;
+			&lt;size width="441" height="391" /&gt; &lt;!-- Content Width: +35, Height: +75 --&gt;
 		&lt;/placement&gt;
 		&lt;sizelimits&gt;
-			&lt;minimum width="365" height="355" /&gt;
+			&lt;minimum width="441" height="391" /&gt;
 			&lt;dynamic /&gt;
 		&lt;/sizelimits&gt;
 		&lt;tooltip field="name" /&gt;
@@ -38,7 +38,7 @@
 				&lt;anchored&gt;
 					&lt;top parent="header" anchor="bottom" offset="5" /&gt;
 					&lt;left offset="15" /&gt;
-					&lt;right offset="-15" /&gt;
+					&lt;right offset="-20" /&gt;
 					&lt;bottom offset="-10" /&gt;
 				&lt;/anchored&gt;
 				&lt;class&gt;effect_action_sheet_content&lt;/class&gt; 	&lt;!-- Update Name --&gt;
@@ -46,7 +46,7 @@
 			&lt;/subwindow&gt;
 			&lt;!-- Scrollbar for Content Window --&gt;
 			&lt;scrollbar_list name="sb_content"&gt;
-				&lt;anchored to="content" width="20" offset="-13,0"&gt;
+				&lt;anchored to="content" width="20" offset="-5,0"&gt;
 					&lt;top offset="5" /&gt;
 					&lt;bottom offset="-30"/&gt;
 				&lt;/anchored&gt;
