@@ -183,6 +183,7 @@ end
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
+      {"Name":"Sourceless"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
@@ -285,7 +286,9 @@ end
 ]}}</Definition>
     <LUACode>-- Update num_skill_value
 function onValueChanged()
-	window.num_skill_value.setValue(window.num_skill_mod.getValue()+getValue());
+	local node = window.getDatabaseNode();
+	DB.setValue(node,"num_skill_value","number",DB.getValue(node,"num_skill_mod",0)+getValue());
+	--window.num_skill_value.setValue(window.num_skill_mod.getValue()+getValue());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -351,7 +354,9 @@ end
 ]}}</Definition>
     <LUACode>-- Send Update to handler.
 function onValueChanged()
-	window.num_skill_value.setValue(window.num_base_skill_value.getValue()+getValue());
+	local node = window.getDatabaseNode();
+	DB.setValue(node,"num_skill_value","number",DB.getValue(node,"num_base_skill_value",0)+getValue());
+	--window.num_skill_value.setValue(window.num_base_skill_value.getValue()+getValue());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
