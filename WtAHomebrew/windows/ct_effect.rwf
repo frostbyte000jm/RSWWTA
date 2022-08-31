@@ -13,7 +13,7 @@
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultChecked"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"Disabled"},
       {"Name":"FrameName"},
@@ -44,27 +44,27 @@
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"428"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"168"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"197"}}
 ]}}</Definition>
-    <LUACode>
-function onFirstLayout()
-	local node = window.getDatabaseNode();
-	if DB.getValue(DB.getChild(node,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
-		setValue(1);
-	else
-		setValue(0);
-	end
-end
-
-
-function onValueChanged()
-	window.btn_activate.showActivate();
-end
-
-
-
-
-</LUACode>
+    <LUACode>--
+--function onFirstLayout()
+--	local node = window.getDatabaseNode();
+--	if DB.getValue(DB.getChild(node,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+--		setValue(1);
+--	else
+--		setValue(0);
+--	end
+--end
+--
+--
+--function onValueChanged()
+--	window.btn_activate.showActivate();
+--end
+--
+--
+--
+--
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -85,8 +85,8 @@ end
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -100,7 +100,7 @@ end
       {"Name":"HoverIconName"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore","Value":{"@xsi:type":"xsd:string","#text":"label"}},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -118,16 +118,23 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"245"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"238"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode>function onInit()
-	showActivate();
-end
+    <LUACode>--function onInit()
+--	showActivate();
+--end
+--
+--function showActivate()
+--	local node = window.getDatabaseNode();
+--	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
+--end
 
-function showActivate()
-	local node = window.getDatabaseNode();
-	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
+function setUses()
+	local numUses = DB.getValue(DB.getChild(nodeEffect,"effect_action"),"num_uses",0);
+	if numUses &gt; 0 then
+		setText("Activate("..numUses..")");
+	end
 end
 
 function onClickRelease(button, x, y)
@@ -200,7 +207,25 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onInit()
+	local pathEffectAction = DB.getPath(getDatabaseNode(),effect_action);
+	DB.addHandler(pathEffectAction..".dt_effect_trigger", "onUpdate", checkTriggerEffect);
+	DB.addHandler(pathEffectAction..".num_uses", "onUpdate", checkTriggerEffect);
+end
+
+function checkTriggerEffect(node)
+	local nodeEffect = getDatabaseNode();
+	if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+		btn_activate.setVisible(true);
+		
+		if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"num_uses",0) &gt; 0 then
+			btn_activate.setUses();
+		end
+	else
+		btn_activate.setVisible(false);
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -341,7 +366,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"231"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"225"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -511,7 +536,7 @@ end
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -542,7 +567,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"456"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"168"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"197"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -690,7 +715,7 @@ end
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".wl_action_watch"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"100"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"200"}},
       {"Name":"Disabled"},
       {"Name":"EmptyListFontName"},
@@ -726,7 +751,7 @@ end
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"391"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"61"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"90"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>

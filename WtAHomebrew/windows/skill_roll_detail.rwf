@@ -94,6 +94,7 @@
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
+      {"Name":"Sourceless"},
       {"Name":"StackVertWith"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
@@ -194,11 +195,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"239"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>-- Update num_skill_value
-function onValueChanged()
-	window.num_skill_value.setValue(window.num_skill_mod.getValue()+getValue());
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -260,11 +257,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"209"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>-- Send Update to handler.
-function onValueChanged()
-	window.num_skill_value.setValue(window.num_base_skill_value.getValue()+getValue());
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -326,11 +319,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"139"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>-- Send Update to handler.
-function onValueChanged()
-	window.handleUpdate();
-end
-
+    <LUACode>
 function onHover(state)
 	setTooltipText(string.format("Base: %s | Mod: %s",window.num_base_skill_value.getValue(),window.num_skill_mod.getValue()))
 end
@@ -452,8 +441,29 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	displayValue();
+	local nodeSkill = getDatabaseNode();
+	DB.addHandler(DB.getPath(DB.getChild(nodeSkill,"num_base_skill_value")), "onUpdate", updateSkillValue);
+	DB.addHandler(DB.getPath(DB.getChild(nodeSkill,"num_skill_mod")), "onUpdate", updateSkillValue);
+	updateSkillValue();
 	updateLockState(WindowManager.getReadOnlyState(windowlist.window.getDatabaseNode()));
+end
+
+function updateSkillValue()
+	local nodeSkill = getDatabaseNode();
+	local nBase = DB.getValue(nodeSkill, "num_base_skill_value",0);
+	local nMod = DB.getValue(nodeSkill, "num_skill_mod",0);
+	DB.setValue(nodeSkill,"num_skill_value","number",nBase+nMod);
+	
+	if nMod == 0 then
+		num_skill_value.setVisible(false);
+		clist_skill_value.setVisible(true);
+	else		
+		num_skill_value.setVisible(true);
+		clist_skill_value.setVisible(false);
+	end
+	
+	-- call Handle Update
+	handleUpdate();
 end
 
 -- Send Update to handler.
@@ -461,21 +471,7 @@ function handleUpdate()
 	local nodeChar = windowlist.window.getDatabaseNode();
 	local nodeSkill = getDatabaseNode();
 	
-	manager_char_stat_handler.CallStatUpdate(nodeChar,nodeSkill);
-	
-	-- Update Display
-	displayValue();
-end
-
-function displayValue()
-	local doEdit = DB.getValue(windowlist.window.getDatabaseNode(), "box_edit_char", 0) == 1;
-	if (not doEdit) and not (num_skill_mod.getValue() == 0) then
-		num_skill_value.setVisible(true);
-		clist_skill_value.setVisible(false);
-	else
-		num_skill_value.setVisible(false);
-		clist_skill_value.setVisible(true);
-	end
+	manager_char_stat_handler.CallStatUpdate(nodeChar,nodeSkill);	
 end
 
 function updateLockState(bReadOnly)
@@ -484,8 +480,7 @@ function updateLockState(bReadOnly)
 		local rWindows = getControls();	
 		Funct.LockControls(bReadOnly, rWindows, nil);
 	end	
-end
-</LUACode>
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
