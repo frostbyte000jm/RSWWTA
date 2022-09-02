@@ -696,7 +696,7 @@ function sendChatMessage(nodeAction, rAddInfo)
 	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local sChatMessage = DB.getValue(nodeAction,"str_chat_message","");
 	if sChatMessage and string.len(sChatMessage) &gt; 0 then
-		Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+		--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
 		local bSecret = DB.getValue(nodeAction,"box_chat_secret",0) == 1;	
 		if bSecret then
 			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sChatMessage,  "system", bSecret);		

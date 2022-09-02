@@ -44073,7 +44073,7 @@ end
       {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -44087,7 +44087,7 @@ end
       {"Name":"HoverIconName"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore","Value":{"@xsi:type":"xsd:string","#text":"label"}},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -44105,7 +44105,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"238"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
     <LUACode>--function onInit()
@@ -44117,10 +44117,41 @@ end
 --	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
 --end
 
-function setUses()
-	local numUses = DB.getValue(DB.getChild(nodeEffect,"effect_action"),"num_uses",0);
+function onFirstLayout()
+	checkVisible()
+end
+
+function checkVisible()
+	local nodeEffect = window.getDatabaseNode();
+	local nodeEffectAction = DB.getChild(nodeEffect,"effect_action");
+	if DB.getValue(nodeEffectAction,"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+		setVisible(true);
+		local numUses = DB.getValue(nodeEffectAction,"num_uses",0);
+		if numUses &gt; 0 then
+			Debug.chat("use");
+			addUseHandler(nodeEffectAction);
+			setText("Activate("..numUses..")");
+		end
+	else
+		setVisible(false);
+	end
+end
+
+function addUseHandler(nodeEffectAction)
+	local nodeNumUses = DB.getChild(nodeEffectAction,"num_uses");
+	DB.addHandler(DB.getPath(nodeNumUses), "onUpdate", setUses);
+end
+
+function removeUseHandler(nodeNumUses)
+	Debug.chat("cool. done");
+	DB.removeHandler(nodeNumUses, "onUpdate", setUses);
+end
+
+function setUses(nodeNumUses)
 	if numUses &gt; 0 then
 		setText("Activate("..numUses..")");
+	else
+		removeUseHandler(nodeNumUses);
 	end
 end
 
@@ -44139,6 +44170,8 @@ function onClickRelease(button, x, y)
 	-- Run Effect			
 	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
 end
+
+
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -44194,25 +44227,25 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode>
-function onInit()
-	local pathEffectAction = DB.getPath(getDatabaseNode(),effect_action);
-	DB.addHandler(pathEffectAction..".dt_effect_trigger", "onUpdate", checkTriggerEffect);
-	DB.addHandler(pathEffectAction..".num_uses", "onUpdate", checkTriggerEffect);
-end
-
-function checkTriggerEffect(node)
-	local nodeEffect = getDatabaseNode();
-	if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
-		btn_activate.setVisible(true);
-		
-		if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"num_uses",0) &gt; 0 then
-			btn_activate.setUses();
-		end
-	else
-		btn_activate.setVisible(false);
-	end
-end</LUACode>
+    <LUACode>--
+--function onInit()
+--	local pathEffectAction = DB.getPath(getDatabaseNode(),effect_action);
+--	DB.addHandler(pathEffectAction..".dt_effect_trigger", "onUpdate", checkTriggerEffect);
+--	DB.addHandler(pathEffectAction..".num_uses", "onUpdate", checkTriggerEffect);
+--end
+--
+--function checkTriggerEffect(node)
+--	local nodeEffect = getDatabaseNode();
+--	if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+--		btn_activate.setVisible(true);
+--		
+--		if DB.getValue(DB.getChild(nodeEffect,"effect_action"),"num_uses",0) &gt; 0 then
+--			btn_activate.setUses();
+--		end
+--	else
+--		btn_activate.setVisible(false);
+--	end
+--end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -44352,8 +44385,8 @@ end</LUACode>
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"225"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"205"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"EmptyText"},
@@ -78174,7 +78207,7 @@ function sendChatMessage(nodeAction, rAddInfo)
 	--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
 	local sChatMessage = DB.getValue(nodeAction,"str_chat_message","");
 	if sChatMessage and string.len(sChatMessage) &gt; 0 then
-		Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
+		--Debug.chat("nodeAction",nodeAction,"rAddInfo",rAddInfo);
 		local bSecret = DB.getValue(nodeAction,"box_chat_secret",0) == 1;	
 		if bSecret then
 			FBChatManager.sendMessage(ActorManager.getCreatureNode(rAddInfo.rActor), sChatMessage,  "system", bSecret);		
