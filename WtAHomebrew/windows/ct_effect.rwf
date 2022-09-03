@@ -121,15 +121,7 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode>--function onInit()
---	showActivate();
---end
---
---function showActivate()
---	local node = window.getDatabaseNode();
---	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
---end
-
+    <LUACode>
 function onFirstLayout()
 	checkVisible()
 end
@@ -157,14 +149,19 @@ end
 
 function removeUseHandler(nodeNumUses)
 	Debug.chat("cool. done");
-	DB.removeHandler(nodeNumUses, "onUpdate", setUses);
+	DB.removeHandler(DB.getPath(nodeNumUses), "onUpdate", setUses);
 end
 
 function setUses(nodeNumUses)
-	if numUses &gt; 0 then
-		setText("Activate("..numUses..")");
-	else
+	local numUses = DB.getValue(nodeNumUses,"",0);
+	setText("Activate("..numUses..")");
+	if numUses &lt;= 0 then
 		removeUseHandler(nodeNumUses);
+		local nodeEffect = window.getDatabaseNode();
+		local nodeCT = nodeEffect.getParent().getParent();
+		local nodeChar = ActorManager.getCreatureNode(nodeCT);
+		
+		FBHandleEffects.removeEffect(nodeChar, nodeEffect)
 	end
 end
 
@@ -181,10 +178,20 @@ function onClickRelease(button, x, y)
 	}
 	
 	-- Run Effect			
-	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
+	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+	callUpdateUses();	
 end
 
-
+function callUpdateUses()
+	local nodeEffectAction = DB.getChild(window.getDatabaseNode(),"effect_action");
+	local nodeNumUses = DB.getChild(nodeEffectAction,"num_uses");
+	local nValue = DB.getValue(nodeNumUses, "", 0) - 1;
+	if Session.IsHost then
+		DB.setValue(nodeNumUses, "", "number", nValue)
+	else
+		RulesetWizard.changeDBValueOOB(nodeNumUses, nValue)
+	end
+end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

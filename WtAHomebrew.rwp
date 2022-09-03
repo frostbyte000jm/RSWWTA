@@ -39366,7 +39366,7 @@ end
       {"Name":"DefaultValue"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -39398,16 +39398,51 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"246"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode>function onInit()
-	showActivate();
+    <LUACode>
+function onFirstLayout()
+	checkVisible()
 end
 
-function showActivate()
-	local node = window.getDatabaseNode();
-	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
+function checkVisible()
+	local nodeEffect = window.getDatabaseNode();
+	local nodeEffectAction = DB.getChild(nodeEffect,"effect_action");
+	if DB.getValue(nodeEffectAction,"dt_effect_trigger","") == FBEffectsManager.StrEffectList.rTriggers.Activate[2] then
+		setVisible(true);
+		local numUses = DB.getValue(nodeEffectAction,"num_uses",0);
+		if numUses &gt; 0 then
+			Debug.chat("use");
+			addUseHandler(nodeEffectAction);
+			setText("Activate("..numUses..")");
+		end
+	else
+		setVisible(false);
+	end
+end
+
+function addUseHandler(nodeEffectAction)
+	local nodeNumUses = DB.getChild(nodeEffectAction,"num_uses");
+	DB.addHandler(DB.getPath(nodeNumUses), "onUpdate", setUses);
+end
+
+function removeUseHandler(nodeNumUses)
+	Debug.chat("cool. done");
+	DB.removeHandler(DB.getPath(nodeNumUses), "onUpdate", setUses);
+end
+
+function setUses(nodeNumUses)
+	local numUses = DB.getValue(nodeNumUses,"",0);
+	setText("Activate("..numUses..")");
+	if numUses &lt;= 0 then
+		removeUseHandler(nodeNumUses);
+		local nodeEffect = window.getDatabaseNode();
+		local nodeCT = nodeEffect.getParent().getParent();
+		local nodeChar = ActorManager.getCreatureNode(nodeCT);
+		
+		FBHandleEffects.removeEffect(nodeChar, nodeEffect)
+	end
 end
 
 function onClickRelease(button, x, y)
@@ -39423,9 +39458,37 @@ function onClickRelease(button, x, y)
 	}
 	
 	-- Run Effect			
-	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
+	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+	callUpdateUses();	
 end
-</LUACode>
+
+function callUpdateUses()
+	local nodeEffectAction = DB.getChild(window.getDatabaseNode(),"effect_action");
+	local nodeNumUses = DB.getChild(nodeEffectAction,"num_uses");
+	local nValue = DB.getValue(nodeNumUses, "", 0) - 1;
+	if Session.IsHost then
+		DB.setValue(nodeNumUses, "", "number", nValue)
+	else
+		RulesetWizard.changeDBValueOOB(nodeNumUses, nValue)
+	end
+end
+
+--function onClickRelease(button, x, y)
+--	local nodeEffect = window.getDatabaseNode();
+--	local nodeEffectTrigger = DB.getChild(nodeEffect, "effect_action");
+--	local nodeCT = nodeEffect.getParent().getParent();
+--						
+--	local rAddInfo = {
+--		rNodeActions = FBEffectsManager.getActions(nodeEffectTrigger),
+--		rActor = ActorManager.resolveActor(nodeCT),
+--		nodeEffect = nodeEffect,
+--		sTriggerCalled = FBEffectsManager.StrEffectList.rTriggers.Activate[2],
+--	}
+--	
+--	-- Run Effect			
+--	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -39567,7 +39630,7 @@ end</LUACode>
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"234"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"205"}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -44108,15 +44171,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
-    <LUACode>--function onInit()
---	showActivate();
---end
---
---function showActivate()
---	local node = window.getDatabaseNode();
---	setVisible(DB.getValue(node,"box_show_activate",0) == 1);
---end
-
+    <LUACode>
 function onFirstLayout()
 	checkVisible()
 end
@@ -44144,14 +44199,19 @@ end
 
 function removeUseHandler(nodeNumUses)
 	Debug.chat("cool. done");
-	DB.removeHandler(nodeNumUses, "onUpdate", setUses);
+	DB.removeHandler(DB.getPath(nodeNumUses), "onUpdate", setUses);
 end
 
 function setUses(nodeNumUses)
-	if numUses &gt; 0 then
-		setText("Activate("..numUses..")");
-	else
+	local numUses = DB.getValue(nodeNumUses,"",0);
+	setText("Activate("..numUses..")");
+	if numUses &lt;= 0 then
 		removeUseHandler(nodeNumUses);
+		local nodeEffect = window.getDatabaseNode();
+		local nodeCT = nodeEffect.getParent().getParent();
+		local nodeChar = ActorManager.getCreatureNode(nodeCT);
+		
+		FBHandleEffects.removeEffect(nodeChar, nodeEffect)
 	end
 end
 
@@ -44168,10 +44228,20 @@ function onClickRelease(button, x, y)
 	}
 	
 	-- Run Effect			
-	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);	
+	FBHandleEffects.handleEffectAction(nodeCT,rAddInfo);
+	callUpdateUses();	
 end
 
-
+function callUpdateUses()
+	local nodeEffectAction = DB.getChild(window.getDatabaseNode(),"effect_action");
+	local nodeNumUses = DB.getChild(nodeEffectAction,"num_uses");
+	local nValue = DB.getValue(nodeNumUses, "", 0) - 1;
+	if Session.IsHost then
+		DB.setValue(nodeNumUses, "", "number", nValue)
+	else
+		RulesetWizard.changeDBValueOOB(nodeNumUses, nValue)
+	end
+end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -78359,10 +78429,7 @@ function addActionWatch(nodeEffect, nodeAction)
 end
 
 function removeEffect(nodeChar, nodeEffect)
-	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);
-	
-	
-	
+	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);	
 	if Session.IsHost then	
 		FBEffectsManager.removeEffect(nodeChar, nodeEffect);
 	else

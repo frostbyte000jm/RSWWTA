@@ -848,10 +848,7 @@ function addActionWatch(nodeEffect, nodeAction)
 end
 
 function removeEffect(nodeChar, nodeEffect)
-	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);
-	
-	
-	
+	--Debug.chat("nodeChar",nodeChar,"nodeEffect",nodeEffect);	
 	if Session.IsHost then	
 		FBEffectsManager.removeEffect(nodeChar, nodeEffect);
 	else
